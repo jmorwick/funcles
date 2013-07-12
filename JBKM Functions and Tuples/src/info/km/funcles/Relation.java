@@ -29,7 +29,7 @@ import info.km.funcles.tuples.T2;
  * @author Joseph Kendall-Morwick <jmorwick@indiana.edu>
  * @version 1.0
  */
-public abstract class Relation<T> extends Function<Boolean,T2<T,T>> {
+public abstract class Relation<T> extends Predicate<T2<T,T>> {
 
     /** defers to 'relates' */
     @Override
