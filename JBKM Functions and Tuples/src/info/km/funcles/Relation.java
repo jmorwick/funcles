@@ -19,12 +19,15 @@
 
 package info.km.funcles;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import info.km.funcles.tuples.T2;
 
 /** This class provides a clean abstraction for implementing binary relations
  *
- * @author jmorwick
- * @version 0.1
+ * @author Joseph Kendall-Morwick <jmorwick@indiana.edu>
+ * @version 1.0
  */
 public abstract class Relation<T> extends Function<Boolean,T2<T,T>> {
 
@@ -42,4 +45,27 @@ public abstract class Relation<T> extends Function<Boolean,T2<T,T>> {
      */
     public abstract boolean relates(T arg1, T arg2);
 
+    
+    
+    /** partitions the set s according to the relation r.
+     *  this method assumes r is an equivalence relation.
+     * @param s
+     * @return a set of the partitions formed from the set s
+     */
+    public static <T> Set<Set<T>> partition(Relation<T> r, Set<T> s) {
+    	Set<Set<T>> sets = new HashSet<Set<T>>();
+    	for(T x : s) {
+    		for(Set<T> p : sets) {
+    			if(r.relates(x, p.iterator().next())) {
+    				p.add(x); //found a compatible partition
+    				break; //don't add a new partition later
+    			}
+    		}
+    		// no compatible partition found, add a new one
+    		Set<T> p = new HashSet<T>();
+    		p.add(x);
+    		sets.add(p);
+    	}
+    	return sets;
+    }
 }
