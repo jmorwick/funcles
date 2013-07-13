@@ -1,0 +1,174 @@
+/* Copyright 2011-2013 Joseph Kendall-Morwick
+
+     This file is part of the Funcles library.
+
+    Funcles is free software: you can redistribute it and/or modify
+    it under the terms of the Lesser GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Funcles is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    Lesser GNU General Public License for more details.
+
+    You should have received a copy of the Lesser GNU General Public License
+    along with Funcles.  If not, see <http://www.gnu.org/licenses/>.
+
+ */
+
+package info.km.funcles;
+
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import com.google.common.base.Function;
+import com.google.common.base.Predicate;
+import com.google.common.cache.Cache;
+
+/** A utility class which add useful functionality to existing guava Function implementations
+ * 
+ * @author jmorwick
+ *
+ */
+public class Funcles {
+
+	/** a simple way to call apply for a function with 2 arguments using a 2-tuple
+	 * 
+	 * @param f
+	 * @param arg1
+	 * @param arg2
+	 * @return
+	 */
+	
+	public static <F1,F2,T> T apply(Function<T2<F1,F2>,T> f, F1 arg1, F2 arg2) {
+		return f.apply(Tuple.makeTuple(arg1, arg2));
+	}
+	/** a simple way to call apply for a relation with 2 arguments using a 2-tuple
+	 * 
+	 * @param f
+	 * @param arg1
+	 * @param arg2
+	 * @return
+	 */
+	public static <F1,F2,T> boolean apply(Predicate<T2<F1,F2>> f, F1 arg1, F2 arg2) {
+		return f.apply(Tuple.makeTuple(arg1, arg2));
+	}
+	
+	
+	/** modifies a function to immediately return a thread which tracks the execution
+	 * of the function f and eventually contains the result of running f.
+	 * @param f
+	 * @return
+	 */
+	public static <F,T> Function<F,ProcessingThread<F,T>> parallelize(final Function<F,T> f) {
+		return new Function<F, ProcessingThread<F,T>>() {
+			public ProcessingThread<F,T> apply(final F input) {
+				final ProcessingThread<F,T> r = new ProcessingThread<F,T>(f, input);
+				// the constructor above starts the function in a new thread
+		        return r; //return the processing thread that will eventually hold the result
+			}
+		};
+	}
+	
+	/** modifies a function to cache its results
+	 * 
+	 * @param f
+	 * @param cache
+	 * @return
+	 */
+	public static <F,T> Function<F,T> memoizerize(final Function<F,T> f, final Cache<F,T> cache) {
+		return new Function<F,T>() {
+			public T apply(final F input) {
+				T result = cache.getIfPresent(input);
+				if(result == null) {
+					result = f.apply(input);
+					cache.put(input, result);
+				}
+				return result;
+			}
+		};
+	}
+	
+	/** modifies a function to time its results using the provided FunctionTimer
+	 * 
+	 * @param f
+	 * @param t
+	 * @return
+	 */
+	public static <F,T> Function<F,T> timerize(final Function<F,T> f, final FunctionTimer t) {
+		return new Function<F,T>() {
+			public T apply(final F input) {
+				t.start();
+				T result = f.apply(input);
+				t.stop();
+				return result;
+			}
+		};
+	}
+	
+	
+
+
+    /** returns the argument which maximizes this function
+     *
+     * @param inputs all arguments to be evaluated with this function
+     * @return the argument from 'inputs' maximizing this function
+     */
+    public static <F> F argmax(Function<F,? extends Comparable> f, F ... inputs) {
+        List<F> ls = new ArrayList<F>();
+        for(F i : inputs) ls.add(i);
+        return argmaxC(f, ls);
+    }
+
+    /** returns the argument which maximizes the function f
+     *
+     * @param inputs all arguments to be evaluated with this function
+     * @return the argument from 'inputs' maximizing this function
+     */
+    private static <F> F argmaxC(Function<F,? extends Comparable> f, Collection<F> inputs) {
+        Comparable max = null;
+        F maxarg = null;
+        try { 
+        	for(F input : inputs) {
+                Comparable cur = f.apply(input);
+                if(max == null || cur.compareTo(max) > 0) {
+                    max = cur;
+                    maxarg = input;
+                }
+            }
+            return maxarg;
+        } catch(ClassCastException e) {
+            throw new RuntimeException("Argmax called on a funnction without comparable output");
+        }
+
+    }
+
+
+    
+    /** partitions the set s according to the relation r.
+     *  this method assumes r is an equivalence relation.
+     * @param s
+     * @return a set of the partitions formed from the set s
+     */
+    public static <T> Set<Set<T>> partition(BinaryRelation<T> r, Set<T> s) {
+    	Set<Set<T>> sets = new HashSet<Set<T>>();
+    	for(T x : s) {
+    		for(Set<T> p : sets) {
+    			if(apply(r, x, p.iterator().next())) {
+    				p.add(x); //found a compatible partition
+    				break; //don't add a new partition later
+    			}
+    		}
+    		// no compatible partition found, add a new one
+    		Set<T> p = new HashSet<T>();
+    		p.add(x);
+    		sets.add(p);
+    	}
+    	return sets;
+    }
+}
