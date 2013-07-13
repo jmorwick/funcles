@@ -18,16 +18,16 @@
  */
 
 
-package info.km.funcles.tuples;
+package info.km.funcles;
 
-import info.km.funcles.Tuple;
+
 
 /** A class representing a 2-tuple
  *
 
 
   @author Joseph Kendall-Morwick <jmorwick@indiana.edu>
-  @version 0.1
+  @version 1.0.0
 
   */
 public class T2 <A1, A2> extends Tuple {

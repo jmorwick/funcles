@@ -19,10 +19,7 @@
 
 package info.km.funcles;
 
-import info.km.funcles.tuples.T2;
-import info.km.funcles.tuples.T3;
-import info.km.funcles.tuples.T4;
-import info.km.funcles.tuples.T5;
+
 
 import java.io.Serializable;
 

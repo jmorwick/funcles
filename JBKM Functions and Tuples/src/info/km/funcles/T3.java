@@ -17,9 +17,9 @@
 
  */
 
-package info.km.funcles.tuples;
+package info.km.funcles;
 
-import info.km.funcles.Tuple;
+
 
 /**  A class representing a 3-tuple
  *

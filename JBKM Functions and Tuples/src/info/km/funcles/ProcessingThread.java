@@ -21,42 +21,58 @@ package info.km.funcles;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.common.base.Function;
+
 
 /** This class is an interface to running instances of functions initiated
- * wtih the Function.r method.  Results are returned via instances of this
+ * with the Funcles.parallelize method.  Results are returned via instances of this
  * class, and communication with the running instance can be propagated
- * through instances of this class (for example, 'kill').
+ * through instances of this class (for example, 'kill').  This class is also 
+ * the thread of execution for each instance of the running function.
 
   @author Joseph Kendall-Morwick <jmorwick@indiana.edu>
-  @version 0.1
+  @version 1.0.0
  */
-public class ResultContainer<R> {
-    private R result = null;
-    private boolean complete = false;
+public class ProcessingThread<F,T> extends Thread {
+    private T result = null;
     private boolean pleaseDie = false;
     private long suggestedTime = -1;
     private final long startTime;
-    private List<Object> pleaseNotifyUs = new ArrayList<Object>();
+    private long stopTime = -1;
+	private Function<F, T> f;
+	private F input;
 
-    public ResultContainer() {
+    public ProcessingThread(Function<F,T> f, F input) {
         startTime = System.currentTimeMillis();
+        this.f = f;
+        this.input = input;
+        start();
     }
-
-    /** whether or not the function processing the result for this container
-     * is still running.
+    
+    public final void run() {
+    	if(f instanceof JustInTimeAlgorithm) // supply monitor if it can be used
+    		result = (((JustInTimeAlgorithm<F,T>)f).apply(input, this));
+    	else result = (f.apply(input)); //otherwise just start the function up
+        notifyAll();
+        stopTime = System.currentTimeMillis();
+    }
+    
+    /** milliseconds it took this function to execute 
+     * if the function hasn't finished processing, the elapsed time is returned
      * @return
      */
-    public synchronized boolean done() {
-        return complete;
+    public long getRunTime() {
+    	if(this.isAlive()) return System.currentTimeMillis() - startTime;
+    	else return stopTime - startTime;
     }
-
-    /** whether or not a result has been provided
-     * 
-     * @return
+    
+    /** time in milliseconds when this thread was started */
+    public long getStartTime() { return startTime; }
+    
+    /** time in milliseconds when this thread ended 
+     * -1 is returned if it still running 
      */
-    public synchronized boolean resultPresent() {
-        return result != null;
-    }
+    public long getStopTime() { return stopTime; }
 
     /** asks the function processing the result for this container to stop
      * processing.  
@@ -104,28 +120,6 @@ public class ResultContainer<R> {
      * 
      * @return
      */
-    public synchronized R getResult() { return result; }
+    public synchronized T getResult() { return result; }
 
-/** this function should only be called by the background thread associated with
- * this object.  This should be called when the function is done processing.
- * Threads waiting on this object will be notified.
- * 
- * @param result
- */
-    public synchronized void setResult(R result) {
-        complete = true;
-        this.result = result;
-        notifyAll();
-        for(Object o : pleaseNotifyUs) {
-            synchronized(o) { o.notifyAll(); }
-        }
-    }
-
-    /** Notify object 'o' when there is a result present
-     * 
-     * @param o
-     */
-    public void notifyWhenDone(Object o) {
-        pleaseNotifyUs.add(o);
-    }
 }
