@@ -27,12 +27,12 @@ import java.util.List;
 import java.util.Set;
 
 import com.google.common.base.Function;
-import com.google.common.base.Predicate;
 import com.google.common.cache.Cache;
 
 /** A utility class which add useful functionality to existing guava Function implementations
  * 
- * @author jmorwick
+ * @author Joseph Kendall-Morwick <jmorwick@indiana.edu>
+ * @version 1.0.0
  *
  */
 public class Funcles {
@@ -44,10 +44,48 @@ public class Funcles {
 	 * @param arg2
 	 * @return
 	 */
-	
 	public static <F1,F2,T> T apply(Function<T2<F1,F2>,T> f, F1 arg1, F2 arg2) {
 		return f.apply(Tuple.makeTuple(arg1, arg2));
 	}
+	
+	/** a simple way to call apply for a function with 3 arguments using a 3-tuple
+	 * 
+	 * @param f
+	 * @param arg1
+	 * @param arg2
+	 * @param arg3
+	 * @return
+	 */
+	public static <F1,F2,F3,T> T apply(Function<T3<F1,F2,F3>,T> f, F1 arg1, F2 arg2, F3 arg3) {
+		return f.apply(Tuple.makeTuple(arg1, arg2, arg3));
+	}
+
+	/** a simple way to call apply for a function with 4 arguments using a 4-tuple
+	 * 
+	 * @param f
+	 * @param arg1
+	 * @param arg2
+	 * @param arg3
+	 * @param arg4
+	 * @return
+	 */
+	public static <F1,F2,F3,F4,T> T apply(Function<T4<F1,F2,F3,F4>,T> f, F1 arg1, F2 arg2, F3 arg3, F4 arg4) {
+		return f.apply(Tuple.makeTuple(arg1, arg2, arg3, arg4));
+	}
+
+	/** a simple way to call apply for a function with 5 arguments using a 5-tuple
+	 * 
+	 * @param f
+	 * @param arg1
+	 * @param arg2
+	 * @param arg3
+	 * @param arg4
+	 * @return
+	 */
+	public static <F1,F2,F3,F4,F5,T> T apply(Function<T5<F1,F2,F3,F4,F5>,T> f, F1 arg1, F2 arg2, F3 arg3, F4 arg4, F5 arg5) {
+		return f.apply(Tuple.makeTuple(arg1, arg2, arg3, arg4, arg5));
+	}
+	
 	/** a simple way to call apply for a relation with 2 arguments using a 2-tuple
 	 * 
 	 * @param f
@@ -55,8 +93,19 @@ public class Funcles {
 	 * @param arg2
 	 * @return
 	 */
-	public static <F1,F2,T> boolean apply(Predicate<T2<F1,F2>> f, F1 arg1, F2 arg2) {
-		return f.apply(Tuple.makeTuple(arg1, arg2));
+	public static <F,T> boolean apply(BinaryRelation<F> r, F arg1, F arg2) {
+		return r.apply(Tuple.makeTuple(arg1, arg2));
+	}
+	
+	/** a simple way to call apply for a relation with 3 arguments using a 2-tuple
+	 * 
+	 * @param f
+	 * @param arg1
+	 * @param arg2
+	 * @return
+	 */
+	public static <F,T> boolean apply(TernaryRelation<F> r, F arg1, F arg2, F arg3) {
+		return r.apply(Tuple.makeTuple(arg1, arg2, arg3));
 	}
 	
 	

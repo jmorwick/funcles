@@ -19,25 +19,13 @@
 
 package info.km.funcles;
 
-import com.google.common.base.Function;
+import com.google.common.base.Predicate;
 
-/** Implementing this interface designates that this function is able to 
- * use information stored in a ProcessingThread which provides running 
- * time, expected running time, and other signals to the algorithm.
- * 
- * @author jmorwick
- * @version 1.0.0
+/** This class provides a clean abstraction for implementing ternary relations
  *
- * @param <F>
- * @param <T>
+ * @author Joseph Kendall-Morwick <jmorwick@indiana.edu>
+ * @version 1.0
  */
-public interface JustInTimeAlgorithm<F,T> extends Function<F,T> {
-	
-	/** start the function and provide a reference to the ProcessingThread it is running on
-	 * 
-	 * @param input
-	 * @param pc
-	 * @return
-	 */
-	public T apply(F input, ProcessingThread<F,T> pc);
+public abstract interface TernaryRelation<T> extends Predicate<T3<T,T,T>> {
+ 
 }
