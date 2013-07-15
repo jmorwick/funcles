@@ -30,6 +30,8 @@ import com.google.common.base.Function;
 import com.google.common.base.Predicate;
 import com.google.common.cache.Cache;
 
+import static info.km.funcles.Tuple.makeTuple;
+
 /** A utility class which add useful functionality to existing guava Function implementations
  * 
  * @author Joseph Kendall-Morwick <jmorwick@indiana.edu>
@@ -46,7 +48,7 @@ public class Funcles {
 	 * @return
 	 */
 	public static <F1,F2,T> T apply(Function<T2<F1,F2>,T> f, F1 arg1, F2 arg2) {
-		return f.apply(Tuple.makeTuple(arg1, arg2));
+		return f.apply(makeTuple(arg1, arg2));
 	}
 	
 	/** a simple way to call apply for a function with 3 arguments using a 3-tuple
@@ -58,7 +60,7 @@ public class Funcles {
 	 * @return
 	 */
 	public static <F1,F2,F3,T> T apply(Function<T3<F1,F2,F3>,T> f, F1 arg1, F2 arg2, F3 arg3) {
-		return f.apply(Tuple.makeTuple(arg1, arg2, arg3));
+		return f.apply(makeTuple(arg1, arg2, arg3));
 	}
 
 	/** a simple way to call apply for a function with 4 arguments using a 4-tuple
@@ -71,7 +73,7 @@ public class Funcles {
 	 * @return
 	 */
 	public static <F1,F2,F3,F4,T> T apply(Function<T4<F1,F2,F3,F4>,T> f, F1 arg1, F2 arg2, F3 arg3, F4 arg4) {
-		return f.apply(Tuple.makeTuple(arg1, arg2, arg3, arg4));
+		return f.apply(makeTuple(arg1, arg2, arg3, arg4));
 	}
 
 	/** a simple way to call apply for a function with 5 arguments using a 5-tuple
@@ -84,7 +86,7 @@ public class Funcles {
 	 * @return
 	 */
 	public static <F1,F2,F3,F4,F5,T> T apply(Function<T5<F1,F2,F3,F4,F5>,T> f, F1 arg1, F2 arg2, F3 arg3, F4 arg4, F5 arg5) {
-		return f.apply(Tuple.makeTuple(arg1, arg2, arg3, arg4, arg5));
+		return f.apply(makeTuple(arg1, arg2, arg3, arg4, arg5));
 	}
 	
 	/** a simple way to call apply for a relation with 2 arguments using a 2-tuple
@@ -95,7 +97,7 @@ public class Funcles {
 	 * @return
 	 */
 	public static <F,T> boolean apply(BinaryRelation<F> r, F arg1, F arg2) {
-		return r.apply(Tuple.makeTuple(arg1, arg2));
+		return r.apply(makeTuple(arg1, arg2));
 	}
 	
 	/** a simple way to call apply for a relation with 3 arguments using a 2-tuple
@@ -106,24 +108,46 @@ public class Funcles {
 	 * @return
 	 */
 	public static <F,T> boolean apply(TernaryRelation<F> r, F arg1, F arg2, F arg3) {
-		return r.apply(Tuple.makeTuple(arg1, arg2, arg3));
+		return r.apply(makeTuple(arg1, arg2, arg3));
 	}
 	
 	
-	/** modifies a function to immediately return a thread which tracks the execution
-	 * of the function f and eventually contains the result of running f.
+	/** runs a function in the background 
+	 * provides an interface (ProcessingThread) for monitoring the function's
+	 * execution and retrieving the result.  
+	 * 
 	 * @param f
+	 * @param input
 	 * @return
 	 */
-	public static <F,T> Function<F,ProcessingThread<F,T>> parallelize(final Function<F,T> f) {
-		return new Function<F, ProcessingThread<F,T>>() {
-			public ProcessingThread<F,T> apply(final F input) {
-				final ProcessingThread<F,T> r = new ProcessingThread<F,T>(f, input);
-				// the constructor above starts the function in a new thread
-		        return r; //return the processing thread that will eventually hold the result
-			}
-		};
+	public static <F,T> ProcessingThread<F,T> applyInBackground(final Function<F,T> f, F input) {
+		return new ProcessingThread<F,T>(f, input);
 	}
+
+	public static <F1,F2,T> ProcessingThread<T2<F1,F2>,T>
+			applyInBackground(Function<T2<F1,F2>,T> f, F1 arg1, F2 arg2) {
+		return new ProcessingThread<T2<F1,F2>,T>(f, 
+				makeTuple(arg1, arg2));
+	}
+
+	public static <F1,F2,F3,T> ProcessingThread<T3<F1,F2,F3>,T>
+			applyInBackground(Function<T3<F1,F2,F3>,T> f, F1 arg1, F2 arg2, F3 arg3) {
+		return new ProcessingThread<T3<F1,F2,F3>,T>(f, 
+				makeTuple(arg1, arg2, arg3));
+	}
+
+	public static <F1,F2,F3,F4,T> ProcessingThread<T4<F1,F2,F3,F4>,T>
+			applyInBackground(Function<T4<F1,F2,F3,F4>,T> f, F1 arg1, F2 arg2, F3 arg3, F4 arg4) {
+		return new ProcessingThread<T4<F1,F2,F3,F4>,T>(f, 
+				makeTuple(arg1, arg2, arg3, arg4));
+	}
+
+	public static <F1,F2,F3,F4,F5,T> ProcessingThread<T5<F1,F2,F3,F4,F5>,T>
+			applyInBackground(Function<T5<F1,F2,F3,F4,F5>,T> f, F1 arg1, F2 arg2, F3 arg3, F4 arg4, F5 arg5) {
+		return new ProcessingThread<T5<F1,F2,F3,F4,F5>,T>(f, 
+				makeTuple(arg1, arg2, arg3, arg4, arg5));
+	}
+	
 	
 	/** modifies a function to cache its results
 	 * 
