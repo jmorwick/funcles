@@ -27,6 +27,7 @@ import java.util.List;
 import java.util.Set;
 
 import com.google.common.base.Function;
+import com.google.common.base.Predicate;
 import com.google.common.cache.Cache;
 
 /** A utility class which add useful functionality to existing guava Function implementations
@@ -219,5 +220,19 @@ public class Funcles {
     		sets.add(p);
     	}
     	return sets;
+    }
+    
+    /** create a new set filtering out all of the elements of s matching p
+     * 
+     * @param p
+     * @param s
+     * @return
+     */
+    public static <T> Set<T> filter(Predicate<T> p, Set<T> s) {
+    	HashSet<T> ret = new HashSet<T>();
+    	for(T x : s)
+    		if(!p.apply(x))
+    			ret.add(x);
+    	return ret;
     }
 }
