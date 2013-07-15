@@ -19,8 +19,6 @@
 
 package info.km.funcles;
 
-import com.google.common.base.Function;
-
 /** Implementing this interface designates that this function is able to 
  * use information stored in a ProcessingThread which provides running 
  * time, expected running time, and other signals to the algorithm.
@@ -31,13 +29,8 @@ import com.google.common.base.Function;
  * @param <F>
  * @param <T>
  */
-public interface JustInTimeAlgorithm<F,T> extends Function<F,T> {
+public interface JustInTimeAlgorithm {
 	
-	/** start the function and provide a reference to the ProcessingThread it is running on
-	 * 
-	 * @param input
-	 * @param pc
-	 * @return
-	 */
-	public T apply(F input, ProcessingThread<F,T> pc);
+	public void watchThread(ProcessingThread pt);
+	public void forgetThread(ProcessingThread pt);
 }

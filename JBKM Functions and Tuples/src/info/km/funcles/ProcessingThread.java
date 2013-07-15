@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.google.common.base.Function;
+import com.google.common.base.Predicate;
 
 
 /** This class is an interface to running instances of functions initiated
@@ -41,6 +42,7 @@ public class ProcessingThread<F,T> extends Thread {
     private long stopTime = -1;
 	private Function<F, T> f;
 	private F input;
+	private Exception exceptionThatOccured = null;
 
     public ProcessingThread(Function<F,T> f, F input) {
         startTime = System.currentTimeMillis();
@@ -50,12 +52,23 @@ public class ProcessingThread<F,T> extends Thread {
     }
     
     public final void run() {
-    	if(f instanceof JustInTimeAlgorithm) // supply monitor if it can be used
-    		result = (((JustInTimeAlgorithm<F,T>)f).apply(input, this));
-    	else result = (f.apply(input)); //otherwise just start the function up
-        notifyAll();
+    	if(f instanceof JustInTimeAlgorithm) { // supply monitor if it can be used
+    		((JustInTimeAlgorithm)f).watchThread(this);
+    	}
+    	try { // record any exception that stops the thread during execution
+    		result = (f.apply(input)); //start the function up
+    	} catch(Exception e) {
+    		exceptionThatOccured = e;
+    	}
         stopTime = System.currentTimeMillis();
+        notifyAll();
+    	if(f instanceof JustInTimeAlgorithm) { // forget monitor if it was used
+    		((JustInTimeAlgorithm)f).forgetThread(this);
+    	}
     }
+    
+    public Exception getException() { return exceptionThatOccured; }
+    public boolean exceptionOccured() { return exceptionThatOccured != null; }
     
     /** milliseconds it took this function to execute 
      * if the function hasn't finished processing, the elapsed time is returned

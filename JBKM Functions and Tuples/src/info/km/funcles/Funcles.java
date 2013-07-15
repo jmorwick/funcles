@@ -147,8 +147,29 @@ public class Funcles {
 		return new ProcessingThread<T5<F1,F2,F3,F4,F5>,T>(f, 
 				makeTuple(arg1, arg2, arg3, arg4, arg5));
 	}
-	
-	
+
+	public static <F> ProcessingThread<T2<F,F>,Boolean> 
+			applyInBackground(final BinaryRelation<F> r, F arg1, F arg2) {
+		Function<T2<F,F>,Boolean> f;
+		f = new Function<T2<F,F>,Boolean>() {
+			public Boolean apply(T2<F,F> input) {
+				return r.apply(input);
+			}
+		};
+		return new ProcessingThread<T2<F,F>,Boolean>(f, makeTuple(arg1, arg2));
+	}
+
+	public static <F> ProcessingThread<T3<F,F,F>,Boolean> 
+			applyInBackground(final TernaryRelation<F> r, F arg1, F arg2, F arg3) {
+		Function<T3<F,F,F>,Boolean> f;
+		f = new Function<T3<F,F,F>,Boolean>() {
+			public Boolean apply(T3<F,F,F> input) {
+				return r.apply(input);
+			}
+		};
+		return new ProcessingThread<T3<F,F,F>,Boolean>(f, makeTuple(arg1, arg2, arg3));
+	}
+
 	/** modifies a function to cache its results
 	 * 
 	 * @param f
