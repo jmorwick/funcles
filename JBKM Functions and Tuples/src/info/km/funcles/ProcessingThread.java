@@ -52,8 +52,8 @@ public class ProcessingThread<F,T> extends Thread {
     }
     
     public final void run() {
-    	if(f instanceof JustInTimeAlgorithm) { // supply monitor if it can be used
-    		((JustInTimeAlgorithm)f).watchThread(this);
+    	if(f instanceof AnytimeAlgorithm) { // supply monitor if it can be used
+    		((AnytimeAlgorithm)f).watchThread(this);
     	}
     	try { // record any exception that stops the thread during execution
     		result = (f.apply(input)); //start the function up
@@ -62,8 +62,8 @@ public class ProcessingThread<F,T> extends Thread {
     	}
         stopTime = System.currentTimeMillis();
         notifyAll();
-    	if(f instanceof JustInTimeAlgorithm) { // forget monitor if it was used
-    		((JustInTimeAlgorithm)f).forgetThread(this);
+    	if(f instanceof AnytimeAlgorithm) { // forget monitor if it was used
+    		((AnytimeAlgorithm)f).forgetThread(this);
     	}
     }
     

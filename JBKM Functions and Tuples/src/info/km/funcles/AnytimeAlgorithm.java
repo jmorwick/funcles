@@ -29,7 +29,7 @@ package info.km.funcles;
  * @param <F>
  * @param <T>
  */
-public interface JustInTimeAlgorithm {
+public interface AnytimeAlgorithm {
 	
 	public void watchThread(ProcessingThread pt);
 	public void forgetThread(ProcessingThread pt);
