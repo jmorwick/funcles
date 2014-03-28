@@ -33,10 +33,6 @@ public class T5<A1, A2, A3, A4, A5> extends Tuple {
     private A4 a4;
     private A5 a5;
 
-    public T5(A1 a1, A2 a2, A3 a3, A4 a4, A5 a5) {
-        this(a1, a2, a3, a4, a5, false);
-    }
-
     public T5(A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, boolean mutable) {
         super(mutable,5);
         this.a1 = a1;
@@ -52,11 +48,26 @@ public class T5<A1, A2, A3, A4, A5> extends Tuple {
     public A4 a4() { return a4; }
     public A5 a5() { return a5; }
 
-    public void setA1(A1 a1) { if(isMutable()) this.a1 = a1; }
-    public void setA2(A2 a2) { if(isMutable()) this.a2 = a2; }
-    public void setA3(A3 a3) { if(isMutable()) this.a3 = a3; }
-    public void setA4(A4 a4) { if(isMutable()) this.a4 = a4; }
-    public void setA5(A5 a5) { if(isMutable()) this.a5 = a5; }
+    public void setA1(A1 a1) { 
+    	if(isMutable()) this.a1 = a1;
+    	else throw new RuntimeException("attempted modification of immutable tuple");
+    }
+    public void setA2(A2 a2) { 
+    	if(isMutable()) this.a2 = a2;
+    	else throw new RuntimeException("attempted modification of immutable tuple");
+    }
+    public void setA3(A3 a3) { 
+    	if(isMutable()) this.a3 = a3; 
+    	else throw new RuntimeException("attempted modification of immutable tuple");
+    }
+    public void setA4(A4 a4) { 
+    	if(isMutable()) this.a4 = a4; 
+    	else throw new RuntimeException("attempted modification of immutable tuple");
+    }
+    public void setA5(A5 a5) { 
+    	if(isMutable()) this.a5 = a5; 
+    	else throw new RuntimeException("attempted modification of immutable tuple");
+    }
 
 
     @Override

@@ -30,11 +30,19 @@ import com.google.common.base.Predicate;
  * class, and communication with the running instance can be propagated
  * through instances of this class (for example, 'kill').  This class is also 
  * the thread of execution for each instance of the running function.
+ * 
+ * Functions executed in the background can check their currently running thread
+ * and case it to this type in order to access signals and other information.
 
   @author Joseph Kendall-Morwick <jmorwick@indiana.edu>
   @version 1.0.0
  */
-public class ProcessingThread<F,T> extends Thread {
+
+
+//TODO: make sure there aren't alternative singaling facilities in Java that are 
+// more appropriate
+
+public class FunctionThread<F,T> extends Thread {
     private T result = null;
     private boolean pleaseDie = false;
     private long suggestedTime = -1;
@@ -44,7 +52,7 @@ public class ProcessingThread<F,T> extends Thread {
 	private F input;
 	private Exception exceptionThatOccured = null;
 
-    public ProcessingThread(Function<F,T> f, F input) {
+    public FunctionThread(Function<F,T> f, F input) {
         startTime = System.currentTimeMillis();
         this.f = f;
         this.input = input;
@@ -52,9 +60,6 @@ public class ProcessingThread<F,T> extends Thread {
     }
     
     public final void run() {
-    	if(f instanceof AnytimeAlgorithm) { // supply monitor if it can be used
-    		((AnytimeAlgorithm)f).watchThread(this);
-    	}
     	try { // record any exception that stops the thread during execution
     		result = (f.apply(input)); //start the function up
     	} catch(Exception e) {
@@ -62,9 +67,6 @@ public class ProcessingThread<F,T> extends Thread {
     	}
         stopTime = System.currentTimeMillis();
         notifyAll();
-    	if(f instanceof AnytimeAlgorithm) { // forget monitor if it was used
-    		((AnytimeAlgorithm)f).forgetThread(this);
-    	}
     }
     
     public Exception getException() { return exceptionThatOccured; }

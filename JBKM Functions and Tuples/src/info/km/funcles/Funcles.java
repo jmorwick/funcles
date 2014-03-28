@@ -32,6 +32,9 @@ import com.google.common.cache.Cache;
 
 import static info.km.funcles.Tuple.makeTuple;
 
+//TODO: determine if more "filter" methods should be added, specifically along the lines of 
+//iterators/collections and lazily filtering as you iterate
+
 /** A utility class which add useful functionality to existing guava Function implementations
  * 
  * @author Joseph Kendall-Morwick <jmorwick@indiana.edu>
@@ -120,35 +123,35 @@ public class Funcles {
 	 * @param input
 	 * @return
 	 */
-	public static <F,T> ProcessingThread<F,T> applyInBackground(final Function<F,T> f, F input) {
-		return new ProcessingThread<F,T>(f, input);
+	public static <F,T> FunctionThread<F,T> applyInBackground(final Function<F,T> f, F input) {
+		return new FunctionThread<F,T>(f, input);
 	}
 
-	public static <F1,F2,T> ProcessingThread<T2<F1,F2>,T>
+	public static <F1,F2,T> FunctionThread<T2<F1,F2>,T>
 			applyInBackground(Function<T2<F1,F2>,T> f, F1 arg1, F2 arg2) {
-		return new ProcessingThread<T2<F1,F2>,T>(f, 
+		return new FunctionThread<T2<F1,F2>,T>(f, 
 				makeTuple(arg1, arg2));
 	}
 
-	public static <F1,F2,F3,T> ProcessingThread<T3<F1,F2,F3>,T>
+	public static <F1,F2,F3,T> FunctionThread<T3<F1,F2,F3>,T>
 			applyInBackground(Function<T3<F1,F2,F3>,T> f, F1 arg1, F2 arg2, F3 arg3) {
-		return new ProcessingThread<T3<F1,F2,F3>,T>(f, 
+		return new FunctionThread<T3<F1,F2,F3>,T>(f, 
 				makeTuple(arg1, arg2, arg3));
 	}
 
-	public static <F1,F2,F3,F4,T> ProcessingThread<T4<F1,F2,F3,F4>,T>
+	public static <F1,F2,F3,F4,T> FunctionThread<T4<F1,F2,F3,F4>,T>
 			applyInBackground(Function<T4<F1,F2,F3,F4>,T> f, F1 arg1, F2 arg2, F3 arg3, F4 arg4) {
-		return new ProcessingThread<T4<F1,F2,F3,F4>,T>(f, 
+		return new FunctionThread<T4<F1,F2,F3,F4>,T>(f, 
 				makeTuple(arg1, arg2, arg3, arg4));
 	}
 
-	public static <F1,F2,F3,F4,F5,T> ProcessingThread<T5<F1,F2,F3,F4,F5>,T>
+	public static <F1,F2,F3,F4,F5,T> FunctionThread<T5<F1,F2,F3,F4,F5>,T>
 			applyInBackground(Function<T5<F1,F2,F3,F4,F5>,T> f, F1 arg1, F2 arg2, F3 arg3, F4 arg4, F5 arg5) {
-		return new ProcessingThread<T5<F1,F2,F3,F4,F5>,T>(f, 
+		return new FunctionThread<T5<F1,F2,F3,F4,F5>,T>(f, 
 				makeTuple(arg1, arg2, arg3, arg4, arg5));
 	}
 
-	public static <F> ProcessingThread<T2<F,F>,Boolean> 
+	public static <F> FunctionThread<T2<F,F>,Boolean> 
 			applyInBackground(final BinaryRelation<F> r, F arg1, F arg2) {
 		Function<T2<F,F>,Boolean> f;
 		f = new Function<T2<F,F>,Boolean>() {
@@ -156,10 +159,10 @@ public class Funcles {
 				return r.apply(input);
 			}
 		};
-		return new ProcessingThread<T2<F,F>,Boolean>(f, makeTuple(arg1, arg2));
+		return new FunctionThread<T2<F,F>,Boolean>(f, makeTuple(arg1, arg2));
 	}
 
-	public static <F> ProcessingThread<T3<F,F,F>,Boolean> 
+	public static <F> FunctionThread<T3<F,F,F>,Boolean> 
 			applyInBackground(final TernaryRelation<F> r, F arg1, F arg2, F arg3) {
 		Function<T3<F,F,F>,Boolean> f;
 		f = new Function<T3<F,F,F>,Boolean>() {
@@ -167,7 +170,7 @@ public class Funcles {
 				return r.apply(input);
 			}
 		};
-		return new ProcessingThread<T3<F,F,F>,Boolean>(f, makeTuple(arg1, arg2, arg3));
+		return new FunctionThread<T3<F,F,F>,Boolean>(f, makeTuple(arg1, arg2, arg3));
 	}
 
 	/** modifies a function to cache its results
@@ -220,7 +223,7 @@ public class Funcles {
         return argmaxCollection(f, ls);
     }
 
-    /** returns the argument which maximizes the function f
+    /** returns the argument from the collection which maximizes the function f
      *
      * @param inputs all arguments to be evaluated with this function
      * @return the argument from 'inputs' maximizing this function

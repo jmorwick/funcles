@@ -34,10 +34,6 @@ public class T3<A1, A2, A3> extends Tuple {
     private A2 a2;
     private A3 a3;
 
-    public T3(A1 a1, A2 a2, A3 a3) {
-        this(a1, a2, a3, false);
-    }
-
     public T3(A1 a1, A2 a2, A3 a3, boolean mutable) {
         super(mutable,3);
         this.a1 = a1;
@@ -49,9 +45,18 @@ public class T3<A1, A2, A3> extends Tuple {
     public A2 a2() { return a2; }
     public A3 a3() { return a3; }
 
-    public void setA1(A1 a1) { if(isMutable()) this.a1 = a1; }
-    public void setA2(A2 a2) { if(isMutable()) this.a2 = a2; }
-    public void setA3(A3 a3) { if(isMutable()) this.a3 = a3; }
+    public void setA1(A1 a1) { 
+    	if(isMutable()) this.a1 = a1; 
+    	else throw new RuntimeException("attempted modification of immutable tuple");
+    }
+    public void setA2(A2 a2) { 
+    	if(isMutable()) this.a2 = a2; 
+    	else throw new RuntimeException("attempted modification of immutable tuple");
+    }
+    public void setA3(A3 a3) { 
+    	if(isMutable()) this.a3 = a3; 
+    	else throw new RuntimeException("attempted modification of immutable tuple");
+    }
 
     @Override
     @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")

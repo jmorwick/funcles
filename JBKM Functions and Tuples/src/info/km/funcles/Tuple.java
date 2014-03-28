@@ -42,13 +42,20 @@ public class Tuple implements Serializable {
         this.mutable = mutable;
     }
 
+    /** the number of elements in this tuple
+     *
+     * @return the number of elements in this tuple
+     */
+    public int size() { return size; }
+
     /** whether or not this tuple can be altered
      *
      * @return true iff this tuple can be altered
      */
     public boolean isMutable() { return mutable; }
 
-    /** creates a new tuple with 2 elements
+    /** creates a new tuple with 2 elements.
+     * By default, tuples are immutable
      * 
      * @param <A>
      * @param <B>
@@ -57,9 +64,10 @@ public class Tuple implements Serializable {
      * @return
      */
     public static <A,B> T2<A,B> makeTuple(A a, B b) {
-        return new T2<A,B>(a,b);
+        return new T2<A,B>(a,b,false);
     }
     /** creates a new tuple with 3 elements
+     * By default, tuples are immutable
      *
      * @param <A>
      * @param <B>
@@ -68,9 +76,10 @@ public class Tuple implements Serializable {
      * @return
      */
     public static <A,B,C> T3<A,B,C> makeTuple(A a, B b, C c) {
-        return new T3<A,B,C>(a,b,c);
+        return new T3<A,B,C>(a,b,c,false);
     }
     /** creates a new tuple with 4 elements
+     * By default, tuples are immutable
      *
      * @param <A>
      * @param <B>
@@ -79,9 +88,10 @@ public class Tuple implements Serializable {
      * @return
      */
     public static <A,B,C,D> T4<A,B,C,D> makeTuple(A a, B b, C c, D d) {
-        return new T4<A,B,C,D>(a,b,c,d);
+        return new T4<A,B,C,D>(a,b,c,d,false);
     }
     /** creates a new tuple with 5 elements
+     * By default, tuples are immutable
      *
      * @param <A>
      * @param <B>
@@ -90,7 +100,7 @@ public class Tuple implements Serializable {
      * @return
      */
     public static <A,B,C,D,E> T5<A,B,C,D,E> makeTuple(A a, B b, C c, D d, E e) {
-        return new T5<A,B,C,D,E>(a,b,c,d,e);
+        return new T5<A,B,C,D,E>(a,b,c,d,e,false);
     }
 
     /** creates a new tuple with 2 elements which cannot be altered
@@ -101,7 +111,7 @@ public class Tuple implements Serializable {
      * @param b
      * @return
      */
-    public static <A,B> T2<A,B> makeImmutableTuple(A a, B b) {
+    public static <A,B> T2<A,B> makeMutableTuple(A a, B b) {
         return new T2<A,B>(a,b,true);
     }
     /** creates a new tuple with 3 elements which cannot be altered
@@ -112,7 +122,7 @@ public class Tuple implements Serializable {
      * @param b
      * @return
      */
-    public static <A,B,C> T3<A,B,C> makeImmutableTuple(A a, B b, C c) {
+    public static <A,B,C> T3<A,B,C> makeMutableTuple(A a, B b, C c) {
         return new T3<A,B,C>(a,b,c,true);
     }
     /** creates a new tuple with 4 elements which cannot be altered
@@ -123,7 +133,7 @@ public class Tuple implements Serializable {
      * @param b
      * @return
      */
-    public static <A,B,C,D> T4<A,B,C,D> makeImmutableTuple(A a, B b, C c, D d) {
+    public static <A,B,C,D> T4<A,B,C,D> makeMutableTuple(A a, B b, C c, D d) {
         return new T4<A,B,C,D>(a,b,c,d,true);
     }
     /** creates a new tuple with 5 elements which cannot be altered
@@ -134,7 +144,7 @@ public class Tuple implements Serializable {
      * @param b
      * @return
      */
-    public static <A,B,C,D,E> T5<A,B,C,D,E> makeImmutableTuple(A a, B b, C c, D d, E e) {
+    public static <A,B,C,D,E> T5<A,B,C,D,E> makeMutableTuple(A a, B b, C c, D d, E e) {
         return new T5<A,B,C,D,E>(a,b,c,d,e,true);
     }
 }

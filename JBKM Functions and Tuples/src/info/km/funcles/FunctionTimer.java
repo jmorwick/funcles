@@ -117,28 +117,5 @@ public class FunctionTimer {
 		if(recordAllTimes)
 			allTimes.add(elapsedTime);
 	}
-
-
-	/** returns a new set containing all members of s not matching p 
-	 * 
-	 * @param s
-	 * @param p
-	 * @return
-	 */
-	public static <T> Set<T> filter(Set<T> s, Predicate<T> p) {
-		Set<T> ns = new HashSet<T>();
-		return ns;
-	}
-	
-	/** returns a new list containing all members of ls not matching p
-	 * 
-	 * @param ls
-	 * @param p
-	 * @return
-	 */
-	public static <T> List<T> filter(List<T> ls, Predicate<T> p) {
-		List<T> nls = new ArrayList<T>();
-		return nls;
-	}
 	
 }
