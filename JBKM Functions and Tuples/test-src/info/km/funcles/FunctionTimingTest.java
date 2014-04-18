@@ -176,7 +176,8 @@ public class FunctionTimingTest {
 	@Test
 	public void testTimedFunction() {
 		FunctionTimer t = new FunctionTimer(true);
-		Function f = Funcles.timerize(new Function() {
+		Function<Object, Object> f = 
+				Funcles.timerize(new Function<Object, Object>() {
 
 			@Override
 			public Object apply(Object arg0) {
