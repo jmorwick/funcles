@@ -36,7 +36,8 @@ import static info.km.funcles.Tuple.makeTuple;
 //TODO: determine if more "filter" methods should be added, specifically along the lines of 
 //iterators/collections and lazily filtering as you iterate
 
-/** A utility class which add useful functionality to existing guava Function implementations
+/** A utility class which add useful functionality to existing guava Function 
+ * implementations
  * 
  * @author Joseph Kendall-Morwick <jmorwick@indiana.edu>
  * @version 1.0.0
@@ -44,18 +45,19 @@ import static info.km.funcles.Tuple.makeTuple;
  */
 public class Funcles {
 
-	/** a simple way to call apply for a function with 2 arguments using a 2-tuple
+	/** a simple way to call apply for a function with 2 arguments 
 	 * 
 	 * @param f
 	 * @param arg1
 	 * @param arg2
 	 * @return
 	 */
-	public static <F1,F2,T> T apply(Function<T2<F1,F2>,T> f, F1 arg1, F2 arg2) {
+	public static <F1,F2,T> T apply(Function<T2<F1,F2>,T> f, F1 arg1, 
+			F2 arg2) {
 		return f.apply(makeTuple(arg1, arg2));
 	}
 	
-	/** a simple way to call apply for a function with 3 arguments using a 3-tuple
+	/** a simple way to call apply for a function with 3 arguments 
 	 * 
 	 * @param f
 	 * @param arg1
@@ -63,11 +65,12 @@ public class Funcles {
 	 * @param arg3
 	 * @return
 	 */
-	public static <F1,F2,F3,T> T apply(Function<T3<F1,F2,F3>,T> f, F1 arg1, F2 arg2, F3 arg3) {
+	public static <F1,F2,F3,T> T apply(Function<T3<F1,F2,F3>,T> f, F1 arg1, 
+			F2 arg2, F3 arg3) {
 		return f.apply(makeTuple(arg1, arg2, arg3));
 	}
 
-	/** a simple way to call apply for a function with 4 arguments using a 4-tuple
+	/** a simple way to call apply for a function with 4 arguments 
 	 * 
 	 * @param f
 	 * @param arg1
@@ -76,11 +79,12 @@ public class Funcles {
 	 * @param arg4
 	 * @return
 	 */
-	public static <F1,F2,F3,F4,T> T apply(Function<T4<F1,F2,F3,F4>,T> f, F1 arg1, F2 arg2, F3 arg3, F4 arg4) {
+	public static <F1,F2,F3,F4,T> T apply(Function<T4<F1,F2,F3,F4>,T> f, 
+			F1 arg1, F2 arg2, F3 arg3, F4 arg4) {
 		return f.apply(makeTuple(arg1, arg2, arg3, arg4));
 	}
 
-	/** a simple way to call apply for a function with 5 arguments using a 5-tuple
+	/** a simple way to call apply for a function with 5 arguments
 	 * 
 	 * @param f
 	 * @param arg1
@@ -89,11 +93,12 @@ public class Funcles {
 	 * @param arg4
 	 * @return
 	 */
-	public static <F1,F2,F3,F4,F5,T> T apply(Function<T5<F1,F2,F3,F4,F5>,T> f, F1 arg1, F2 arg2, F3 arg3, F4 arg4, F5 arg5) {
+	public static <F1,F2,F3,F4,F5,T> T apply(Function<T5<F1,F2,F3,F4,F5>,T> f, 
+			F1 arg1, F2 arg2, F3 arg3, F4 arg4, F5 arg5) {
 		return f.apply(makeTuple(arg1, arg2, arg3, arg4, arg5));
 	}
 	
-	/** a simple way to call apply for a relation with 2 arguments using a 2-tuple
+	/** a simple way to call apply for a relation with 2 arguments
 	 * 
 	 * @param f
 	 * @param arg1
@@ -104,14 +109,15 @@ public class Funcles {
 		return r.apply(makeTuple(arg1, arg2));
 	}
 	
-	/** a simple way to call apply for a relation with 3 arguments using a 2-tuple
+	/** a simple way to call apply for a relation with 3 arguments
 	 * 
 	 * @param f
 	 * @param arg1
 	 * @param arg2
 	 * @return
 	 */
-	public static <F,T> boolean apply(TernaryRelation<F> r, F arg1, F arg2, F arg3) {
+	public static <F,T> boolean apply(TernaryRelation<F> r, F arg1, F arg2, 
+			F arg3) {
 		return r.apply(makeTuple(arg1, arg2, arg3));
 	}
 	
@@ -124,7 +130,8 @@ public class Funcles {
 	 * @param input
 	 * @return
 	 */
-	public static <F,T> FunctionThread<F,T> applyInBackground(final Function<F,T> f, F input) {
+	public static <F,T> FunctionThread<F,T> 
+		applyInBackground(final Function<F,T> f, F input) {
 		return new FunctionThread<F,T>(f, input);
 	}
 
@@ -135,19 +142,22 @@ public class Funcles {
 	}
 
 	public static <F1,F2,F3,T> FunctionThread<T3<F1,F2,F3>,T>
-			applyInBackground(Function<T3<F1,F2,F3>,T> f, F1 arg1, F2 arg2, F3 arg3) {
+			applyInBackground(Function<T3<F1,F2,F3>,T> f, F1 arg1, 
+					F2 arg2, F3 arg3) {
 		return new FunctionThread<T3<F1,F2,F3>,T>(f, 
 				makeTuple(arg1, arg2, arg3));
 	}
 
 	public static <F1,F2,F3,F4,T> FunctionThread<T4<F1,F2,F3,F4>,T>
-			applyInBackground(Function<T4<F1,F2,F3,F4>,T> f, F1 arg1, F2 arg2, F3 arg3, F4 arg4) {
+			applyInBackground(Function<T4<F1,F2,F3,F4>,T> f, F1 arg1, F2 arg2, 
+					F3 arg3, F4 arg4) {
 		return new FunctionThread<T4<F1,F2,F3,F4>,T>(f, 
 				makeTuple(arg1, arg2, arg3, arg4));
 	}
 
 	public static <F1,F2,F3,F4,F5,T> FunctionThread<T5<F1,F2,F3,F4,F5>,T>
-			applyInBackground(Function<T5<F1,F2,F3,F4,F5>,T> f, F1 arg1, F2 arg2, F3 arg3, F4 arg4, F5 arg5) {
+			applyInBackground(Function<T5<F1,F2,F3,F4,F5>,T> f, F1 arg1, 
+					F2 arg2, F3 arg3, F4 arg4, F5 arg5) {
 		return new FunctionThread<T5<F1,F2,F3,F4,F5>,T>(f, 
 				makeTuple(arg1, arg2, arg3, arg4, arg5));
 	}
@@ -164,14 +174,16 @@ public class Funcles {
 	}
 
 	public static <F> FunctionThread<T3<F,F,F>,Boolean> 
-			applyInBackground(final TernaryRelation<F> r, F arg1, F arg2, F arg3) {
+			applyInBackground(final TernaryRelation<F> r, F arg1, F arg2, 
+					F arg3) {
 		Function<T3<F,F,F>,Boolean> f;
 		f = new Function<T3<F,F,F>,Boolean>() {
 			public Boolean apply(T3<F,F,F> input) {
 				return r.apply(input);
 			}
 		};
-		return new FunctionThread<T3<F,F,F>,Boolean>(f, makeTuple(arg1, arg2, arg3));
+		return new FunctionThread<T3<F,F,F>,Boolean>(f, 
+				makeTuple(arg1, arg2, arg3));
 	}
 
 	/** modifies a function to cache its results
@@ -180,7 +192,8 @@ public class Funcles {
 	 * @param cache
 	 * @return
 	 */
-	public static <F,T> Function<F,T> memoizerize(final Function<F,T> f, final Cache<F,T> cache) {
+	public static <F,T> Function<F,T> memoizerize(final Function<F,T> f, 
+			final Cache<F,T> cache) {
 		return new Function<F,T>() {
 			public T apply(final F input) {
 				T result = cache.getIfPresent(input);
@@ -193,13 +206,14 @@ public class Funcles {
 		};
 	}
 	
-	/** modifies a function to time its results using the provided FunctionTimer
+	/** modifies a function to time results using the provided FunctionTimer
 	 * 
 	 * @param f
 	 * @param t
 	 * @return
 	 */
-	public static <F,T> Function<F,T> timerize(final Function<F,T> f, final FunctionTimer t) {
+	public static <F,T> Function<F,T> timerize(final Function<F,T> f, 
+			final FunctionTimer t) {
 		return new Function<F,T>() {
 			public T apply(final F input) {
 				t.start();
@@ -218,7 +232,8 @@ public class Funcles {
      * @param inputs all arguments to be evaluated with this function
      * @return the argument from 'inputs' maximizing this function
      */
-    public static <F> F argmax(Function<F,? extends Comparable> f, F ... inputs) {
+    public static <F> F argmax(Function<F,? extends Comparable> f, 
+    		F ... inputs) {
         List<F> ls = new ArrayList<F>();
         for(F i : inputs) ls.add(i);
         return argmaxCollection(f, ls);
@@ -229,7 +244,8 @@ public class Funcles {
      * @param inputs all arguments to be evaluated with this function
      * @return the argument from 'inputs' maximizing this function
      */
-    public static <F> F argmaxCollection(Function<F,? extends Comparable> f, Collection<F> inputs) {
+    public static <F> F argmaxCollection(Function<F,? extends Comparable> f, 
+    		Collection<F> inputs) {
         Comparable max = null;
         F maxarg = null;
         try { 
@@ -242,7 +258,8 @@ public class Funcles {
             }
             return maxarg;
         } catch(ClassCastException e) {
-            throw new RuntimeException("Argmax called on a funnction without comparable output");
+            throw new RuntimeException(
+            		"Argmax called on a funnction without comparable output");
         }
 
     }
