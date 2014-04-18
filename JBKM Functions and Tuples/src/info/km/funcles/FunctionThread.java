@@ -18,28 +18,25 @@
  */
 package info.km.funcles;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import com.google.common.base.Function;
-import com.google.common.base.Predicate;
 
 
 /** This class is an interface to running instances of functions initiated
- * with the Funcles.parallelize method.  Results are returned via instances of this
- * class, and communication with the running instance can be propagated
+ * with the Funcles.parallelize method.  Results are returned via instances of
+ * this class, and communication with the running instance can be propagated
  * through instances of this class (for example, 'kill').  This class is also 
  * the thread of execution for each instance of the running function.
  * 
- * Functions executed in the background can check their currently running thread
- * and case it to this type in order to access signals and other information.
+ * Functions executed in the background can check their currently running 
+ * thread and case it to this type in order to access signals and other 
+ * information.
 
   @author Joseph Kendall-Morwick <jmorwick@indiana.edu>
   @version 1.0.0
  */
 
 
-//TODO: make sure there aren't alternative singaling facilities in Java that are 
+//TODO: make sure there aren't alternative singaling facilities in Java that are
 // more appropriate
 
 public class FunctionThread<F,T> extends Thread {

@@ -13,4 +13,9 @@ public class PredicatesTest {
 		fail("Not yet implemented");
 	}
 
+	@Test
+	public void testPartition() {
+		fail("Not yet implemented");
+	}
+
 }
