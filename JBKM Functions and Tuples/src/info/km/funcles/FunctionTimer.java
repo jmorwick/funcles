@@ -82,7 +82,7 @@ public class FunctionTimer {
 	 *
 	 * @return
 	 */
-	public long getMinTime() { return maxRunTime; }
+	public long getMinTime() { return minRunTime; }
 
 
 

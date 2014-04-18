@@ -23,6 +23,7 @@ package info.km.funcles;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -270,17 +271,5 @@ public class Funcles {
     	return sets;
     }
     
-    /** create a new set filtering out all of the elements of s matching p
-     * 
-     * @param p
-     * @param s
-     * @return
-     */
-    public static <T> Set<T> filter(Predicate<T> p, Set<T> s) {
-    	HashSet<T> ret = new HashSet<T>();
-    	for(T x : s)
-    		if(!p.apply(x))
-    			ret.add(x);
-    	return ret;
-    }
+   
 }
