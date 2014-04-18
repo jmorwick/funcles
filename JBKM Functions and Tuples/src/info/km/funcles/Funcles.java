@@ -232,7 +232,7 @@ public class Funcles {
      * @param inputs all arguments to be evaluated with this function
      * @return the argument from 'inputs' maximizing this function
      */
-    public static <F> F argmax(Function<F,? extends Comparable> f, 
+    public static <F, T extends Comparable<T>> F argmax(Function<F,T> f, 
     		F ... inputs) {
         List<F> ls = new ArrayList<F>();
         for(F i : inputs) ls.add(i);
@@ -244,13 +244,13 @@ public class Funcles {
      * @param inputs all arguments to be evaluated with this function
      * @return the argument from 'inputs' maximizing this function
      */
-    public static <F> F argmaxCollection(Function<F,? extends Comparable> f, 
+    public static <F,T extends Comparable<T>> F argmaxCollection(Function<F,T> f, 
     		Collection<F> inputs) {
-        Comparable max = null;
+        T max = null;
         F maxarg = null;
         try { 
         	for(F input : inputs) {
-                Comparable cur = f.apply(input);
+                T cur = f.apply(input);
                 if(max == null || cur.compareTo(max) > 0) {
                     max = cur;
                     maxarg = input;
