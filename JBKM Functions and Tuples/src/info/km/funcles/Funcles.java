@@ -122,70 +122,6 @@ public class Funcles {
 	}
 	
 	
-	/** runs a function in the background 
-	 * provides an interface (ProcessingThread) for monitoring the function's
-	 * execution and retrieving the result.  
-	 * 
-	 * @param f
-	 * @param input
-	 * @return
-	 */
-	public static <F,T> FunctionThread<F,T> 
-		applyInBackground(final Function<F,T> f, F input) {
-		return new FunctionThread<F,T>(f, input);
-	}
-
-	public static <F1,F2,T> FunctionThread<T2<F1,F2>,T>
-			applyInBackground(Function<T2<F1,F2>,T> f, F1 arg1, F2 arg2) {
-		return new FunctionThread<T2<F1,F2>,T>(f, 
-				makeTuple(arg1, arg2));
-	}
-
-	public static <F1,F2,F3,T> FunctionThread<T3<F1,F2,F3>,T>
-			applyInBackground(Function<T3<F1,F2,F3>,T> f, F1 arg1, 
-					F2 arg2, F3 arg3) {
-		return new FunctionThread<T3<F1,F2,F3>,T>(f, 
-				makeTuple(arg1, arg2, arg3));
-	}
-
-	public static <F1,F2,F3,F4,T> FunctionThread<T4<F1,F2,F3,F4>,T>
-			applyInBackground(Function<T4<F1,F2,F3,F4>,T> f, F1 arg1, F2 arg2, 
-					F3 arg3, F4 arg4) {
-		return new FunctionThread<T4<F1,F2,F3,F4>,T>(f, 
-				makeTuple(arg1, arg2, arg3, arg4));
-	}
-
-	public static <F1,F2,F3,F4,F5,T> FunctionThread<T5<F1,F2,F3,F4,F5>,T>
-			applyInBackground(Function<T5<F1,F2,F3,F4,F5>,T> f, F1 arg1, 
-					F2 arg2, F3 arg3, F4 arg4, F5 arg5) {
-		return new FunctionThread<T5<F1,F2,F3,F4,F5>,T>(f, 
-				makeTuple(arg1, arg2, arg3, arg4, arg5));
-	}
-
-	public static <F> FunctionThread<T2<F,F>,Boolean> 
-			applyInBackground(final BinaryRelation<F> r, F arg1, F arg2) {
-		Function<T2<F,F>,Boolean> f;
-		f = new Function<T2<F,F>,Boolean>() {
-			public Boolean apply(T2<F,F> input) {
-				return r.apply(input);
-			}
-		};
-		return new FunctionThread<T2<F,F>,Boolean>(f, makeTuple(arg1, arg2));
-	}
-
-	public static <F> FunctionThread<T3<F,F,F>,Boolean> 
-			applyInBackground(final TernaryRelation<F> r, F arg1, F arg2, 
-					F arg3) {
-		Function<T3<F,F,F>,Boolean> f;
-		f = new Function<T3<F,F,F>,Boolean>() {
-			public Boolean apply(T3<F,F,F> input) {
-				return r.apply(input);
-			}
-		};
-		return new FunctionThread<T3<F,F,F>,Boolean>(f, 
-				makeTuple(arg1, arg2, arg3));
-	}
-
 	/** modifies a function to cache its results
 	 * 
 	 * @param f
@@ -205,25 +141,6 @@ public class Funcles {
 			}
 		};
 	}
-	
-	/** modifies a function to time results using the provided FunctionTimer
-	 * 
-	 * @param f
-	 * @param t
-	 * @return
-	 */
-	public static <F,T> Function<F,T> timerize(final Function<F,T> f, 
-			final FunctionTimer t) {
-		return new Function<F,T>() {
-			public T apply(final F input) {
-				t.start();
-				T result = f.apply(input);
-				t.stop();
-				return result;
-			}
-		};
-	}
-	
 	
 
 
