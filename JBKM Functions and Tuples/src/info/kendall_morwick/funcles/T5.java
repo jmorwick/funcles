@@ -17,36 +17,64 @@
 
  */
 
-package info.km.funcles;
+package info.kendall_morwick.funcles;
 
 
 
-/** A class representing a 4-tuple
- *
-
+/** A class representing a 5-element tuple
   @author Joseph Kendall-Morwick <jmorwick@indiana.edu>
   @version 0.1
 
   */
-public class T4<A1, A2, A3, A4> extends Tuple {
+public class T5<A1, A2, A3, A4, A5> extends Tuple {
     private A1 a1;
     private A2 a2;
     private A3 a3;
     private A4 a4;
+    private A5 a5;
 
-    public T4(A1 a1, A2 a2, A3 a3, A4 a4, boolean mutable) {
-        super(mutable,4);
+    public T5(A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, boolean mutable) {
+        super(mutable,5);
         this.a1 = a1;
         this.a2 = a2;
         this.a3 = a3;
         this.a4 = a4;
+        this.a5 = a5;
     }
+
+    public A1 a1() { return a1; }
+    public A2 a2() { return a2; }
+    public A3 a3() { return a3; }
+    public A4 a4() { return a4; }
+    public A5 a5() { return a5; }
+
+    public void setA1(A1 a1) { 
+    	if(isMutable()) this.a1 = a1;
+    	else throw new RuntimeException("attempted modification of immutable tuple");
+    }
+    public void setA2(A2 a2) { 
+    	if(isMutable()) this.a2 = a2;
+    	else throw new RuntimeException("attempted modification of immutable tuple");
+    }
+    public void setA3(A3 a3) { 
+    	if(isMutable()) this.a3 = a3; 
+    	else throw new RuntimeException("attempted modification of immutable tuple");
+    }
+    public void setA4(A4 a4) { 
+    	if(isMutable()) this.a4 = a4; 
+    	else throw new RuntimeException("attempted modification of immutable tuple");
+    }
+    public void setA5(A5 a5) { 
+    	if(isMutable()) this.a5 = a5; 
+    	else throw new RuntimeException("attempted modification of immutable tuple");
+    }
+
 
     @Override
     @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
     public boolean equals(Object obj) {
         try {
-            T4<A1,A2,A3,A4> t = (T4<A1,A2,A3,A4>)obj;
+            T5<A1,A2,A3,A4,A5> t = (T5<A1,A2,A3,A4,A5>)obj;
             if(a1 == null && t.a1 != null) return false;
             else if(a1 != null && t.a1 == null) return false;
             else if(a1 != null && t.a1 != null && !a1.equals(t.a1)) return false;
@@ -59,6 +87,9 @@ public class T4<A1, A2, A3, A4> extends Tuple {
             if(a4 == null && t.a4 != null) return false;
             else if(a4 != null && t.a4 == null) return false;
             else if(a4 != null && t.a4 != null && !a4.equals(t.a4)) return false;
+            if(a5 == null && t.a5 != null) return false;
+            else if(a5 != null && t.a5 == null) return false;
+            else if(a5 != null && t.a5 != null && !a5.equals(t.a5)) return false;
             return true;
         }catch(ClassCastException e) { return false; }
     }
@@ -66,35 +97,13 @@ public class T4<A1, A2, A3, A4> extends Tuple {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 71 * hash + (this.a1 != null ? this.a1.hashCode() : 0);
-        hash = 71 * hash + (this.a2 != null ? this.a2.hashCode() : 0);
-        hash = 71 * hash + (this.a3 != null ? this.a3.hashCode() : 0);
-        hash = 71 * hash + (this.a4 != null ? this.a4.hashCode() : 0);
+        hash = 17 * hash + (this.a1 != null ? this.a1.hashCode() : 0);
+        hash = 17 * hash + (this.a2 != null ? this.a2.hashCode() : 0);
+        hash = 17 * hash + (this.a3 != null ? this.a3.hashCode() : 0);
+        hash = 17 * hash + (this.a4 != null ? this.a4.hashCode() : 0);
+        hash = 17 * hash + (this.a5 != null ? this.a5.hashCode() : 0);
         return hash;
     }
 
-    public A1 a1() { return a1; }
-    public A2 a2() { return a2; }
-    public A3 a3() { return a3; }
-    public A4 a4() { return a4; }
-
-    public void setA1(A1 a1) { 
-    	if(isMutable()) this.a1 = a1; 
-    	else throw new RuntimeException("attempted modification of immutable tuple");
-    }
-    
-    public void setA2(A2 a2) { 
-    	if(isMutable()) this.a2 = a2;
-    	else throw new RuntimeException("attempted modification of immutable tuple");
-    }
-    
-    public void setA3(A3 a3) { 
-    	if(isMutable()) this.a3 = a3;
-    	else throw new RuntimeException("attempted modification of immutable tuple");
-    }
-    
-    public void setA4(A4 a4) { 
-    	if(isMutable()) this.a4 = a4; 
-    }
 
 }

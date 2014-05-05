@@ -17,7 +17,7 @@
 
  */
 
-package info.km.funcles;
+package info.kendall_morwick.funcles;
 
 
 

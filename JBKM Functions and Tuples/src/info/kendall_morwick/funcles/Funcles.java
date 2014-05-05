@@ -17,7 +17,7 @@
 
  */
 
-package info.km.funcles;
+package info.kendall_morwick.funcles;
 
 
 import java.util.ArrayList;
@@ -32,9 +32,9 @@ import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 
-import static info.km.funcles.Tuple.makeTuple;
-import static info.km.funcles.Pair.makePair;
-import static info.km.funcles.Triple.makeTriple;
+import static info.kendall_morwick.funcles.Pair.makePair;
+import static info.kendall_morwick.funcles.Triple.makeTriple;
+import static info.kendall_morwick.funcles.Tuple.makeTuple;
 
 /** A utility class which add useful functionality to existing guava Function 
  * implementations

@@ -17,10 +17,15 @@
 
  */
 
-package info.km.funcles;
+package info.kendall_morwick.funcles;
 
 import static org.junit.Assert.*;
-import static info.km.funcles.Tuple.*;
+import static info.kendall_morwick.funcles.Tuple.*;
+import info.kendall_morwick.funcles.T2;
+import info.kendall_morwick.funcles.T3;
+import info.kendall_morwick.funcles.T4;
+import info.kendall_morwick.funcles.T5;
+import info.kendall_morwick.funcles.Tuple;
 
 import java.util.HashSet;
 import java.util.Set;
