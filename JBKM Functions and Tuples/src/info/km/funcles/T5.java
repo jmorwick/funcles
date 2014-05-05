@@ -1,4 +1,4 @@
-/* Copyright 2011-2013 Joseph Kendall-Morwick
+/* Copyright 2011-2014 Joseph Kendall-Morwick
 
      This file is part of the Funcles library.
 

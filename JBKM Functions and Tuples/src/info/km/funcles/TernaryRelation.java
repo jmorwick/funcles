@@ -1,4 +1,4 @@
-/* Copyright 2011-2013 Joseph Kendall-Morwick
+/* Copyright 2011-2014 Joseph Kendall-Morwick
 
      This file is part of the Funcles library.
 
@@ -26,6 +26,6 @@ import com.google.common.base.Predicate;
  * @author Joseph Kendall-Morwick <jmorwick@indiana.edu>
  * @version 1.0
  */
-public abstract interface TernaryRelation<T> extends Predicate<T3<T,T,T>> {
+public abstract interface TernaryRelation<T> extends Predicate<Triple<T>> {
  
 }

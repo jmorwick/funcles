@@ -1,4 +1,4 @@
-/* Copyright 2011-2013 Joseph Kendall-Morwick
+/* Copyright 2011-2014 Joseph Kendall-Morwick
 
      This file is part of the Funcles library.
 
@@ -23,18 +23,18 @@ package info.km.funcles;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
+import java.util.concurrent.ExecutionException;
 
 import com.google.common.base.Function;
-import com.google.common.base.Predicate;
-import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
+import com.google.common.cache.CacheLoader;
+import com.google.common.cache.LoadingCache;
 
 import static info.km.funcles.Tuple.makeTuple;
-
-//TODO: determine if more "filter" methods should be added, specifically along the lines of 
-//iterators/collections and lazily filtering as you iterate
+import static info.km.funcles.Pair.makePair;
+import static info.km.funcles.Triple.makeTriple;
 
 /** A utility class which add useful functionality to existing guava Function 
  * implementations
@@ -106,7 +106,7 @@ public class Funcles {
 	 * @return
 	 */
 	public static <F,T> boolean apply(BinaryRelation<F> r, F arg1, F arg2) {
-		return r.apply(makeTuple(arg1, arg2));
+		return r.apply(makePair(arg1, arg2));
 	}
 	
 	/** a simple way to call apply for a relation with 3 arguments
@@ -118,26 +118,47 @@ public class Funcles {
 	 */
 	public static <F,T> boolean apply(TernaryRelation<F> r, F arg1, F arg2, 
 			F arg3) {
-		return r.apply(makeTuple(arg1, arg2, arg3));
+		return r.apply(makeTriple(arg1, arg2, arg3));
 	}
 	
 	
 	/** modifies a function to cache its results
 	 * 
-	 * @param f
-	 * @param cache
-	 * @return
+	 * @param f function to be memoized
+	 * @return memoized function f
 	 */
-	public static <F,T> Function<F,T> memoizerize(final Function<F,T> f, 
-			final Cache<F,T> cache) {
-		return new Function<F,T>() {
+	public static <F,T> MemoizedFunction<F,T> memoize(final Function<F,T> f) {
+		return memoize(f, CacheBuilder.newBuilder());
+	}
+	
+	/** modifies a function to cache its results
+	 * 
+	 * @param f function to be memoized
+	 * @param builder a cache builder which creates a cache for mapping inputs to outputs
+	 * @return memozied function f
+	 */
+	public static <F,T> MemoizedFunction<F,T> memoize(final Function<F,T> f, 
+				final CacheBuilder<? super F, ? super T> builder) {
+		final LoadingCache<F,T> cache = builder.build(CacheLoader.from(f));
+		return new MemoizedFunction<F,T>() {
+			
 			public T apply(final F input) {
-				T result = cache.getIfPresent(input);
-				if(result == null) {
-					result = f.apply(input);
-					cache.put(input, result);
+				try {
+					return cache.get(input);
+				} catch (ExecutionException e) {
+					//Functions can't throw checked exceptions, so this never happens
+					return null;
 				}
-				return result;
+			}
+
+			@Override
+			public LoadingCache<F, T> getCache() {
+				return cache;
+			}
+
+			@Override
+			public Function<F, T> getOriginalFunction() {
+				return f;
 			}
 		};
 	}
@@ -191,16 +212,19 @@ public class Funcles {
     public static <T> Set<Set<T>> partition(BinaryRelation<T> r, Set<T> s) {
     	Set<Set<T>> sets = new HashSet<Set<T>>();
     	for(T x : s) {
+    		boolean foundSet = false;
     		for(Set<T> p : sets) {
     			if(apply(r, x, p.iterator().next())) {
     				p.add(x); //found a compatible partition
+    				foundSet = true;
     				break; //don't add a new partition later
     			}
     		}
-    		// no compatible partition found, add a new one
-    		Set<T> p = new HashSet<T>();
-    		p.add(x);
-    		sets.add(p);
+    		if(!foundSet) {// no compatible partition found, add a new one
+    			Set<T> p = new HashSet<T>();
+    			p.add(x);
+    			sets.add(p);
+    		}
     	}
     	return sets;
     }
