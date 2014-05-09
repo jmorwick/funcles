@@ -20,7 +20,6 @@
 package info.kendall_morwick.funcles;
 
 import com.google.common.base.Function;
-import com.google.common.cache.Cache;
 import com.google.common.cache.LoadingCache;
 
 public interface MemoizedFunction<F,T> extends Function<F,T> {

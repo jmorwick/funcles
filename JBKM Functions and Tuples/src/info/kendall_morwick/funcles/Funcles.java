@@ -26,6 +26,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Future;
 
 import com.google.common.base.Function;
 import com.google.common.cache.CacheBuilder;
@@ -119,16 +120,6 @@ public class Funcles {
 	public static <F,T> boolean apply(TernaryRelation<F> r, F arg1, F arg2, 
 			F arg3) {
 		return r.apply(makeTriple(arg1, arg2, arg3));
-	}
-	
-	
-	/** modifies a function to cache its results
-	 * 
-	 * @param f function to be memoized
-	 * @return memoized function f
-	 */
-	public static <F,T> MemoizedFunction<F,T> memoize(final Function<F,T> f) {
-		return memoize(f, CacheBuilder.newBuilder());
 	}
 	
 	/** modifies a function to cache its results
