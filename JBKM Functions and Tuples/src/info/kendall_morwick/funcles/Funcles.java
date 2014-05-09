@@ -122,6 +122,17 @@ public class Funcles {
 		return r.apply(makeTriple(arg1, arg2, arg3));
 	}
 	
+	
+	/** modifies a function to cache its results
+	 * 
+	 * @param f function to be memoized
+	 * @return memoized function f
+	 */
+	public static <F,T> MemoizedFunction<F,T> memoize(final Function<F,T> f) {
+		return memoize(f, CacheBuilder.newBuilder());
+	}
+	
+	
 	/** modifies a function to cache its results
 	 * 
 	 * @param f function to be memoized
