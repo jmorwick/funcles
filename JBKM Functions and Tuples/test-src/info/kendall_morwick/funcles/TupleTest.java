@@ -217,11 +217,16 @@ public class TupleTest {
 	@Test
 	public void testHashCode() {
 		Set<Tuple> tuples = new HashSet<Tuple>();
-		tuples.add(makeTuple(1, 2, 3));
-		tuples.add(makeTuple(1, 23, 4, 3));
-		tuples.add(makeTuple(1, 1));
-		tuples.add(makeTuple("hi", "there"));
-		tuples.add(makeTuple(1, "2"));
+		for(int i=0; i<(int)(Math.random()*1000); i++) 
+			tuples.add(makeTuple(1, 2, 3));
+		for(int i=0; i<(int)(Math.random()*1000); i++) 
+			tuples.add(makeTuple(1, 23, 4, 3));
+		for(int i=0; i<(int)(Math.random()*1000); i++) 
+			tuples.add(makeTuple(1, 1));
+		for(int i=0; i<(int)(Math.random()*1000); i++) 
+			tuples.add(makeTuple("hi", "there"));
+		for(int i=0; i<(int)(Math.random()*1000); i++) 
+			tuples.add(makeTuple(1, "2"));
 		assertEquals(5, tuples.size());
 		
 		Set<Integer> codes = new HashSet<Integer>();
