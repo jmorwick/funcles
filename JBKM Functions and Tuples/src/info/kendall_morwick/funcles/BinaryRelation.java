@@ -24,7 +24,7 @@ import com.google.common.base.Predicate;
 /** This class provides a clean abstraction for implementing binary relations
  *
  * @author Joseph Kendall-Morwick <jmorwick@indiana.edu>
- * @version 1.0
+ * @version 2.1
  */
 public abstract interface BinaryRelation<T> extends Predicate<Pair<T>> {
  

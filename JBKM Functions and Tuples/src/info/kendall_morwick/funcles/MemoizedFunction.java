@@ -22,6 +22,15 @@ package info.kendall_morwick.funcles;
 import com.google.common.base.Function;
 import com.google.common.cache.LoadingCache;
 
+
+/** an interface with two additional functions to assist in managing 
+ * an instance of a memoized function
+ *
+ * @author Joseph Kendall-Morwick <jmorwick@indiana.edu>
+ * @version 2.1
+ * @param <F> return type
+ * @param <T> parameter type
+ */
 public interface MemoizedFunction<F,T> extends Function<F,T> {
 	
 	/** returns the cache associated with this memoized function */

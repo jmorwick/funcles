@@ -41,7 +41,7 @@ import static info.kendall_morwick.funcles.Tuple.makeTuple;
  * implementations
  * 
  * @author Joseph Kendall-Morwick <jmorwick@indiana.edu>
- * @version 1.0.0
+ * @version 2.1
  *
  */
 public class Funcles {
