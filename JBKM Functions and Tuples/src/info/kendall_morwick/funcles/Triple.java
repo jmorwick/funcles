@@ -19,22 +19,51 @@
 
 package info.kendall_morwick.funcles;
 
+
+/** A class representing a 2-tuple where each element
+ * of the tuple has the same type
+ *
+
+
+  @author Joseph Kendall-Morwick <jmorwick@indiana.edu>
+  @version 2.1
+
+  */
 public class Triple<T> extends T3<T,T,T> {
 
 	public Triple(T a1, T a2, T a3, boolean mutable) {
 		super(a1, a2, a3, mutable);
 	}
 
-	/** creates a new mutable pair with the given arguments
-	 */
-	public static <T> Triple<T> makeTriple(T a1, T a2, T a3) {
-		return new Triple<T>(a1, a2, a3, true);
-	}
-	
 	/** creates a new immutable pair with the given arguments
 	 */
-	public static <T> Triple<T> makeImmutableTriple(T a1, T a2, T a3) {
+	public static <T> Triple<T> makeTriple(T a1, T a2, T a3) {
 		return new Triple<T>(a1, a2, a3, false);
+	}
+	
+	/** creates a new mutable pair with the given arguments
+	 */
+	public static <T> Triple<T> makeMutableTriple(T a1, T a2, T a3) {
+		return new Triple<T>(a1, a2, a3, true) {
+        	//mutable variables overriding default final variables
+        	private T a1; 
+        	private T a2; 
+        	private T a3; 
+        	
+            public T a1() { return a1; }
+            public T a2() { return a2; }
+            public T a3() { return a3; }
+
+            public void setA1(T a1) { 
+            	this.a1 = a1;
+            }
+            public void setA2(T a2) { 
+            	this.a2 = a2;
+            }
+            public void setA3(T a3) { 
+            	this.a3 = a3;
+            }
+        };
 	}
 
 }

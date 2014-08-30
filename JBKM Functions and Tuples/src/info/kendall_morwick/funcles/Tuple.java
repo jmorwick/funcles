@@ -26,7 +26,7 @@ import java.io.Serializable;
 /** Abstract class for all tuples
 
   @author Joseph Kendall-Morwick <jmorwick@indiana.edu>
-  @version 0.1
+  @version 2.1
  */
 public class Tuple implements Serializable {
     private boolean mutable;

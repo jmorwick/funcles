@@ -26,7 +26,7 @@ package info.kendall_morwick.funcles;
 
 
   @author Joseph Kendall-Morwick <jmorwick@indiana.edu>
-  @version 0.1
+  @version 2.1
 
   */
 public class T3<A1, A2, A3> extends Tuple {
