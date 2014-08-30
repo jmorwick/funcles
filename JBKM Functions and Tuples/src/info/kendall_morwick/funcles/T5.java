@@ -27,11 +27,11 @@ package info.kendall_morwick.funcles;
 
   */
 public class T5<A1, A2, A3, A4, A5> extends Tuple {
-    private A1 a1;
-    private A2 a2;
-    private A3 a3;
-    private A4 a4;
-    private A5 a5;
+    private final A1 a1;
+    private final A2 a2;
+    private final A3 a3;
+    private final A4 a4;
+    private final A5 a5;
 
     public T5(A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, boolean mutable) {
         super(mutable,5);
@@ -49,24 +49,19 @@ public class T5<A1, A2, A3, A4, A5> extends Tuple {
     public A5 a5() { return a5; }
 
     public void setA1(A1 a1) { 
-    	if(isMutable()) this.a1 = a1;
-    	else throw new RuntimeException("attempted modification of immutable tuple");
+    	throw new RuntimeException("attempted modification of immutable tuple");
     }
     public void setA2(A2 a2) { 
-    	if(isMutable()) this.a2 = a2;
-    	else throw new RuntimeException("attempted modification of immutable tuple");
+    	throw new RuntimeException("attempted modification of immutable tuple");
     }
     public void setA3(A3 a3) { 
-    	if(isMutable()) this.a3 = a3; 
-    	else throw new RuntimeException("attempted modification of immutable tuple");
+    	throw new RuntimeException("attempted modification of immutable tuple");
     }
     public void setA4(A4 a4) { 
-    	if(isMutable()) this.a4 = a4; 
-    	else throw new RuntimeException("attempted modification of immutable tuple");
+    	throw new RuntimeException("attempted modification of immutable tuple");
     }
     public void setA5(A5 a5) { 
-    	if(isMutable()) this.a5 = a5; 
-    	else throw new RuntimeException("attempted modification of immutable tuple");
+    	throw new RuntimeException("attempted modification of immutable tuple");
     }
 
 
