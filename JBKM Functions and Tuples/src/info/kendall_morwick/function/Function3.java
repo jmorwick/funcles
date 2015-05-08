@@ -19,6 +19,8 @@
 
 package info.kendall_morwick.function;
 
+import info.kendall_morwick.funcles.Funcles;
+import info.kendall_morwick.funcles.tuple.Tuple2;
 import info.kendall_morwick.funcles.tuple.Tuple3;
 
 import com.google.common.base.Function;
@@ -35,4 +37,9 @@ public abstract interface Function3<P1,P2,P3,R> extends Function<Tuple3<P1,P2,P3
 	}
 
 	public R apply(P1 a1, P2 a2, P3 a3);
+	
+	public static <P1,P2,P3,R> Function3<P1,P2,P3,R> 
+		toFunction2(Function<Tuple3<P1,P2,P3>, R> f) {
+		return (arg1, arg2, arg3) -> Funcles.apply(f, arg1, arg2, arg3);
+	}
 }

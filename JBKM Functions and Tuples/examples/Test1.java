@@ -1,5 +1,6 @@
 import java.util.function.BiPredicate;
 
+import info.kendall_morwick.funcles.Funcles;
 import info.kendall_morwick.function.Function2;
 import info.kendall_morwick.relation.Relation2;
 
@@ -44,7 +45,26 @@ public class Test1 {
 		System.out.println(greater3.test(5, 6));
 		System.out.println(greater3.test(5, 5));
 		System.out.println(greater3.test(6, 5));
+
+		System.out.println("----------------");
+		Function2<String,Integer,String> concatInt = (str, x) -> {
+			System.out.println("I got called!");
+			return str + x;
+		};
+
+		System.out.println(concatInt.apply("x:",5));
+		System.out.println(concatInt.apply("x:",6));
+		System.out.println(concatInt.apply("x:",5));
+		System.out.println("----------------");
 		
+		concatInt = Function2.toFunction2(Funcles.memoize(concatInt));
+		System.out.println(concatInt.apply("x:",5));
+		System.out.println(concatInt.apply("x:",6));
+		System.out.println(concatInt.apply("x:",5));
+		
+
+		Function2<String,Character,String> concatChar = (str, c) -> str + c;
+		concatChar = Function2.toFunction2(Funcles.memoize(concatChar));
 		
 	}
 }
