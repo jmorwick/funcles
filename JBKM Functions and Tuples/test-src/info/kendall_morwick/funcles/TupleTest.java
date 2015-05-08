@@ -20,12 +20,12 @@
 package info.kendall_morwick.funcles;
 
 import static org.junit.Assert.*;
-import static info.kendall_morwick.funcles.Tuple.*;
-import info.kendall_morwick.funcles.T2;
-import info.kendall_morwick.funcles.T3;
-import info.kendall_morwick.funcles.T4;
-import info.kendall_morwick.funcles.T5;
-import info.kendall_morwick.funcles.Tuple;
+import static info.kendall_morwick.funcles.tuple.Tuple.*;
+import info.kendall_morwick.funcles.tuple.Tuple;
+import info.kendall_morwick.funcles.tuple.Tuple2;
+import info.kendall_morwick.funcles.tuple.Tuple3;
+import info.kendall_morwick.funcles.tuple.Tuple4;
+import info.kendall_morwick.funcles.tuple.Tuple5;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -37,7 +37,7 @@ public class TupleTest {
 
 	@Test
 	public void makeMutableTuple() {
-		T2<String, String> t2 = Tuple.makeMutableTuple("hi", "there");
+		Tuple2<String, String> t2 = Tuple.makeMutableTuple("hi", "there");
 		assertNotNull(t2);
 		assertEquals(2, t2.size());
 		assertTrue(t2.isMutable());
@@ -48,7 +48,7 @@ public class TupleTest {
 		assertEquals("what's", t2.a1());
 		assertEquals("up?", t2.a2());
 
-		T3<Integer, Integer, Integer> t3 = 
+		Tuple3<Integer, Integer, Integer> t3 = 
 				Tuple.makeMutableTuple(1, 2, 3);
 		assertNotNull(t3);
 		assertEquals(3, t3.size());
@@ -62,7 +62,7 @@ public class TupleTest {
 		assertEquals((Integer)7, t3.a2());
 		assertEquals((Integer)8, t3.a3());
 
-		T4<Integer, Integer, Integer, Integer> t4 = 
+		Tuple4<Integer, Integer, Integer, Integer> t4 = 
 				Tuple.makeMutableTuple(1, 2, 3, 4);
 		assertNotNull(t4);
 		assertEquals(4, t4.size());
@@ -79,7 +79,7 @@ public class TupleTest {
 		assertEquals((Integer)8, t4.a3());
 		assertEquals((Integer)9, t4.a4());
 
-		T5<Integer, Integer, Integer, Integer, Integer> t5 = 
+		Tuple5<Integer, Integer, Integer, Integer, Integer> t5 = 
 				Tuple.makeMutableTuple(1, 2, 3, 4, 5);
 		assertNotNull(t5);
 		assertEquals(5, t5.size());
@@ -103,7 +103,7 @@ public class TupleTest {
 	@Test
 	public void testMakeImmutableTuple() {
 		String msg = "attempted modification of immutable tuple";
-		T2<String, String> t2 = Tuple.makeTuple("hi", "there");
+		Tuple2<String, String> t2 = Tuple.makeTuple("hi", "there");
 		assertNotNull(t2);
 		assertEquals(2, t2.size());
 		assertFalse(t2.isMutable());
@@ -116,7 +116,7 @@ public class TupleTest {
 		assertEquals("hi", t2.a1());
 		assertEquals("there", t2.a2());
 
-		T3<Integer, Integer, Integer> t3 = 
+		Tuple3<Integer, Integer, Integer> t3 = 
 				Tuple.makeTuple(1, 2, 3);
 		assertNotNull(t3);
 		assertEquals(3, t3.size());
@@ -134,7 +134,7 @@ public class TupleTest {
 		assertEquals((Integer)2, t3.a2());
 		assertEquals((Integer)3, t3.a3());
 
-		T4<Integer, Integer, Integer, Integer> t4 = 
+		Tuple4<Integer, Integer, Integer, Integer> t4 = 
 				Tuple.makeTuple(1, 2, 3, 4);
 		assertNotNull(t4);
 		assertEquals(4, t4.size());
@@ -156,7 +156,7 @@ public class TupleTest {
 		assertEquals((Integer)3, t4.a3());
 		assertEquals((Integer)4, t4.a4());
 
-		T5<Integer, Integer, Integer, Integer, Integer> t5 = 
+		Tuple5<Integer, Integer, Integer, Integer, Integer> t5 = 
 				Tuple.makeTuple(1, 2, 3, 4, 5);
 		assertNotNull(t5);
 		assertEquals(5, t5.size());
@@ -187,7 +187,7 @@ public class TupleTest {
 	@Test
 	public void testEquals() {
 		Tuple t2_1 = Tuple.makeTuple("hi", "there");
-		T2<String,String> t2_2 = Tuple.makeMutableTuple("hi", "there");
+		Tuple2<String,String> t2_2 = Tuple.makeMutableTuple("hi", "there");
 		assertEquals(t2_1, t2_2);
 		assertEquals(t2_2, t2_1);
 		t2_2.setA2("blah");
@@ -199,9 +199,9 @@ public class TupleTest {
 		assertEquals(t3_1, t3_2);
 		assertEquals(t3_2, t3_1);
 		
-		T2<T2<Integer,Integer>,T2<Integer,Integer>> t2_3 = 
+		Tuple2<Tuple2<Integer,Integer>,Tuple2<Integer,Integer>> t2_3 = 
 				makeTuple(Tuple.makeMutableTuple(1,2), makeTuple(3,4));
-		T2<T2<Integer,Integer>,T2<Integer,Integer>>  t2_4 = 
+		Tuple2<Tuple2<Integer,Integer>,Tuple2<Integer,Integer>>  t2_4 = 
 				makeTuple(Tuple.makeMutableTuple(1,2), makeTuple(3,4));
 		assertEquals(t2_3, t2_4);
 		assertEquals(t2_4, t2_3);

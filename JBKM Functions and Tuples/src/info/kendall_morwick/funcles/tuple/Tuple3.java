@@ -17,7 +17,7 @@
 
  */
 
-package info.kendall_morwick.funcles;
+package info.kendall_morwick.funcles.tuple;
 
 
 
@@ -29,12 +29,12 @@ package info.kendall_morwick.funcles;
   @version 2.1
 
   */
-public class T3<A1, A2, A3> extends Tuple {
+public class Tuple3<A1, A2, A3> extends Tuple {
     private final A1 a1;
     private final A2 a2;
     private final A3 a3;
 
-    public T3(A1 a1, A2 a2, A3 a3, boolean mutable) {
+    public Tuple3(A1 a1, A2 a2, A3 a3, boolean mutable) {
         super(mutable,3);
         this.a1 = a1;
         this.a2 = a2;
@@ -59,16 +59,16 @@ public class T3<A1, A2, A3> extends Tuple {
     @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
     public boolean equals(Object obj) {
         try {
-            T3<A1,A2,A3> t = (T3<A1,A2,A3>)obj;
-            if(a1 == null && t.a1 != null) return false;
-            else if(a1 != null && t.a1 == null) return false;
-            else if(a1 != null && t.a1 != null && !a1.equals(t.a1)) return false;
-            if(a2 == null && t.a2 != null) return false;
-            else if(a2 != null && t.a2 == null) return false;
-            else if(a2 != null && t.a2 != null && !a2.equals(t.a2)) return false;
-            if(a3 == null && t.a3 != null) return false;
-            else if(a3 != null && t.a3 == null) return false;
-            else if(a3 != null && t.a3 != null && !a3.equals(t.a3)) return false;
+            Tuple3<A1,A2,A3> t = (Tuple3<A1,A2,A3>)obj;
+            if(a1() == null && t.a1() != null) return false;
+            else if(a1() != null && t.a1() == null) return false;
+            else if(a1() != null && t.a1() != null && !a1().equals(t.a1())) return false;
+            if(a2() == null && t.a2() != null) return false;
+            else if(a2() != null && t.a2() == null) return false;
+            else if(a2() != null && t.a2() != null && !a2().equals(t.a2())) return false;
+            if(a3() == null && t.a3() != null) return false;
+            else if(a3() != null && t.a3() == null) return false;
+            else if(a3() != null && t.a3() != null && !a3().equals(t.a3())) return false;
             return true;
         }catch(ClassCastException e) { return false; }
     }
@@ -76,9 +76,9 @@ public class T3<A1, A2, A3> extends Tuple {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 17 * hash + (this.a1 != null ? this.a1.hashCode() : 0);
-        hash = 17 * hash + (this.a2 != null ? this.a2.hashCode() : 0);
-        hash = 17 * hash + (this.a3 != null ? this.a3.hashCode() : 0);
+        hash = 17 * hash + (this.a1() != null ? this.a1().hashCode() : 0);
+        hash = 17 * hash + (this.a2() != null ? this.a2().hashCode() : 0);
+        hash = 17 * hash + (this.a3() != null ? this.a3().hashCode() : 0);
         return hash;
     }
 

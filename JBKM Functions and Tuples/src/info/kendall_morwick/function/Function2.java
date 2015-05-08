@@ -17,15 +17,22 @@
 
  */
 
-package info.kendall_morwick.funcles;
+package info.kendall_morwick.function;
 
-import com.google.common.base.Predicate;
+import info.kendall_morwick.funcles.tuple.Tuple2;
 
-/** This class provides a clean abstraction for implementing binary relations
+import com.google.common.base.Function;
+
+/** 
  *
  * @author Joseph Kendall-Morwick <jmorwick@indiana.edu>
- * @version 2.1
+ * @version 2.0
  */
-public abstract interface BinaryRelation<T> extends Predicate<Pair<T>> {
- 
+@FunctionalInterface
+public abstract interface Function2<P1,P2,R> extends Function<Tuple2<P1,P2>,R> {
+	public default R apply(Tuple2<P1,P2> args) {
+		return apply(args.a1(), args.a2());
+	}
+
+	public R apply(P1 a1,P2 a2);
 }

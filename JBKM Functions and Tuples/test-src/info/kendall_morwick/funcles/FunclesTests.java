@@ -20,18 +20,18 @@
 package info.kendall_morwick.funcles;
 
 import static org.junit.Assert.*;
-import static info.kendall_morwick.funcles.Pair.makePair;
+import static info.kendall_morwick.funcles.tuple.Pair.makePair;
 import static com.google.common.collect.Sets.newHashSet;
-import info.kendall_morwick.funcles.BinaryRelation;
 import info.kendall_morwick.funcles.Funcles;
 import info.kendall_morwick.funcles.MemoizedFunction;
-import info.kendall_morwick.funcles.Pair;
-import info.kendall_morwick.funcles.T2;
-import info.kendall_morwick.funcles.T3;
-import info.kendall_morwick.funcles.T4;
-import info.kendall_morwick.funcles.T5;
-import info.kendall_morwick.funcles.TernaryRelation;
-import info.kendall_morwick.funcles.Triple;
+import info.kendall_morwick.funcles.tuple.Pair;
+import info.kendall_morwick.funcles.tuple.Triple;
+import info.kendall_morwick.funcles.tuple.Tuple2;
+import info.kendall_morwick.funcles.tuple.Tuple3;
+import info.kendall_morwick.funcles.tuple.Tuple4;
+import info.kendall_morwick.funcles.tuple.Tuple5;
+import info.kendall_morwick.relation.Relation2;
+import info.kendall_morwick.relation.Relation3;
 
 import java.util.Set;
 
@@ -43,36 +43,36 @@ public class FunclesTests {
 
 	@Test
 	public void testApplyFunctions() {
-		int res2 = Funcles.apply(new Function<T2<Integer,Integer>, Integer>() {
+		int res2 = Funcles.apply(new Function<Tuple2<Integer,Integer>, Integer>() {
 			@Override
-			public Integer apply(T2<Integer, Integer> args) {
+			public Integer apply(Tuple2<Integer, Integer> args) {
 				// TODO Auto-generated method stub
 				return args.a1() + args.a2();
 			}
 		}, 1, 2);
 		int res3 = Funcles.apply(new Function<
-				T3<Integer,Integer,Integer>, 
+				Tuple3<Integer,Integer,Integer>, 
 				Integer>() {
 			@Override
-			public Integer apply(T3<Integer,Integer,Integer> args) {
+			public Integer apply(Tuple3<Integer,Integer,Integer> args) {
 				// TODO Auto-generated method stub
 				return args.a1() + args.a2() + args.a3();
 			}
 		}, 1, 2, 3);
 		int res4 = Funcles.apply(new Function<
-				T4<Integer,Integer,Integer,Integer>, 
+				Tuple4<Integer,Integer,Integer,Integer>, 
 				Integer>() {
 			@Override
-			public Integer apply(T4<Integer,Integer,Integer,Integer> args) {
+			public Integer apply(Tuple4<Integer,Integer,Integer,Integer> args) {
 				// TODO Auto-generated method stub
 				return args.a1() + args.a2() + args.a3() + args.a4();
 			}
 		}, 1, 2, 3, 4);
 		int res5 = Funcles.apply(new Function<
-				T5<Integer,Integer,Integer,Integer,Integer>, 
+				Tuple5<Integer,Integer,Integer,Integer,Integer>, 
 				Integer>() {
 			@Override
-			public Integer apply(T5<Integer,Integer,Integer,Integer,Integer> args) {
+			public Integer apply(Tuple5<Integer,Integer,Integer,Integer,Integer> args) {
 				// TODO Auto-generated method stub
 				return args.a1() + args.a2() + args.a3() + args.a4() + args.a5();
 			}
@@ -85,21 +85,21 @@ public class FunclesTests {
 
 	@Test
 	public void testApplyRelations() {
-		assertTrue(Funcles.apply(new BinaryRelation<Integer>() {
+		assertTrue(Funcles.apply(new Relation2<Integer>() {
 			@Override
-			public boolean apply(Pair<Integer> args) {
-				if(args.a2() == 0) return false;
-				return (args.a1()/args.a2())*args.a2() == args.a1();
+			public boolean test(Integer a1, Integer a2) {
+				if(a2 == 0) return false;
+				return (a1/a2)*a2 == a1;
 			}
 			
 		}, 8, 2));
 		
-		assertTrue(Funcles.apply(new TernaryRelation<Integer>() {
+		assertTrue(Funcles.apply(new Relation3<Integer>() {
 			@Override
-			public boolean apply(Triple<Integer> args) {
-				return args.a1() != args.a2() &&
-						args.a1() != args.a3() &&
-						args.a2() != args.a3();
+			public boolean test(Integer a1, Integer a2, Integer a3) {
+				return a1 != a2 &&
+						a1 != a3 &&
+						a2 != a3;
 			}
 			
 		}, 8, 2, 1));
@@ -128,11 +128,11 @@ public class FunclesTests {
 	@Test
 	public void testPartition() {
 		Set<Integer> numbers = newHashSet(1, 2, 3, 4, 5, 123, 41, 523, 1244);
-		BinaryRelation r = new BinaryRelation<Integer>() {
+		Relation2 r = new Relation2<Integer>() {
 
 			@Override
-			public boolean apply(Pair<Integer> args) {
-				return args.a1() % 3 == args.a2() % 3;
+			public boolean test(Integer a1, Integer a2) {
+				return a1 % 3 == a2 % 3;
 			}
 			
 		};

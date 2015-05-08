@@ -17,7 +17,7 @@
 
  */
 
-package info.kendall_morwick.funcles;
+package info.kendall_morwick.funcles.tuple;
 
 
 
@@ -29,11 +29,11 @@ package info.kendall_morwick.funcles;
   @version 2.1
 
   */
-public class T2 <A1, A2> extends Tuple {
+public class Tuple2 <A1, A2> extends Tuple {
     private final A1 a1;
     private final A2 a2;
 
-    public T2(A1 a1, A2 a2, boolean mutable) {
+    public Tuple2(A1 a1, A2 a2, boolean mutable) {
         super(mutable,2);
         this.a1 = a1;
         this.a2 = a2;
@@ -54,13 +54,13 @@ public class T2 <A1, A2> extends Tuple {
     @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
     public boolean equals(Object obj) {
         try {
-            T2<A1,A2> t = (T2<A1,A2>)obj;
-            if(a1 == null && t.a1 != null) return false;
-            else if(a1 != null && t.a1 == null) return false;
-            else if(a1 != null && t.a1 != null && !a1.equals(t.a1)) return false;
-            if(a2 == null && t.a2 != null) return false;
-            else if(a2 != null && t.a2 == null) return false;
-            else if(a2 != null && t.a2 != null && !a2.equals(t.a2)) return false;
+            Tuple2<A1,A2> t = (Tuple2<A1,A2>)obj;
+            if(a1() == null && t.a1() != null) return false;
+            else if(a1() != null && t.a1() == null) return false;
+            else if(a1() != null && t.a1() != null && !a1().equals(t.a1())) return false;
+            if(a2() == null && t.a2() != null) return false;
+            else if(a2() != null && t.a2() == null) return false;
+            else if(a2() != null && t.a2() != null && !a2().equals(t.a2())) return false;
             return true;
         }catch(ClassCastException e) { return false; }
     }
@@ -68,8 +68,8 @@ public class T2 <A1, A2> extends Tuple {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 79 * hash + (this.a1 != null ? this.a1.hashCode() : 0);
-        hash = 79 * hash + (this.a2 != null ? this.a2.hashCode() : 0);
+        hash = 79 * hash + (this.a1() != null ? this.a1().hashCode() : 0);
+        hash = 79 * hash + (this.a2() != null ? this.a2().hashCode() : 0);
         return hash;
     }
 

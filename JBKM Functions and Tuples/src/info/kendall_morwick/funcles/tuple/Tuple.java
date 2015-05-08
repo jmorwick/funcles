@@ -17,9 +17,9 @@
 
  */
 
-package info.kendall_morwick.funcles;
+package info.kendall_morwick.funcles.tuple;
 
-
+//TODO: add a copy-on-modify method to modify tuples. 
 
 import java.io.Serializable;
 
@@ -29,7 +29,7 @@ import java.io.Serializable;
   @version 2.1
  */
 public class Tuple implements Serializable {
-    private boolean mutable;
+    private boolean mutable; 
     private int size;
 
     /** constructor for abstract tuple class which tracks tuple properties
@@ -63,8 +63,8 @@ public class Tuple implements Serializable {
      * @param b
      * @return
      */
-    public static <A,B> T2<A,B> makeTuple(A a, B b) {
-        return new T2<A,B>(a,b,false);
+    public static <A,B> Tuple2<A,B> makeTuple(A a, B b) {
+        return new Tuple2<A,B>(a,b,false);
     }
     /** creates a new tuple with 3 elements
      * By default, tuples are immutable
@@ -75,8 +75,8 @@ public class Tuple implements Serializable {
      * @param b
      * @return
      */
-    public static <A,B,C> T3<A,B,C> makeTuple(A a, B b, C c) {
-        return new T3<A,B,C>(a,b,c,false);
+    public static <A,B,C> Tuple3<A,B,C> makeTuple(A a, B b, C c) {
+        return new Tuple3<A,B,C>(a,b,c,false);
     }
     /** creates a new tuple with 4 elements
      * By default, tuples are immutable
@@ -87,8 +87,8 @@ public class Tuple implements Serializable {
      * @param b
      * @return
      */
-    public static <A,B,C,D> T4<A,B,C,D> makeTuple(A a, B b, C c, D d) {
-        return new T4<A,B,C,D>(a,b,c,d,false);
+    public static <A,B,C,D> Tuple4<A,B,C,D> makeTuple(A a, B b, C c, D d) {
+        return new Tuple4<A,B,C,D>(a,b,c,d,false);
     }
     /** creates a new tuple with 5 elements
      * By default, tuples are immutable
@@ -99,8 +99,8 @@ public class Tuple implements Serializable {
      * @param b
      * @return
      */
-    public static <A,B,C,D,E> T5<A,B,C,D,E> makeTuple(A a, B b, C c, D d, E e) {
-        return new T5<A,B,C,D,E>(a,b,c,d,e,false);
+    public static <A,B,C,D,E> Tuple5<A,B,C,D,E> makeTuple(A a, B b, C c, D d, E e) {
+        return new Tuple5<A,B,C,D,E>(a,b,c,d,e,false);
     }
 
     /** creates a new tuple with 2 elements which cannot be altered
@@ -111,14 +111,17 @@ public class Tuple implements Serializable {
      * @param b
      * @return
      */
-    public static <A,B> T2<A,B> makeMutableTuple(A a, B b) {
-        return new T2<A,B>(a,b,true) {
+    public static <A,B> Tuple2<A,B> makeMutableTuple(A a, B b) {
+        Tuple2<A, B> t = new Tuple2<A,B>(null,null,true) {
         	//mutable variables overriding default final variables
         	private A a1; 
         	private B a2; 
         	
-            public A a1() { return a1; }
-            public B a2() { return a2; }
+        	@Override
+            public A a1() { return this.a1; }
+        	
+        	@Override
+            public B a2() { return this.a2; }
 
             public void setA1(A a1) { 
             	this.a1 = a1;
@@ -127,6 +130,9 @@ public class Tuple implements Serializable {
             	this.a2 = a2;
             }
         };
+        t.setA1(a);
+        t.setA2(b);
+        return t;
     }
     /** creates a new tuple with 3 elements which cannot be altered
      *
@@ -136,8 +142,8 @@ public class Tuple implements Serializable {
      * @param b
      * @return
      */
-    public static <A,B,C> T3<A,B,C> makeMutableTuple(A a, B b, C c) {
-        return new T3<A,B,C>(a,b,c,true) {
+    public static <A,B,C> Tuple3<A,B,C> makeMutableTuple(A a, B b, C c) {
+        Tuple3<A, B, C> t = new Tuple3<A,B,C>(null,null,null,true) {
         	//mutable variables overriding default final variables
         	private A a1; 
         	private B a2; 
@@ -157,6 +163,10 @@ public class Tuple implements Serializable {
             	this.a3 = a3;
             }
         };
+        t.setA1(a);
+        t.setA2(b);
+        t.setA3(c);
+        return t;
     }
     /** creates a new tuple with 4 elements which cannot be altered
      *
@@ -166,8 +176,8 @@ public class Tuple implements Serializable {
      * @param b
      * @return
      */
-    public static <A,B,C,D> T4<A,B,C,D> makeMutableTuple(A a, B b, C c, D d) {
-        return new T4<A,B,C,D>(a,b,c,d,true) {
+    public static <A,B,C,D> Tuple4<A,B,C,D> makeMutableTuple(A a, B b, C c, D d) {
+        Tuple4<A, B, C, D> t = new Tuple4<A,B,C,D>(null,null,null,null,true) {
         	//mutable variables overriding default final variables
         	private A a1; 
         	private B a2; 
@@ -192,6 +202,11 @@ public class Tuple implements Serializable {
             	this.a4 = a4;
             }
         };
+        t.setA1(a);
+        t.setA2(b);
+        t.setA3(c);
+        t.setA4(d);
+        return t;
     }
     /** creates a new tuple with 5 elements which cannot be altered
      *
@@ -201,8 +216,8 @@ public class Tuple implements Serializable {
      * @param b
      * @return
      */
-    public static <A,B,C,D,E> T5<A,B,C,D,E> makeMutableTuple(A a, B b, C c, D d, E e) {
-        return new T5<A,B,C,D,E>(a,b,c,d,e,true) {
+    public static <A,B,C,D,E> Tuple5<A,B,C,D,E> makeMutableTuple(A a, B b, C c, D d, E e) {
+        Tuple5<A, B, C, D, E> t = new Tuple5<A,B,C,D,E>(null,null,null,null,null,true) {
         	//mutable variables overriding default final variables
         	private A a1; 
         	private B a2; 
@@ -232,5 +247,11 @@ public class Tuple implements Serializable {
             	this.a5 = a5;
             }
         };
+        t.setA1(a);
+        t.setA2(b);
+        t.setA3(c);
+        t.setA4(d);
+        t.setA5(e);
+        return t;
     }
 }

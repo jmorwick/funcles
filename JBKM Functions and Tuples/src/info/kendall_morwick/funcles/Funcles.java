@@ -20,22 +20,28 @@
 package info.kendall_morwick.funcles;
 
 
+import info.kendall_morwick.funcles.tuple.Tuple2;
+import info.kendall_morwick.funcles.tuple.Tuple3;
+import info.kendall_morwick.funcles.tuple.Tuple4;
+import info.kendall_morwick.funcles.tuple.Tuple5;
+import info.kendall_morwick.relation.Relation2;
+import info.kendall_morwick.relation.Relation3;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
 
 import com.google.common.base.Function;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 
-import static info.kendall_morwick.funcles.Pair.makePair;
-import static info.kendall_morwick.funcles.Triple.makeTriple;
-import static info.kendall_morwick.funcles.Tuple.makeTuple;
+import static info.kendall_morwick.funcles.tuple.Pair.makePair;
+import static info.kendall_morwick.funcles.tuple.Triple.makeTriple;
+import static info.kendall_morwick.funcles.tuple.Tuple.makeTuple;
 
 /** A utility class which add useful functionality to existing guava Function 
  * implementations
@@ -53,7 +59,7 @@ public class Funcles {
 	 * @param arg2
 	 * @return
 	 */
-	public static <F1,F2,T> T apply(Function<T2<F1,F2>,T> f, F1 arg1, 
+	public static <F1,F2,T> T apply(Function<Tuple2<F1,F2>,T> f, F1 arg1, 
 			F2 arg2) {
 		return f.apply(makeTuple(arg1, arg2));
 	}
@@ -66,7 +72,7 @@ public class Funcles {
 	 * @param arg3
 	 * @return
 	 */
-	public static <F1,F2,F3,T> T apply(Function<T3<F1,F2,F3>,T> f, F1 arg1, 
+	public static <F1,F2,F3,T> T apply(Function<Tuple3<F1,F2,F3>,T> f, F1 arg1, 
 			F2 arg2, F3 arg3) {
 		return f.apply(makeTuple(arg1, arg2, arg3));
 	}
@@ -80,7 +86,7 @@ public class Funcles {
 	 * @param arg4
 	 * @return
 	 */
-	public static <F1,F2,F3,F4,T> T apply(Function<T4<F1,F2,F3,F4>,T> f, 
+	public static <F1,F2,F3,F4,T> T apply(Function<Tuple4<F1,F2,F3,F4>,T> f, 
 			F1 arg1, F2 arg2, F3 arg3, F4 arg4) {
 		return f.apply(makeTuple(arg1, arg2, arg3, arg4));
 	}
@@ -94,7 +100,7 @@ public class Funcles {
 	 * @param arg4
 	 * @return
 	 */
-	public static <F1,F2,F3,F4,F5,T> T apply(Function<T5<F1,F2,F3,F4,F5>,T> f, 
+	public static <F1,F2,F3,F4,F5,T> T apply(Function<Tuple5<F1,F2,F3,F4,F5>,T> f, 
 			F1 arg1, F2 arg2, F3 arg3, F4 arg4, F5 arg5) {
 		return f.apply(makeTuple(arg1, arg2, arg3, arg4, arg5));
 	}
@@ -106,8 +112,8 @@ public class Funcles {
 	 * @param arg2
 	 * @return
 	 */
-	public static <F,T> boolean apply(BinaryRelation<F> r, F arg1, F arg2) {
-		return r.apply(makePair(arg1, arg2));
+	public static <F,T> boolean apply(Relation2<F> r, F arg1, F arg2) {
+		return r.test(makePair(arg1, arg2));
 	}
 	
 	/** a simple way to call apply for a relation with 3 arguments
@@ -117,7 +123,7 @@ public class Funcles {
 	 * @param arg2
 	 * @return
 	 */
-	public static <F,T> boolean apply(TernaryRelation<F> r, F arg1, F arg2, 
+	public static <F,T> boolean apply(Relation3<F> r, F arg1, F arg2, 
 			F arg3) {
 		return r.apply(makeTriple(arg1, arg2, arg3));
 	}
@@ -172,11 +178,12 @@ public class Funcles {
      * @param inputs all arguments to be evaluated with this function
      * @return the argument from 'inputs' maximizing this function
      */
-    public static <F, T extends Comparable<T>> F argmax(Function<F,T> f, 
+    @SafeVarargs
+	public static <F, T extends Comparable<T>> F argmax(Function<F,T> f, 
     		F ... inputs) {
         List<F> ls = new ArrayList<F>();
         for(F i : inputs) ls.add(i);
-        return argmaxCollection(f, ls);
+        return argmax(f, ls);
     }
 
     /** returns the argument from the collection which maximizes the function f
@@ -184,7 +191,7 @@ public class Funcles {
      * @param inputs all arguments to be evaluated with this function
      * @return the argument from 'inputs' maximizing this function
      */
-    public static <F,T extends Comparable<T>> F argmaxCollection(Function<F,T> f, 
+    public static <F,T extends Comparable<T>> F argmax(Function<F,T> f, 
     		Collection<F> inputs) {
         T max = null;
         F maxarg = null;
@@ -211,7 +218,7 @@ public class Funcles {
      * @param s
      * @return a set of the partitions formed from the set s
      */
-    public static <T> Set<Set<T>> partition(BinaryRelation<T> r, Set<T> s) {
+    public static <T> Set<Set<T>> partition(Relation2<T> r, Set<T> s) {
     	Set<Set<T>> sets = new HashSet<Set<T>>();
     	for(T x : s) {
     		boolean foundSet = false;

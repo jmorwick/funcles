@@ -17,7 +17,7 @@
 
  */
 
-package info.kendall_morwick.funcles;
+package info.kendall_morwick.funcles.tuple;
 
 
 
@@ -26,14 +26,14 @@ package info.kendall_morwick.funcles;
   @version 2.1
 
   */
-public class T5<A1, A2, A3, A4, A5> extends Tuple {
+public class Tuple5<A1, A2, A3, A4, A5> extends Tuple {
     private final A1 a1;
     private final A2 a2;
     private final A3 a3;
     private final A4 a4;
     private final A5 a5;
 
-    public T5(A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, boolean mutable) {
+    public Tuple5(A1 a1, A2 a2, A3 a3, A4 a4, A5 a5, boolean mutable) {
         super(mutable,5);
         this.a1 = a1;
         this.a2 = a2;
@@ -69,22 +69,22 @@ public class T5<A1, A2, A3, A4, A5> extends Tuple {
     @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
     public boolean equals(Object obj) {
         try {
-            T5<A1,A2,A3,A4,A5> t = (T5<A1,A2,A3,A4,A5>)obj;
-            if(a1 == null && t.a1 != null) return false;
-            else if(a1 != null && t.a1 == null) return false;
-            else if(a1 != null && t.a1 != null && !a1.equals(t.a1)) return false;
-            if(a2 == null && t.a2 != null) return false;
-            else if(a2 != null && t.a2 == null) return false;
-            else if(a2 != null && t.a2 != null && !a2.equals(t.a2)) return false;
-            if(a3 == null && t.a3 != null) return false;
-            else if(a3 != null && t.a3 == null) return false;
-            else if(a3 != null && t.a3 != null && !a3.equals(t.a3)) return false;
-            if(a4 == null && t.a4 != null) return false;
-            else if(a4 != null && t.a4 == null) return false;
-            else if(a4 != null && t.a4 != null && !a4.equals(t.a4)) return false;
-            if(a5 == null && t.a5 != null) return false;
-            else if(a5 != null && t.a5 == null) return false;
-            else if(a5 != null && t.a5 != null && !a5.equals(t.a5)) return false;
+            Tuple5<A1,A2,A3,A4,A5> t = (Tuple5<A1,A2,A3,A4,A5>)obj;
+            if(a1() == null && t.a1() != null) return false;
+            else if(a1() != null && t.a1() == null) return false;
+            else if(a1() != null && t.a1() != null && !a1().equals(t.a1())) return false;
+            if(a2() == null && t.a2() != null) return false;
+            else if(a2() != null && t.a2() == null) return false;
+            else if(a2() != null && t.a2() != null && !a2().equals(t.a2())) return false;
+            if(a3() == null && t.a3() != null) return false;
+            else if(a3() != null && t.a3() == null) return false;
+            else if(a3() != null && t.a3() != null && !a3().equals(t.a3())) return false;
+            if(a4() == null && t.a4() != null) return false;
+            else if(a4() != null && t.a4() == null) return false;
+            else if(a4() != null && t.a4() != null && !a4().equals(t.a4())) return false;
+            if(a5() == null && t.a5() != null) return false;
+            else if(a5() != null && t.a5() == null) return false;
+            else if(a5() != null && t.a5() != null && !a5().equals(t.a5())) return false;
             return true;
         }catch(ClassCastException e) { return false; }
     }
@@ -92,11 +92,11 @@ public class T5<A1, A2, A3, A4, A5> extends Tuple {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 17 * hash + (this.a1 != null ? this.a1.hashCode() : 0);
-        hash = 17 * hash + (this.a2 != null ? this.a2.hashCode() : 0);
-        hash = 17 * hash + (this.a3 != null ? this.a3.hashCode() : 0);
-        hash = 17 * hash + (this.a4 != null ? this.a4.hashCode() : 0);
-        hash = 17 * hash + (this.a5 != null ? this.a5.hashCode() : 0);
+        hash = 17 * hash + (this.a1() != null ? this.a1().hashCode() : 0);
+        hash = 17 * hash + (this.a2() != null ? this.a2().hashCode() : 0);
+        hash = 17 * hash + (this.a3() != null ? this.a3().hashCode() : 0);
+        hash = 17 * hash + (this.a4() != null ? this.a4().hashCode() : 0);
+        hash = 17 * hash + (this.a5() != null ? this.a5().hashCode() : 0);
         return hash;
     }
 

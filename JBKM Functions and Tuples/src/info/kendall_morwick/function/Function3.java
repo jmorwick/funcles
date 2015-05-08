@@ -17,15 +17,22 @@
 
  */
 
-package info.kendall_morwick.funcles;
+package info.kendall_morwick.function;
 
-import com.google.common.base.Predicate;
+import info.kendall_morwick.funcles.tuple.Tuple3;
 
-/** This class provides a clean abstraction for implementing ternary relations
+import com.google.common.base.Function;
+
+/** 
  *
  * @author Joseph Kendall-Morwick <jmorwick@indiana.edu>
- * @version 2.1
+ * @version 2.0
  */
-public abstract interface TernaryRelation<T> extends Predicate<Triple<T>> {
- 
+@FunctionalInterface
+public abstract interface Function3<P1,P2,P3,R> extends Function<Tuple3<P1,P2,P3>,R> {
+	public default R apply(Tuple3<P1,P2,P3> args) {
+		return apply(args.a1(), args.a2(), args.a3());
+	}
+
+	public R apply(P1 a1, P2 a2, P3 a3);
 }
