@@ -39,7 +39,16 @@ public abstract interface Function3<P1,P2,P3,R> extends Function<Tuple3<P1,P2,P3
 	public R apply(P1 a1, P2 a2, P3 a3);
 	
 	public static <P1,P2,P3,R> Function3<P1,P2,P3,R> 
-		toFunction2(Function<Tuple3<P1,P2,P3>, R> f) {
+		toFunction3(Function<Tuple3<P1,P2,P3>, R> f) {
 		return (arg1, arg2, arg3) -> Funcles.apply(f, arg1, arg2, arg3);
 	}
+
+	
+	public static <P1, P2, P3, R> Function3<P1,P2,P3,R>
+		 applyHigherOrder(Function<? super Function3<P1,P2,P3,R>, 
+				                   ? extends Function<Tuple3<P1,P2,P3>,R>> hof,
+				          Function3<P1,P2,P3,R> f) {
+		return toFunction3(hof.apply(f));
+	}
+			
 }

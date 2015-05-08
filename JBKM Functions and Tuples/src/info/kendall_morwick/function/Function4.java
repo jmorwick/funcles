@@ -39,7 +39,14 @@ public abstract interface Function4<P1,P2,P3,P4,R> extends Function<Tuple4<P1,P2
 	public R apply(P1 a1, P2 a2, P3 a3, P4 a4);
 	
 	public static <P1,P2,P3,P4,R> Function4<P1,P2,P3,P4,R> 
-		toFunction2(Function<Tuple4<P1,P2,P3,P4>, R> f) {
+		toFunction4(Function<Tuple4<P1,P2,P3,P4>, R> f) {
 		return (arg1, arg2, arg3, arg4) -> Funcles.apply(f, arg1, arg2, arg3, arg4);
+	}
+
+	public static <P1, P2, P3, P4, R> Function4<P1,P2,P3,P4,R>
+		 applyHigherOrder(Function<? super Function4<P1,P2,P3,P4,R>, 
+				                   ? extends Function<Tuple4<P1,P2,P3,P4>,R>> hof,
+				          Function4<P1,P2,P3,P4,R> f) {
+		return toFunction4(hof.apply(f));
 	}
 }

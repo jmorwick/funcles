@@ -56,8 +56,9 @@ public class Test1 {
 		System.out.println(concatInt.apply("x:",6));
 		System.out.println(concatInt.apply("x:",5));
 		System.out.println("----------------");
-		
-		concatInt = Function2.toFunction2(Funcles.memoize(concatInt));
+
+		//concatInt = Function2.toFunction2(Funcles.memoize(concatInt));
+		concatInt = Function2.applyHigherOrder(Funcles::memoize, concatInt);
 		System.out.println(concatInt.apply("x:",5));
 		System.out.println(concatInt.apply("x:",6));
 		System.out.println(concatInt.apply("x:",5));
