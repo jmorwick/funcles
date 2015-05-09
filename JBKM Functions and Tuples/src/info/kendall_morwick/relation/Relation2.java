@@ -20,6 +20,7 @@
 package info.kendall_morwick.relation;
 
 import info.kendall_morwick.funcles.tuple.Pair;
+import info.kendall_morwick.funcles.tuple.Tuple2;
 import info.kendall_morwick.function.Function2;
 
 import java.util.function.BiPredicate;
@@ -30,15 +31,20 @@ import java.util.function.BiPredicate;
  * @version 2.1
  */
 @FunctionalInterface
-public abstract interface Relation2<T> extends Relation<Pair<T>>,
+public abstract interface Relation2<T> extends Relation<Pair<T>>, 
+// TODO: determine if Pair<T> above should be Tuple2<T,T> instead
 											   Function2<T,T,Boolean> {
-	
-	public default boolean test(Pair<T> args) {
-		return test(args.a1(), args.a2());
-	}
 	
 	public default Boolean apply(T arg1, T arg2) {
 		return test(arg1, arg2);
+	}
+
+	public default boolean test(Pair<T> args) {
+		return test(args.a1(), args.a2());
+	}
+
+	public default Boolean apply(Tuple2<T, T> args) {
+		return test(args.a1(), args.a2());
 	}
 	
 	/** Converts this relation in to a java.util.function.BiPredicate.

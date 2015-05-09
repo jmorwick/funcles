@@ -34,10 +34,9 @@ import info.kendall_morwick.relation.Relation2;
 import info.kendall_morwick.relation.Relation3;
 
 import java.util.Set;
+import java.util.function.Function;
 
 import org.junit.Test;
-
-import com.google.common.base.Function;
 
 public class FunclesTests {
 

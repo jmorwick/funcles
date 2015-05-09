@@ -19,7 +19,8 @@
 
 package info.kendall_morwick.funcles;
 
-import com.google.common.base.Function;
+import java.util.function.Function;
+
 import com.google.common.cache.LoadingCache;
 
 

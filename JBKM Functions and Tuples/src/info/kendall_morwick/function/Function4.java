@@ -19,11 +19,11 @@
 
 package info.kendall_morwick.function;
 
+import java.util.function.Function;
+
 import info.kendall_morwick.funcles.Funcles;
 import info.kendall_morwick.funcles.tuple.Tuple3;
 import info.kendall_morwick.funcles.tuple.Tuple4;
-
-import com.google.common.base.Function;
 
 /** 
  *

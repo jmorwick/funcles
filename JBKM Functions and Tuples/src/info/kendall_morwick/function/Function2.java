@@ -19,10 +19,10 @@
 
 package info.kendall_morwick.function;
 
+import java.util.function.Function;
+
 import info.kendall_morwick.funcles.Funcles;
 import info.kendall_morwick.funcles.tuple.Tuple2;
-
-import com.google.common.base.Function;
 
 /** 
  *
@@ -36,6 +36,11 @@ public abstract interface Function2<P1,P2,R> extends Function<Tuple2<P1,P2>,R> {
 	}
 
 	public R apply(P1 a1,P2 a2);
+	
+	public default Function2<P1,P2,R> applyHigherOrderTo(Function<? super Function2<P1,P2,R>, 
+				                                                ? extends Function<Tuple2<P1,P2>,R>> hof) {
+		return toFunction2(hof.apply(this));
+	}
 	
 	public static <P1, P2, R> Function2<P1,P2,R> 
 		toFunction2(Function<Tuple2<P1, P2>, R> f) {

@@ -33,8 +33,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
+import java.util.function.Function;
 
-import com.google.common.base.Function;
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
@@ -147,7 +147,7 @@ public class Funcles {
 	 */
 	public static <F,T> MemoizedFunction<F,T> memoize(final Function<F,T> f, 
 				final CacheBuilder<? super F, ? super T> builder) {
-		final LoadingCache<F,T> cache = builder.build(CacheLoader.from(f));
+		final LoadingCache<F,T> cache = builder.build(CacheLoader.from(f::apply));
 		return new MemoizedFunction<F,T>() {
 			
 			public T apply(final F input) {
