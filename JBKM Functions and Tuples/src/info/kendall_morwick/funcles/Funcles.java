@@ -27,21 +27,23 @@ import info.kendall_morwick.funcles.tuple.Tuple5;
 import info.kendall_morwick.relation.Relation2;
 import info.kendall_morwick.relation.Relation3;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
 import java.util.function.Function;
+import java.util.stream.Stream;
 
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
+import com.google.common.collect.Sets;
 
 import static info.kendall_morwick.funcles.tuple.Pair.makePair;
 import static info.kendall_morwick.funcles.tuple.Triple.makeTriple;
 import static info.kendall_morwick.funcles.tuple.Tuple.makeTuple;
+
 
 /** A utility class which add useful functionality to existing guava Function 
  * implementations
@@ -181,9 +183,7 @@ public class Funcles {
     @SafeVarargs
 	public static <F, T extends Comparable<T>> F argmax(Function<F,T> f, 
     		F ... inputs) {
-        List<F> ls = new ArrayList<F>();
-        for(F i : inputs) ls.add(i);
-        return argmax(f, ls);
+        return argmax(f, Arrays.stream(inputs).parallel());
     }
 
     /** returns the argument from the collection which maximizes the function f
@@ -193,31 +193,29 @@ public class Funcles {
      */
     public static <F,T extends Comparable<T>> F argmax(Function<F,T> f, 
     		Collection<F> inputs) {
-        T max = null;
-        F maxarg = null;
-        try { 
-        	for(F input : inputs) {
-                T cur = f.apply(input);
-                if(max == null || cur.compareTo(max) > 0) {
-                    max = cur;
-                    maxarg = input;
-                }
-            }
-            return maxarg;
-        } catch(ClassCastException e) {
-            throw new RuntimeException(
-            		"Argmax called on a funnction without comparable output");
-        }
+    	return argmax(f, inputs.parallelStream());
+    }
+    
 
+    /** returns the argument from the collection which maximizes the function f
+     *
+     * @param inputs all arguments to be evaluated with this function
+     * @return the argument from 'inputs' maximizing this function
+     */
+    public static <F,T extends Comparable<T>> F argmax(Function<F,T> f, 
+    		Stream<F> inputs) {
+    	return inputs.map(x -> makeTuple(x, f.apply(x))) 
+    			.max((x,y) -> x.a2().compareTo(y.a2())).get().a1();
     }
 
 
-    
+
     /** partitions the set s according to the relation r.
      *  this method assumes r is an equivalence relation.
      * @param s
      * @return a set of the partitions formed from the set s
      */
+    // TODO: replace with streams version below?
     public static <T> Set<Set<T>> partition(Relation2<T> r, Set<T> s) {
     	Set<Set<T>> sets = new HashSet<Set<T>>();
     	for(T x : s) {
@@ -238,5 +236,49 @@ public class Funcles {
     	return sets;
     }
     
+    // TODO: test! I'm also not sure if this will work better in parallel or not 
+    // (combining partitions is expensive)
+    /** partitions the set s according to the relation r.
+     *  this method assumes r is an equivalence relation.
+     * @param s
+     * @return a set of the partitions formed from the set s
+     */
+    public static <T> Set<Set<T>> partition(Relation2<T> r, Stream<T> s) {
+    	return s.reduce(Sets.<Set<T>>newConcurrentHashSet(), (x, y) -> {
+    		addElementToPartition(r, x, y);
+    		return x;
+    	}, (x, y) -> {
+    		x.stream().forEach(
+    				ps -> {
+    					addSetToPartition(r, y, ps);
+    				});
+    		return x;
+    	});
+    }
+    // TODO: use streams?
+    private static <T> void addElementToPartition(Relation2<T> r, Set<Set<T>> p, T x) {
+		for(Set<T> s : p) {
+			if(r.test(x, s.iterator().next())) {
+				s.add(x);
+				return;
+			}
+		}
+		Set<T> s = Sets.newConcurrentHashSet();
+		s.add(x);
+		p.add(s);
+    }
+    // TODO: use streams?
+    private static <T> void addSetToPartition(Relation2<T> r, Set<Set<T>> p, Set<T> x) {
+    	T rep = x.iterator().next();
+		for(Set<T> s : p) {
+			if(r.test(rep, s.iterator().next())) {
+				s.addAll(x);
+				return;
+			}
+		}
+		Set<T> s = Sets.newConcurrentHashSet();
+		s.addAll(x);
+		p.add(s);
+    }
    
 }
