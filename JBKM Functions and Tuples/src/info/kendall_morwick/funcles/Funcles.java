@@ -175,16 +175,6 @@ public class Funcles {
 	
 
 
-    /** returns the argument which maximizes this function
-     *
-     * @param inputs all arguments to be evaluated with this function
-     * @return the argument from 'inputs' maximizing this function
-     */
-    @SafeVarargs
-	public static <F, T extends Comparable<T>> F argmax(Function<F,T> f, 
-    		F ... inputs) {
-        return argmax(f, Arrays.stream(inputs).parallel());
-    }
 
     /** returns the argument from the collection which maximizes the function f
      *
@@ -195,6 +185,16 @@ public class Funcles {
     		Collection<F> inputs) {
     	return argmax(f, inputs.parallelStream());
     }
+    /** returns the argument which maximizes this function
+    *
+    * @param inputs all arguments to be evaluated with this function
+    * @return the argument from 'inputs' maximizing this function
+    */
+   @SafeVarargs
+	public static <F, T extends Comparable<T>> F argmax(Function<F,T> f, 
+   		F ... inputs) {
+       return argmax(f, Arrays.stream(inputs).parallel());
+   }
     
 
     /** returns the argument from the collection which maximizes the function f
@@ -208,77 +208,5 @@ public class Funcles {
     			.max((x,y) -> x.a2().compareTo(y.a2())).get().a1();
     }
 
-
-
-    /** partitions the set s according to the relation r.
-     *  this method assumes r is an equivalence relation.
-     * @param s
-     * @return a set of the partitions formed from the set s
-     */
-    // TODO: replace with streams version below?
-    public static <T> Set<Set<T>> partition(Relation2<T> r, Set<T> s) {
-    	Set<Set<T>> sets = new HashSet<Set<T>>();
-    	for(T x : s) {
-    		boolean foundSet = false;
-    		for(Set<T> p : sets) {
-    			if(apply(r, x, p.iterator().next())) {
-    				p.add(x); //found a compatible partition
-    				foundSet = true;
-    				break; //don't add a new partition later
-    			}
-    		}
-    		if(!foundSet) {// no compatible partition found, add a new one
-    			Set<T> p = new HashSet<T>();
-    			p.add(x);
-    			sets.add(p);
-    		}
-    	}
-    	return sets;
-    }
-    
-    // TODO: test! I'm also not sure if this will work better in parallel or not 
-    // (combining partitions is expensive)
-    /** partitions the set s according to the relation r.
-     *  this method assumes r is an equivalence relation.
-     * @param s
-     * @return a set of the partitions formed from the set s
-     */
-    public static <T> Set<Set<T>> partition(Relation2<T> r, Stream<T> s) {
-    	return s.reduce(Sets.<Set<T>>newConcurrentHashSet(), (x, y) -> {
-    		addElementToPartition(r, x, y);
-    		return x;
-    	}, (x, y) -> {
-    		x.stream().forEach(
-    				ps -> {
-    					addSetToPartition(r, y, ps);
-    				});
-    		return x;
-    	});
-    }
-    // TODO: use streams?
-    private static <T> void addElementToPartition(Relation2<T> r, Set<Set<T>> p, T x) {
-		for(Set<T> s : p) {
-			if(r.test(x, s.iterator().next())) {
-				s.add(x);
-				return;
-			}
-		}
-		Set<T> s = Sets.newConcurrentHashSet();
-		s.add(x);
-		p.add(s);
-    }
-    // TODO: use streams?
-    private static <T> void addSetToPartition(Relation2<T> r, Set<Set<T>> p, Set<T> x) {
-    	T rep = x.iterator().next();
-		for(Set<T> s : p) {
-			if(r.test(rep, s.iterator().next())) {
-				s.addAll(x);
-				return;
-			}
-		}
-		Set<T> s = Sets.newConcurrentHashSet();
-		s.addAll(x);
-		p.add(s);
-    }
    
 }
