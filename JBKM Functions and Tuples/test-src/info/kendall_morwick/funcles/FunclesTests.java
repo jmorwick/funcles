@@ -124,26 +124,6 @@ public class FunclesTests {
 		assertEquals(makePair(4, 6), maxarg);
 	}
 
-	@Test
-	public void testPartition() {
-		Set<Integer> numbers = newHashSet(1, 2, 3, 4, 5, 123, 41, 523, 1244);
-		Relation2 r = new Relation2<Integer>() {
-
-			@Override
-			public boolean test(Integer a1, Integer a2) {
-				return a1 % 3 == a2 % 3;
-			}
-			
-		};
-		Set<Set<Integer>> partitions = Funcles.partition(r, numbers);
-		assertEquals(3, partitions.size());
-		Set<Set<Integer>> correctResult = newHashSet(
-				(Set<Integer>)newHashSet(1, 4, 523),	
-				(Set<Integer>)newHashSet(2, 5, 41, 1244),	
-				(Set<Integer>)newHashSet(3, 123)	
-		);
-		assertEquals(correctResult, partitions);
-	}
 
 
 	@Test
