@@ -19,8 +19,11 @@
 
 package info.kendall_morwick.funcles;
 
+import java.util.concurrent.ExecutionException;
 import java.util.function.Function;
 
+import com.google.common.cache.CacheBuilder;
+import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 
 
@@ -39,4 +42,49 @@ public interface MemoizedFunction<F,T> extends Function<F,T> {
 
 	/** returns the function that is being memoized */
 	public Function<F,T> getOriginalFunction();
+	
+	
+
+	/** modifies a function to cache its results
+	 * 
+	 * @param f function to be memoized
+	 * @return memoized function f
+	 */
+	public static <F,T> MemoizedFunction<F,T> memoize(final Function<F,T> f) {
+		return memoize(f, CacheBuilder.newBuilder());
+	}
+	
+	
+	/** modifies a function to cache its results
+	 * 
+	 * @param f function to be memoized
+	 * @param builder a cache builder which creates a cache for mapping inputs to outputs
+	 * @return memozied function f
+	 */
+	public static <F,T> MemoizedFunction<F,T> memoize(final Function<F,T> f, 
+				final CacheBuilder<? super F, ? super T> builder) {
+		final LoadingCache<F,T> cache = builder.build(CacheLoader.from(f::apply));
+		return new MemoizedFunction<F,T>() {
+			
+			public T apply(final F input) {
+				try {
+					return cache.get(input);
+				} catch (ExecutionException e) {
+					//Functions can't throw checked exceptions, so this never happens
+					return null;
+				}
+			}
+
+			@Override
+			public LoadingCache<F, T> getCache() {
+				return cache;
+			}
+
+			@Override
+			public Function<F, T> getOriginalFunction() {
+				return f;
+			}
+		};
+	}
+
 }
