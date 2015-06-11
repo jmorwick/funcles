@@ -17,10 +17,10 @@
 
  */
 
-package info.km.funcles.relation;
+package net.sourcedestination.funcles.relation;
 
-import info.km.funcles.function.Function3;
-import info.km.funcles.tuple.Triple;
+import net.sourcedestination.funcles.function.Function3;
+import net.sourcedestination.funcles.tuple.Triple;
 
 /** This class provides a clean abstraction for implementing ternary relations
  *

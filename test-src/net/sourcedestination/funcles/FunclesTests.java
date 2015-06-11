@@ -17,24 +17,25 @@
 
  */
 
-package info.km.funcles;
+package net.sourcedestination.funcles;
 
+import static net.sourcedestination.funcles.tuple.Pair.makePair;
 import static org.junit.Assert.*;
-import static info.km.funcles.tuple.Pair.makePair;
 import static com.google.common.collect.Sets.newHashSet;
-import info.km.funcles.Funcles;
-import info.km.funcles.MemoizedFunction;
-import info.km.funcles.relation.Relation2;
-import info.km.funcles.relation.Relation3;
-import info.km.funcles.tuple.Pair;
-import info.km.funcles.tuple.Triple;
-import info.km.funcles.tuple.Tuple2;
-import info.km.funcles.tuple.Tuple3;
-import info.km.funcles.tuple.Tuple4;
-import info.km.funcles.tuple.Tuple5;
 
 import java.util.Set;
 import java.util.function.Function;
+
+import net.sourcedestination.funcles.Funcles;
+import net.sourcedestination.funcles.MemoizedFunction;
+import net.sourcedestination.funcles.relation.Relation2;
+import net.sourcedestination.funcles.relation.Relation3;
+import net.sourcedestination.funcles.tuple.Pair;
+import net.sourcedestination.funcles.tuple.Triple;
+import net.sourcedestination.funcles.tuple.Tuple2;
+import net.sourcedestination.funcles.tuple.Tuple3;
+import net.sourcedestination.funcles.tuple.Tuple4;
+import net.sourcedestination.funcles.tuple.Tuple5;
 
 import org.junit.Test;
 

@@ -17,13 +17,13 @@
 
  */
 
-package info.km.funcles.relation;
-
-import info.km.funcles.function.Function2;
-import info.km.funcles.tuple.Pair;
-import info.km.funcles.tuple.Tuple2;
+package net.sourcedestination.funcles.relation;
 
 import java.util.function.BiPredicate;
+
+import net.sourcedestination.funcles.function.Function2;
+import net.sourcedestination.funcles.tuple.Pair;
+import net.sourcedestination.funcles.tuple.Tuple2;
 
 /** This class provides a clean abstraction for implementing binary relations
  *

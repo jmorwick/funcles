@@ -17,7 +17,7 @@
 
  */
 
-package info.km.funcles.tuple;
+package net.sourcedestination.funcles.tuple;
 
 //TODO: add a copy-on-modify method to modify tuples. 
 

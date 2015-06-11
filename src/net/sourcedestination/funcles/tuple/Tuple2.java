@@ -17,7 +17,7 @@
 
  */
 
-package info.km.funcles.tuple;
+package net.sourcedestination.funcles.tuple;
 
 
 

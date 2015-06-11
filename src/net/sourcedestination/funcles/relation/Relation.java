@@ -1,4 +1,4 @@
-package info.km.funcles.relation;
+package net.sourcedestination.funcles.relation;
 
 import java.util.function.Predicate;
 

@@ -17,18 +17,19 @@
 
  */
 
-package info.km.funcles;
+package net.sourcedestination.funcles;
 
+import static net.sourcedestination.funcles.tuple.Tuple.*;
 import static org.junit.Assert.*;
-import static info.km.funcles.tuple.Tuple.*;
-import info.km.funcles.tuple.Tuple;
-import info.km.funcles.tuple.Tuple2;
-import info.km.funcles.tuple.Tuple3;
-import info.km.funcles.tuple.Tuple4;
-import info.km.funcles.tuple.Tuple5;
 
 import java.util.HashSet;
 import java.util.Set;
+
+import net.sourcedestination.funcles.tuple.Tuple;
+import net.sourcedestination.funcles.tuple.Tuple2;
+import net.sourcedestination.funcles.tuple.Tuple3;
+import net.sourcedestination.funcles.tuple.Tuple4;
+import net.sourcedestination.funcles.tuple.Tuple5;
 
 import org.junit.Test;
 

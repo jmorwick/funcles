@@ -17,7 +17,7 @@
 
  */
 
-package info.km.funcles;
+package net.sourcedestination.funcles;
 
 import java.util.concurrent.ExecutionException;
 import java.util.function.Function;

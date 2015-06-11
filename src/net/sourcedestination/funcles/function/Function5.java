@@ -17,14 +17,14 @@
 
  */
 
-package info.km.funcles.function;
+package net.sourcedestination.funcles.function;
 
 import java.util.function.Function;
 
-import info.km.funcles.Funcles;
-import info.km.funcles.tuple.Tuple3;
-import info.km.funcles.tuple.Tuple4;
-import info.km.funcles.tuple.Tuple5;
+import net.sourcedestination.funcles.Funcles;
+import net.sourcedestination.funcles.tuple.Tuple3;
+import net.sourcedestination.funcles.tuple.Tuple4;
+import net.sourcedestination.funcles.tuple.Tuple5;
 
 /** 
  *

@@ -17,15 +17,8 @@
 
  */
 
-package info.km.funcles;
+package net.sourcedestination.funcles;
 
-
-import info.km.funcles.relation.Relation2;
-import info.km.funcles.relation.Relation3;
-import info.km.funcles.tuple.Tuple2;
-import info.km.funcles.tuple.Tuple3;
-import info.km.funcles.tuple.Tuple4;
-import info.km.funcles.tuple.Tuple5;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -35,14 +28,21 @@ import java.util.concurrent.ExecutionException;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
+import net.sourcedestination.funcles.relation.Relation2;
+import net.sourcedestination.funcles.relation.Relation3;
+import net.sourcedestination.funcles.tuple.Tuple2;
+import net.sourcedestination.funcles.tuple.Tuple3;
+import net.sourcedestination.funcles.tuple.Tuple4;
+import net.sourcedestination.funcles.tuple.Tuple5;
+
 import com.google.common.cache.CacheBuilder;
 import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.google.common.collect.Sets;
 
-import static info.km.funcles.tuple.Pair.makePair;
-import static info.km.funcles.tuple.Triple.makeTriple;
-import static info.km.funcles.tuple.Tuple.makeTuple;
+import static net.sourcedestination.funcles.tuple.Pair.makePair;
+import static net.sourcedestination.funcles.tuple.Triple.makeTriple;
+import static net.sourcedestination.funcles.tuple.Tuple.makeTuple;
 
 
 /** A utility class which add useful functionality to existing guava Function 

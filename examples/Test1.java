@@ -1,13 +1,13 @@
 import java.util.function.BiPredicate;
 
-import info.km.funcles.Funcles;
-import info.km.funcles.MemoizedFunction;
-import info.km.funcles.function.Function2;
-import info.km.funcles.relation.Relation2;
+import net.sourcedestination.funcles.Funcles;
+import net.sourcedestination.funcles.MemoizedFunction;
+import net.sourcedestination.funcles.function.Function2;
+import net.sourcedestination.funcles.relation.Relation2;
 
 import com.google.common.base.Function;
 
-import static info.km.funcles.Funcles.apply;
+import static net.sourcedestination.funcles.Funcles.apply;
 
 
 public class Test1 {
