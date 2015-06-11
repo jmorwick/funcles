@@ -1,12 +1,13 @@
 import java.util.function.BiPredicate;
 
-import info.kendall_morwick.funcles.Funcles;
-import info.kendall_morwick.function.Function2;
-import info.kendall_morwick.relation.Relation2;
+import info.km.funcles.Funcles;
+import info.km.funcles.MemoizedFunction;
+import info.km.funcles.function.Function2;
+import info.km.funcles.relation.Relation2;
 
 import com.google.common.base.Function;
 
-import static info.kendall_morwick.funcles.Funcles.apply;
+import static info.km.funcles.Funcles.apply;
 
 
 public class Test1 {
@@ -59,14 +60,14 @@ public class Test1 {
 
 		//concatInt = Function2.toFunction2(Funcles.memoize(concatInt));
 		//concatInt = Function2.applyHigherOrder(Funcles::memoize, concatInt);
-		concatInt = concatInt.applyHigherOrderTo(Funcles::memoize);
+		concatInt = concatInt.applyHigherOrderTo(MemoizedFunction::memoize);
 		System.out.println(concatInt.apply("x:",5));
 		System.out.println(concatInt.apply("x:",6));
 		System.out.println(concatInt.apply("x:",5));
 		
 
 		Function2<String,Character,String> concatChar = (str, c) -> str + c;
-		concatChar = Function2.toFunction2(Funcles.memoize(concatChar));
+		concatChar = Function2.toFunction2(MemoizedFunction.memoize(concatChar));
 		
 	}
 }

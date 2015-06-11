@@ -17,13 +17,14 @@
 
  */
 
-package info.kendall_morwick.function;
+package info.km.funcles.function;
 
 import java.util.function.Function;
 
-import info.kendall_morwick.funcles.Funcles;
-import info.kendall_morwick.funcles.tuple.Tuple3;
-import info.kendall_morwick.funcles.tuple.Tuple4;
+import info.km.funcles.Funcles;
+import info.km.funcles.tuple.Tuple2;
+import info.km.funcles.tuple.Tuple3;
+
 
 /** 
  *
@@ -31,22 +32,24 @@ import info.kendall_morwick.funcles.tuple.Tuple4;
  * @version 2.0
  */
 @FunctionalInterface
-public abstract interface Function4<P1,P2,P3,P4,R> extends Function<Tuple4<P1,P2,P3,P4>,R> {
-	public default R apply(Tuple4<P1,P2,P3,P4> args) {
-		return apply(args.a1(), args.a2(), args.a3(), args.a4());
+public abstract interface Function3<P1,P2,P3,R> extends Function<Tuple3<P1,P2,P3>,R> {
+	public default R apply(Tuple3<P1,P2,P3> args) {
+		return apply(args.a1(), args.a2(), args.a3());
 	}
 
-	public R apply(P1 a1, P2 a2, P3 a3, P4 a4);
+	public R apply(P1 a1, P2 a2, P3 a3);
 	
-	public static <P1,P2,P3,P4,R> Function4<P1,P2,P3,P4,R> 
-		toFunction4(Function<Tuple4<P1,P2,P3,P4>, R> f) {
-		return (arg1, arg2, arg3, arg4) -> Funcles.apply(f, arg1, arg2, arg3, arg4);
+	public static <P1,P2,P3,R> Function3<P1,P2,P3,R> 
+		toFunction3(Function<Tuple3<P1,P2,P3>, R> f) {
+		return (arg1, arg2, arg3) -> Funcles.apply(f, arg1, arg2, arg3);
 	}
 
-	public static <P1, P2, P3, P4, R> Function4<P1,P2,P3,P4,R>
-		 applyHigherOrder(Function<? super Function4<P1,P2,P3,P4,R>, 
-				                   ? extends Function<Tuple4<P1,P2,P3,P4>,R>> hof,
-				          Function4<P1,P2,P3,P4,R> f) {
-		return toFunction4(hof.apply(f));
+	
+	public static <P1, P2, P3, R> Function3<P1,P2,P3,R>
+		 applyHigherOrder(Function<? super Function3<P1,P2,P3,R>, 
+				                   ? extends Function<Tuple3<P1,P2,P3>,R>> hof,
+				          Function3<P1,P2,P3,R> f) {
+		return toFunction3(hof.apply(f));
 	}
+			
 }

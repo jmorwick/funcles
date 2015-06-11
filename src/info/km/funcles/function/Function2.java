@@ -17,12 +17,12 @@
 
  */
 
-package info.kendall_morwick.function;
+package info.km.funcles.function;
 
 import java.util.function.Function;
 
-import info.kendall_morwick.funcles.Funcles;
-import info.kendall_morwick.funcles.tuple.Tuple2;
+import info.km.funcles.Funcles;
+import info.km.funcles.tuple.Tuple2;
 
 /** 
  *

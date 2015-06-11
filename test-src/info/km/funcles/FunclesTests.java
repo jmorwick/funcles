@@ -17,21 +17,21 @@
 
  */
 
-package info.kendall_morwick.funcles;
+package info.km.funcles;
 
 import static org.junit.Assert.*;
-import static info.kendall_morwick.funcles.tuple.Pair.makePair;
+import static info.km.funcles.tuple.Pair.makePair;
 import static com.google.common.collect.Sets.newHashSet;
-import info.kendall_morwick.funcles.Funcles;
-import info.kendall_morwick.funcles.MemoizedFunction;
-import info.kendall_morwick.funcles.tuple.Pair;
-import info.kendall_morwick.funcles.tuple.Triple;
-import info.kendall_morwick.funcles.tuple.Tuple2;
-import info.kendall_morwick.funcles.tuple.Tuple3;
-import info.kendall_morwick.funcles.tuple.Tuple4;
-import info.kendall_morwick.funcles.tuple.Tuple5;
-import info.kendall_morwick.relation.Relation2;
-import info.kendall_morwick.relation.Relation3;
+import info.km.funcles.Funcles;
+import info.km.funcles.MemoizedFunction;
+import info.km.funcles.relation.Relation2;
+import info.km.funcles.relation.Relation3;
+import info.km.funcles.tuple.Pair;
+import info.km.funcles.tuple.Triple;
+import info.km.funcles.tuple.Tuple2;
+import info.km.funcles.tuple.Tuple3;
+import info.km.funcles.tuple.Tuple4;
+import info.km.funcles.tuple.Tuple5;
 
 import java.util.Set;
 import java.util.function.Function;
@@ -143,7 +143,7 @@ public class FunclesTests {
 			
 		};
 		
-		MemoizedFunction<Integer, Integer> mf = Funcles.memoize(f);
+		MemoizedFunction<Integer, Integer> mf = MemoizedFunction.memoize(f);
 		long time = System.currentTimeMillis();
 		assertEquals((Integer)5, mf.apply(5));
 		assertTrue(System.currentTimeMillis() >= time + 100);

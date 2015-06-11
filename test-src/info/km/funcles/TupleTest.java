@@ -17,15 +17,15 @@
 
  */
 
-package info.kendall_morwick.funcles;
+package info.km.funcles;
 
 import static org.junit.Assert.*;
-import static info.kendall_morwick.funcles.tuple.Tuple.*;
-import info.kendall_morwick.funcles.tuple.Tuple;
-import info.kendall_morwick.funcles.tuple.Tuple2;
-import info.kendall_morwick.funcles.tuple.Tuple3;
-import info.kendall_morwick.funcles.tuple.Tuple4;
-import info.kendall_morwick.funcles.tuple.Tuple5;
+import static info.km.funcles.tuple.Tuple.*;
+import info.km.funcles.tuple.Tuple;
+import info.km.funcles.tuple.Tuple2;
+import info.km.funcles.tuple.Tuple3;
+import info.km.funcles.tuple.Tuple4;
+import info.km.funcles.tuple.Tuple5;
 
 import java.util.HashSet;
 import java.util.Set;

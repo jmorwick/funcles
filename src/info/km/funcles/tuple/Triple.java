@@ -17,7 +17,7 @@
 
  */
 
-package info.kendall_morwick.funcles.tuple;
+package info.km.funcles.tuple;
 
 
 /** A class representing a 2-tuple where each element

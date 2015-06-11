@@ -17,15 +17,15 @@
 
  */
 
-package info.kendall_morwick.funcles;
+package info.km.funcles;
 
 
-import info.kendall_morwick.funcles.tuple.Tuple2;
-import info.kendall_morwick.funcles.tuple.Tuple3;
-import info.kendall_morwick.funcles.tuple.Tuple4;
-import info.kendall_morwick.funcles.tuple.Tuple5;
-import info.kendall_morwick.relation.Relation2;
-import info.kendall_morwick.relation.Relation3;
+import info.km.funcles.relation.Relation2;
+import info.km.funcles.relation.Relation3;
+import info.km.funcles.tuple.Tuple2;
+import info.km.funcles.tuple.Tuple3;
+import info.km.funcles.tuple.Tuple4;
+import info.km.funcles.tuple.Tuple5;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -40,9 +40,9 @@ import com.google.common.cache.CacheLoader;
 import com.google.common.cache.LoadingCache;
 import com.google.common.collect.Sets;
 
-import static info.kendall_morwick.funcles.tuple.Pair.makePair;
-import static info.kendall_morwick.funcles.tuple.Triple.makeTriple;
-import static info.kendall_morwick.funcles.tuple.Tuple.makeTuple;
+import static info.km.funcles.tuple.Pair.makePair;
+import static info.km.funcles.tuple.Triple.makeTriple;
+import static info.km.funcles.tuple.Tuple.makeTuple;
 
 
 /** A utility class which add useful functionality to existing guava Function 

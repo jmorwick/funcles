@@ -1,4 +1,4 @@
-package info.kendall_morwick.relation;
+package info.km.funcles.relation;
 
 import java.util.function.Predicate;
 

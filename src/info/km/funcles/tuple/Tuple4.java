@@ -17,7 +17,7 @@
 
  */
 
-package info.kendall_morwick.funcles.tuple;
+package info.km.funcles.tuple;
 
 
 

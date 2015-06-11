@@ -17,11 +17,11 @@
 
  */
 
-package info.kendall_morwick.relation;
+package info.km.funcles.relation;
 
-import info.kendall_morwick.funcles.tuple.Pair;
-import info.kendall_morwick.funcles.tuple.Tuple2;
-import info.kendall_morwick.function.Function2;
+import info.km.funcles.function.Function2;
+import info.km.funcles.tuple.Pair;
+import info.km.funcles.tuple.Tuple2;
 
 import java.util.function.BiPredicate;
 

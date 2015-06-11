@@ -17,7 +17,7 @@
 
  */
 
-package info.kendall_morwick.funcles;
+package info.km.funcles;
 
 import java.util.concurrent.ExecutionException;
 import java.util.function.Function;
