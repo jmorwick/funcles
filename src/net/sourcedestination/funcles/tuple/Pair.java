@@ -32,34 +32,15 @@ package net.sourcedestination.funcles.tuple;
   */
 public class Pair<T> extends Tuple2<T,T> {
 
-	public Pair(T a1, T a2, boolean mutable) {
-		super(a1, a2, mutable);
+	public Pair(T a1, T a2) {
+		super(a1, a2);
 	}
 
 	/** creates a new immutable pair with the given arguments
 	 */
 	public static <T> Pair<T> makePair(T a1, T a2) {
-		return new Pair<T>(a1, a2, false);
+		return new Pair<T>(a1, a2);
 	}
 	
-	/** creates a new mutable pair with the given arguments
-	 */
-	public static <T> Pair<T> makeMutablePair(T a1, T a2) {
-		return new Pair<T>(a1, a2, true)  {
-        	//mutable variables overriding default final variables
-        	private T a1; 
-        	private T a2; 
-        	
-            public T a1() { return a1; }
-            public T a2() { return a2; }
-
-            public void setA1(T a1) { 
-            	this.a1 = a1;
-            }
-            public void setA2(T a2) { 
-            	this.a2 = a2;
-            }
-        };
-	}
 
 }

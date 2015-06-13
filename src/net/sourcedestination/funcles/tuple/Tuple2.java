@@ -33,7 +33,7 @@ public class Tuple2 <A1, A2> extends Tuple {
     private final A1 a1;
     private final A2 a2;
 
-    public Tuple2(A1 a1, A2 a2, boolean mutable) {
+    public Tuple2(A1 a1, A2 a2) {
         super(2);
         this.a1 = a1;
         this.a2 = a2;

@@ -56,7 +56,7 @@ public class Tuple implements Serializable {
      * @return
      */
     public static <A,B> Tuple2<A,B> makeTuple(A a, B b) {
-        return new Tuple2<A,B>(a,b,false);
+        return new Tuple2<A,B>(a,b);
     }
     /** creates a new tuple with 3 elements
      * By default, tuples are immutable
@@ -68,7 +68,7 @@ public class Tuple implements Serializable {
      * @return
      */
     public static <A,B,C> Tuple3<A,B,C> makeTuple(A a, B b, C c) {
-        return new Tuple3<A,B,C>(a,b,c,false);
+        return new Tuple3<A,B,C>(a,b,c);
     }
     /** creates a new tuple with 4 elements
      * By default, tuples are immutable
@@ -80,7 +80,7 @@ public class Tuple implements Serializable {
      * @return
      */
     public static <A,B,C,D> Tuple4<A,B,C,D> makeTuple(A a, B b, C c, D d) {
-        return new Tuple4<A,B,C,D>(a,b,c,d,false);
+        return new Tuple4<A,B,C,D>(a,b,c,d);
     }
     /** creates a new tuple with 5 elements
      * By default, tuples are immutable
@@ -92,7 +92,7 @@ public class Tuple implements Serializable {
      * @return
      */
     public static <A,B,C,D,E> Tuple5<A,B,C,D,E> makeTuple(A a, B b, C c, D d, E e) {
-        return new Tuple5<A,B,C,D,E>(a,b,c,d,e,false);
+        return new Tuple5<A,B,C,D,E>(a,b,c,d,e);
     }
 
     /** creates a new tuple with 2 elements which cannot be altered
@@ -104,7 +104,7 @@ public class Tuple implements Serializable {
      * @return
      */
     public static <A,B> Tuple2<A,B> makeMutableTuple(A a, B b) {
-        Tuple2<A, B> t = new Tuple2<A,B>(null,null,true) {
+        Tuple2<A, B> t = new Tuple2<A,B>(null,null) {
         	//mutable variables overriding default final variables
         	private A a1; 
         	private B a2; 
@@ -135,7 +135,7 @@ public class Tuple implements Serializable {
      * @return
      */
     public static <A,B,C> Tuple3<A,B,C> makeMutableTuple(A a, B b, C c) {
-        Tuple3<A, B, C> t = new Tuple3<A,B,C>(null,null,null,true) {
+        Tuple3<A, B, C> t = new Tuple3<A,B,C>(null,null,null) {
         	//mutable variables overriding default final variables
         	private A a1; 
         	private B a2; 
@@ -169,7 +169,7 @@ public class Tuple implements Serializable {
      * @return
      */
     public static <A,B,C,D> Tuple4<A,B,C,D> makeMutableTuple(A a, B b, C c, D d) {
-        Tuple4<A, B, C, D> t = new Tuple4<A,B,C,D>(null,null,null,null,true) {
+        Tuple4<A, B, C, D> t = new Tuple4<A,B,C,D>(null,null,null,null) {
         	//mutable variables overriding default final variables
         	private A a1; 
         	private B a2; 
@@ -209,7 +209,7 @@ public class Tuple implements Serializable {
      * @return
      */
     public static <A,B,C,D,E> Tuple5<A,B,C,D,E> makeMutableTuple(A a, B b, C c, D d, E e) {
-        Tuple5<A, B, C, D, E> t = new Tuple5<A,B,C,D,E>(null,null,null,null,null,true) {
+        Tuple5<A, B, C, D, E> t = new Tuple5<A,B,C,D,E>(null,null,null,null,null) {
         	//mutable variables overriding default final variables
         	private A a1; 
         	private B a2; 
