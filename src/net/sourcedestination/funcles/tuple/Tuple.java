@@ -29,7 +29,6 @@ import java.io.Serializable;
   @version 2.1
  */
 public class Tuple implements Serializable {
-    private boolean mutable; 
     private int size;
 
     /** constructor for abstract tuple class which tracks tuple properties
@@ -37,9 +36,8 @@ public class Tuple implements Serializable {
      * @param mutable whether or not this tuple can be altered
      * @param size number of elements in this tuple
      */
-    public Tuple(boolean mutable, int size) {
+    public Tuple(int size) {
         this.size = size;
-        this.mutable = mutable;
     }
 
     /** the number of elements in this tuple
@@ -47,12 +45,6 @@ public class Tuple implements Serializable {
      * @return the number of elements in this tuple
      */
     public int size() { return size; }
-
-    /** whether or not this tuple can be altered
-     *
-     * @return true iff this tuple can be altered
-     */
-    public boolean isMutable() { return mutable; }
 
     /** creates a new tuple with 2 elements.
      * By default, tuples are immutable

@@ -41,7 +41,6 @@ public class TupleTest {
 		Tuple2<String, String> t2 = Tuple.makeMutableTuple("hi", "there");
 		assertNotNull(t2);
 		assertEquals(2, t2.size());
-		assertTrue(t2.isMutable());
 		assertEquals("hi", t2.a1());
 		assertEquals("there", t2.a2());
 		t2.setA1("what's");
@@ -107,7 +106,6 @@ public class TupleTest {
 		Tuple2<String, String> t2 = Tuple.makeTuple("hi", "there");
 		assertNotNull(t2);
 		assertEquals(2, t2.size());
-		assertFalse(t2.isMutable());
 		assertEquals("hi", t2.a1());
 		assertEquals("there", t2.a2());
 		try{ t2.setA1("what's"); } 
@@ -121,7 +119,6 @@ public class TupleTest {
 				Tuple.makeTuple(1, 2, 3);
 		assertNotNull(t3);
 		assertEquals(3, t3.size());
-		assertFalse(t3.isMutable());
 		assertEquals((Integer)1, t3.a1());
 		assertEquals((Integer)2, t3.a2());
 		assertEquals((Integer)3, t3.a3());
@@ -139,7 +136,6 @@ public class TupleTest {
 				Tuple.makeTuple(1, 2, 3, 4);
 		assertNotNull(t4);
 		assertEquals(4, t4.size());
-		assertFalse(t4.isMutable());
 		assertEquals((Integer)1, t4.a1());
 		assertEquals((Integer)2, t4.a2());
 		assertEquals((Integer)3, t4.a3());
@@ -161,7 +157,6 @@ public class TupleTest {
 				Tuple.makeTuple(1, 2, 3, 4, 5);
 		assertNotNull(t5);
 		assertEquals(5, t5.size());
-		assertFalse(t5.isMutable());
 		assertEquals((Integer)1, t5.a1());
 		assertEquals((Integer)2, t5.a2());
 		assertEquals((Integer)3, t5.a3());

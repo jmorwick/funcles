@@ -35,7 +35,7 @@ public class Tuple3<A1, A2, A3> extends Tuple {
     private final A3 a3;
 
     public Tuple3(A1 a1, A2 a2, A3 a3, boolean mutable) {
-        super(mutable,3);
+        super(3);
         this.a1 = a1;
         this.a2 = a2;
         this.a3 = a3;
