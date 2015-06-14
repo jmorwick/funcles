@@ -25,6 +25,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
+import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
@@ -54,6 +55,18 @@ import static net.sourcedestination.funcles.tuple.Tuple.makeTuple;
  */
 public class Funcles {
 
+	/** a simple way to call accept for a consumer with 2 arguments 
+	 * 
+	 * @param f
+	 * @param arg1
+	 * @param arg2
+	 * @return
+	 */
+	public static <F1,F2> void accept(Consumer<Tuple2<F1,F2>> c, F1 arg1, 
+			F2 arg2) {
+		c.accept(makeTuple(arg1, arg2));
+	}
+	
 	/** a simple way to call apply for a function with 2 arguments 
 	 * 
 	 * @param f
@@ -130,7 +143,7 @@ public class Funcles {
 		return r.apply(makeTriple(arg1, arg2, arg3));
 	}
 	
-		
+	
 
 
 
@@ -143,6 +156,7 @@ public class Funcles {
     		Collection<F> inputs) {
     	return argmax(f, inputs.parallelStream());
     }
+    
     /** returns the argument which maximizes this function
     *
     * @param inputs all arguments to be evaluated with this function
@@ -152,7 +166,7 @@ public class Funcles {
 	public static <F, T extends Comparable<T>> F argmax(Function<F,T> f, 
    		F ... inputs) {
        return argmax(f, Arrays.stream(inputs).parallel());
-   }
+    }
     
 
     /** returns the argument from the collection which maximizes the function f
