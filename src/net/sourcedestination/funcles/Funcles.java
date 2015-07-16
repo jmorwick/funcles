@@ -29,6 +29,9 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
+import net.sourcedestination.funcles.consumer.Consumer2;
+import net.sourcedestination.funcles.consumer.Consumer3;
+import net.sourcedestination.funcles.consumer.Consumer4;
 import net.sourcedestination.funcles.relation.Relation2;
 import net.sourcedestination.funcles.relation.Relation3;
 import net.sourcedestination.funcles.tuple.Tuple2;
@@ -65,6 +68,116 @@ public class Funcles {
 	public static <F1,F2> void accept(Consumer<Tuple2<F1,F2>> c, F1 arg1, 
 			F2 arg2) {
 		c.accept(makeTuple(arg1, arg2));
+	}
+
+
+	/** a simple way to call accept for a consumer with 3 arguments 
+	 * 
+	 * @param f
+	 * @param arg1
+	 * @param arg2
+	 * @return
+	 */
+	public static <F1,F2,F3> void accept(Consumer<Tuple3<F1,F2,F3>> c, F1 arg1, 
+			F2 arg2, F3 arg3) {
+		c.accept(makeTuple(arg1, arg2, arg3));
+	}
+
+	/** a simple way to call accept for a consumer with 3 arguments 
+	 * 
+	 * @param f
+	 * @param arg1
+	 * @param arg2
+	 * @return
+	 */
+	public static <F1,F2,F3,F4> void accept(Consumer<Tuple4<F1,F2,F3,F4>> c, 
+			F1 arg1, F2 arg2, F3 arg3, F4 arg4) {
+		c.accept(makeTuple(arg1, arg2, arg3, arg4));
+	}
+
+
+	/** a simple way to call accept for a consumer with 3 arguments 
+	 * 
+	 * @param f
+	 * @param arg1
+	 * @param arg2
+	 * @return
+	 */
+	public static <F1,F2,F3,F4,F5> void accept(Consumer<Tuple5<F1,F2,F3,F4,F5>> c, 
+			F1 arg1, F2 arg2, F3 arg3, F4 arg4, F5 arg5) {
+		c.accept(makeTuple(arg1, arg2, arg3, arg4, arg5));
+	}
+	
+
+	/** 
+	 * 
+	 * @param s
+	 * @param f
+	 * @return
+	 */
+	public static <F1,F2> void forEach(
+			Stream<Tuple2<F1,F2>> s, 
+			Consumer2<F1,F2> c) {
+		s.forEach(t -> c.accept(t));
+	}
+	/** 
+	 * 
+	 * @param s
+	 * @param f
+	 * @return
+	 */
+	public static <F1,F2> void forEach(
+			Collection<Tuple2<F1,F2>> s, 
+			Consumer2<F1,F2> c) {
+		forEach(s.stream(), c);
+	}
+
+	/** 
+	 * 
+	 * @param s
+	 * @param f
+	 * @return
+	 */
+	public static <F1,F2,F3> void forEach(
+			Stream<Tuple3<F1,F2,F3>> s, 
+			Consumer3<F1,F2,F3> c) {
+		s.forEach(t -> c.accept(t));
+	}
+	/** 
+	 * 
+	 * @param s
+	 * @param f
+	 * @return
+	 */
+	public static <F1,F2,F3> void forEach(
+			Collection<Tuple3<F1,F2,F3>> s, 
+			Consumer3<F1,F2,F3> c) {
+		forEach(s.stream(), c);
+	}
+	
+
+	/** 
+	 * 
+	 * @param s
+	 * @param f
+	 * @return
+	 */
+	public static <F1,F2,F3,F4> void forEach(
+			Stream<Tuple4<F1,F2,F3,F4>> s, 
+			Consumer4<F1,F2,F3,F4> c) {
+		s.forEach(t -> c.accept(t));
+	}
+	
+	/** 
+	 * 
+	 * @param s
+	 * @param f
+	 * @return
+	 */
+	public static <F1,F2,F3,F4> void forEach(
+			Collection<Tuple4<F1,F2,F3,F4>> s, 
+			Consumer4<F1,F2,F3,F4> c) {
+		forEach(s.stream(), c);
 	}
 	
 	/** a simple way to call apply for a function with 2 arguments 
@@ -142,43 +255,5 @@ public class Funcles {
 			F arg3) {
 		return r.apply(makeTriple(arg1, arg2, arg3));
 	}
-	
-	
-
-
-
-    /** returns the argument from the collection which maximizes the function f
-     *
-     * @param inputs all arguments to be evaluated with this function
-     * @return the argument from 'inputs' maximizing this function
-     */
-    public static <F,T extends Comparable<T>> F argmax(Function<F,T> f, 
-    		Collection<F> inputs) {
-    	return argmax(f, inputs.parallelStream());
-    }
-    
-    /** returns the argument which maximizes this function
-    *
-    * @param inputs all arguments to be evaluated with this function
-    * @return the argument from 'inputs' maximizing this function
-    */
-   @SafeVarargs
-	public static <F, T extends Comparable<T>> F argmax(Function<F,T> f, 
-   		F ... inputs) {
-       return argmax(f, Arrays.stream(inputs).parallel());
-    }
-    
-
-    /** returns the argument from the collection which maximizes the function f
-     *
-     * @param inputs all arguments to be evaluated with this function
-     * @return the argument from 'inputs' maximizing this function
-     */
-    public static <F,T extends Comparable<T>> F argmax(Function<F,T> f, 
-    		Stream<F> inputs) {
-    	return inputs.map(x -> makeTuple(x, f.apply(x))) 
-    			.max((x,y) -> x.a2().compareTo(y.a2())).get().a1();
-    }
-
    
 }
