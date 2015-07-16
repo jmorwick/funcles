@@ -32,7 +32,6 @@ import net.sourcedestination.funcles.tuple.Tuple2;
  */
 @FunctionalInterface
 public abstract interface Relation2<T> extends Relation<Pair<T>>, 
-// TODO: determine if Pair<T> above should be Tuple2<T,T> instead
 											   Function2<T,T,Boolean> {
 	
 	public default Boolean apply(T arg1, T arg2) {
