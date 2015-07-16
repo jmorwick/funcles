@@ -20,11 +20,7 @@
 package net.sourcedestination.funcles;
 
 
-import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.concurrent.ExecutionException;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Stream;
@@ -39,21 +35,19 @@ import net.sourcedestination.funcles.tuple.Tuple3;
 import net.sourcedestination.funcles.tuple.Tuple4;
 import net.sourcedestination.funcles.tuple.Tuple5;
 
-import com.google.common.cache.CacheBuilder;
-import com.google.common.cache.CacheLoader;
-import com.google.common.cache.LoadingCache;
-import com.google.common.collect.Sets;
-
 import static net.sourcedestination.funcles.tuple.Pair.makePair;
 import static net.sourcedestination.funcles.tuple.Triple.makeTriple;
 import static net.sourcedestination.funcles.tuple.Tuple.makeTuple;
 
 
-/** A utility class which add useful functionality to existing guava Function 
- * implementations
+/** A utility class which provides static methods for shrinking common
+ * function and consumer operations. Similar methods for tuples and 
+ * relations are defined in their respective interfaces. Since the 
+ * Java 1.8 Function and Consumer interfaces are used with this library,
+ * this utility class was necessary to add. 
  * 
- * @author Joseph Kendall-Morwick <jmorwick@indiana.edu>
- * @version 2.1
+ * @author Joseph Kendall-Morwick <jbmorwick@gmail.com>
+ * @version 2.0
  *
  */
 public class Funcles {
