@@ -1,3 +1,4 @@
+package net.sourcedestination.funcles;
 import java.util.function.BiPredicate;
 
 import net.sourcedestination.funcles.Funcles;

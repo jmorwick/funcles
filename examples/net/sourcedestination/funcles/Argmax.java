@@ -1,3 +1,4 @@
+package net.sourcedestination.funcles;
 import static net.sourcedestination.funcles.tuple.Tuple.makeTuple;
 
 import java.util.Arrays;

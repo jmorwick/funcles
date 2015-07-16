@@ -20,6 +20,7 @@
 package net.sourcedestination.funcles;
 
 import static net.sourcedestination.funcles.tuple.Pair.makePair;
+import static net.sourcedestination.funcles.Argmax.argmax;
 import static org.junit.Assert.*;
 import static com.google.common.collect.Sets.newHashSet;
 
@@ -116,7 +117,7 @@ public class FunclesTests {
 			}
 			
 		};
-		Pair<Integer> maxarg = Funcles.argmax(f, 
+		Pair<Integer> maxarg = argmax(f, 
 				makePair(2, 16),  
 				makePair(3, 14),  
 				makePair(4, 6),  
