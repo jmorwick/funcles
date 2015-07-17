@@ -22,16 +22,13 @@ package net.sourcedestination.funcles;
 import static net.sourcedestination.funcles.tuple.Pair.makePair;
 import static net.sourcedestination.funcles.Argmax.argmax;
 import static org.junit.Assert.*;
-import static com.google.common.collect.Sets.newHashSet;
 
-import java.util.Set;
 import java.util.function.Function;
 
 import net.sourcedestination.funcles.Funcles;
 import net.sourcedestination.funcles.relation.Relation2;
 import net.sourcedestination.funcles.relation.Relation3;
 import net.sourcedestination.funcles.tuple.Pair;
-import net.sourcedestination.funcles.tuple.Triple;
 import net.sourcedestination.funcles.tuple.Tuple2;
 import net.sourcedestination.funcles.tuple.Tuple3;
 import net.sourcedestination.funcles.tuple.Tuple4;
