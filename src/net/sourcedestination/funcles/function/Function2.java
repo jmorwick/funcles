@@ -45,7 +45,7 @@ public abstract interface Function2<A1, A2, R> extends Function<Tuple2<A1, A2>, 
 	}
 
 	
-	public static <A1, A2, R> Function3<A1, A2,R>
+	public static <A1, A2, R> Function2<A1, A2,R>
 		 applyHigherOrder(Function< ? super Function2<A1, A2,R>, 
 				                   ? extends Function<Tuple2<A1, A2>,R>> hof,
 				          Function2<A1, A2,R> f) {

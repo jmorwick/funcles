@@ -21,8 +21,8 @@ package net.sourcedestination.funcles.relation;
 
 import java.util.function.BiPredicate;
 
-import net.sourcedestination.funcles.function.Function5;
-import net.sourcedestination.funcles.tuple.Tuple5;
+import net.sourcedestination.funcles.function.Function6;
+import net.sourcedestination.funcles.tuple.Tuple6;
 
 /** This class provides a clean abstraction for implementing binary relations
  *
@@ -30,21 +30,21 @@ import net.sourcedestination.funcles.tuple.Tuple5;
  * @version 2.0
  */
 @FunctionalInterface
-public abstract interface Relation5<A1, A2, A3, A4, A5> extends Relation<Tuple5<A1, A2, A3, A4, A5>>, 
-											   Function5<A1, A2, A3, A4, A5,Boolean> {
+public abstract interface Relation6<A1, A2, A3, A4, A5, A6> extends Relation<Tuple6<A1, A2, A3, A4, A5, A6>>, 
+											   Function6<A1, A2, A3, A4, A5, A6,Boolean> {
 	
-	public default Boolean apply(A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5) {
-		return test(arg1, arg2, arg3, arg4, arg5);
+	public default Boolean apply(A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6) {
+		return test(arg1, arg2, arg3, arg4, arg5, arg6);
 	}
 
-	public default boolean test(Tuple5<A1, A2, A3, A4, A5> args) {
-		return test(args._1, args._2, args._3, args._4, args._5);
+	public default boolean test(Tuple6<A1, A2, A3, A4, A5, A6> args) {
+		return test(args._1, args._2, args._3, args._4, args._5, args._6);
 	}
 
-	public default Boolean apply(Tuple5<A1, A2, A3, A4, A5> args) {
-		return test(args._1, args._2, args._3, args._4, args._5);
+	public default Boolean apply(Tuple6<A1, A2, A3, A4, A5, A6> args) {
+		return test(args._1, args._2, args._3, args._4, args._5, args._6);
 	}
 
-	public boolean test(A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5);
+	public boolean test(A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6);
 	
 }

@@ -28,6 +28,7 @@ import java.util.stream.Stream;
 import net.sourcedestination.funcles.consumer.*;
 import net.sourcedestination.funcles.relation.*;
 import net.sourcedestination.funcles.tuple.*;
+
 import static net.sourcedestination.funcles.tuple.Pair.makePair;
 import static net.sourcedestination.funcles.tuple.Triple.makeTriple;
 import static net.sourcedestination.funcles.tuple.Tuple.makeTuple;
@@ -151,6 +152,195 @@ public class Funcles {
 	public static <A1, A2, A3, A4, A5> boolean apply(Relation5<A1, A2, A3, A4, A5> r,  
 	    A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5) {
 		return r.apply(makeTuple(arg1, arg2, arg3, arg4, arg5));
+	}
+
+	/** a simple way to call accept for a consumer with 6 arguments 
+	 */
+	public static <A1, A2, A3, A4, A5, A6> void accept(Consumer<Tuple6<A1, A2, A3, A4, A5, A6>> c, 
+		A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6) {
+		c.accept(makeTuple(arg1, arg2, arg3, arg4, arg5, arg6));
+	}
+	
+	/** a simple way to call apply for a function with 6 arguments 
+	 */
+	public static <A1, A2, A3, A4, A5, A6, R> R apply(Function<Tuple6<A1, A2, A3, A4, A5, A6>,R> c, 
+		A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6) {
+		return c.apply(makeTuple(arg1, arg2, arg3, arg4, arg5, arg6));
+	}
+	
+	public static <A1, A2, A3, A4, A5, A6> void forEach(
+			Stream<Tuple6<A1, A2, A3, A4, A5, A6>> s, 
+			Consumer6<A1, A2, A3, A4, A5, A6> c) {
+		s.forEach(t -> c.accept(t));
+	}
+	
+	/** a simple way to call apply for a relation with 6 arguments
+	 */
+	public static <A1, A2, A3, A4, A5, A6> boolean apply(Relation6<A1, A2, A3, A4, A5, A6> r,  
+	    A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6) {
+		return r.apply(makeTuple(arg1, arg2, arg3, arg4, arg5, arg6));
+	}
+
+	/** a simple way to call accept for a consumer with 7 arguments 
+	 */
+	public static <A1, A2, A3, A4, A5, A6, A7> void accept(Consumer<Tuple7<A1, A2, A3, A4, A5, A6, A7>> c, 
+		A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6, A7 arg7) {
+		c.accept(makeTuple(arg1, arg2, arg3, arg4, arg5, arg6, arg7));
+	}
+	
+	/** a simple way to call apply for a function with 7 arguments 
+	 */
+	public static <A1, A2, A3, A4, A5, A6, A7, R> R apply(Function<Tuple7<A1, A2, A3, A4, A5, A6, A7>,R> c, 
+		A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6, A7 arg7) {
+		return c.apply(makeTuple(arg1, arg2, arg3, arg4, arg5, arg6, arg7));
+	}
+	
+	public static <A1, A2, A3, A4, A5, A6, A7> void forEach(
+			Stream<Tuple7<A1, A2, A3, A4, A5, A6, A7>> s, 
+			Consumer7<A1, A2, A3, A4, A5, A6, A7> c) {
+		s.forEach(t -> c.accept(t));
+	}
+	
+	/** a simple way to call apply for a relation with 7 arguments
+	 */
+	public static <A1, A2, A3, A4, A5, A6, A7> boolean apply(Relation7<A1, A2, A3, A4, A5, A6, A7> r,  
+	    A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6, A7 arg7) {
+		return r.apply(makeTuple(arg1, arg2, arg3, arg4, arg5, arg6, arg7));
+	}
+
+	/** a simple way to call accept for a consumer with 8 arguments 
+	 */
+	public static <A1, A2, A3, A4, A5, A6, A7, A8> void accept(Consumer<Tuple8<A1, A2, A3, A4, A5, A6, A7, A8>> c, 
+		A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6, A7 arg7, A8 arg8) {
+		c.accept(makeTuple(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8));
+	}
+	
+	/** a simple way to call apply for a function with 8 arguments 
+	 */
+	public static <A1, A2, A3, A4, A5, A6, A7, A8, R> R apply(Function<Tuple8<A1, A2, A3, A4, A5, A6, A7, A8>,R> c, 
+		A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6, A7 arg7, A8 arg8) {
+		return c.apply(makeTuple(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8));
+	}
+	
+	public static <A1, A2, A3, A4, A5, A6, A7, A8> void forEach(
+			Stream<Tuple8<A1, A2, A3, A4, A5, A6, A7, A8>> s, 
+			Consumer8<A1, A2, A3, A4, A5, A6, A7, A8> c) {
+		s.forEach(t -> c.accept(t));
+	}
+	
+	/** a simple way to call apply for a relation with 8 arguments
+	 */
+	public static <A1, A2, A3, A4, A5, A6, A7, A8> boolean apply(Relation8<A1, A2, A3, A4, A5, A6, A7, A8> r,  
+	    A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6, A7 arg7, A8 arg8) {
+		return r.apply(makeTuple(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8));
+	}
+
+	/** a simple way to call accept for a consumer with 9 arguments 
+	 */
+	public static <A1, A2, A3, A4, A5, A6, A7, A8, A9> void accept(Consumer<Tuple9<A1, A2, A3, A4, A5, A6, A7, A8, A9>> c, 
+		A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6, A7 arg7, A8 arg8, A9 arg9) {
+		c.accept(makeTuple(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9));
+	}
+	
+	/** a simple way to call apply for a function with 9 arguments 
+	 */
+	public static <A1, A2, A3, A4, A5, A6, A7, A8, A9, R> R apply(Function<Tuple9<A1, A2, A3, A4, A5, A6, A7, A8, A9>,R> c, 
+		A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6, A7 arg7, A8 arg8, A9 arg9) {
+		return c.apply(makeTuple(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9));
+	}
+	
+	public static <A1, A2, A3, A4, A5, A6, A7, A8, A9> void forEach(
+			Stream<Tuple9<A1, A2, A3, A4, A5, A6, A7, A8, A9>> s, 
+			Consumer9<A1, A2, A3, A4, A5, A6, A7, A8, A9> c) {
+		s.forEach(t -> c.accept(t));
+	}
+	
+	/** a simple way to call apply for a relation with 9 arguments
+	 */
+	public static <A1, A2, A3, A4, A5, A6, A7, A8, A9> boolean apply(Relation9<A1, A2, A3, A4, A5, A6, A7, A8, A9> r,  
+	    A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6, A7 arg7, A8 arg8, A9 arg9) {
+		return r.apply(makeTuple(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9));
+	}
+
+	/** a simple way to call accept for a consumer with 10 arguments 
+	 */
+	public static <A1, A2, A3, A4, A5, A6, A7, A8, A9, A10> void accept(Consumer<Tuple10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10>> c, 
+		A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6, A7 arg7, A8 arg8, A9 arg9, A10 arg10) {
+		c.accept(makeTuple(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10));
+	}
+	
+	/** a simple way to call apply for a function with 10 arguments 
+	 */
+	public static <A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, R> R apply(Function<Tuple10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10>,R> c, 
+		A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6, A7 arg7, A8 arg8, A9 arg9, A10 arg10) {
+		return c.apply(makeTuple(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10));
+	}
+	
+	public static <A1, A2, A3, A4, A5, A6, A7, A8, A9, A10> void forEach(
+			Stream<Tuple10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10>> s, 
+			Consumer10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10> c) {
+		s.forEach(t -> c.accept(t));
+	}
+	
+	/** a simple way to call apply for a relation with 10 arguments
+	 */
+	public static <A1, A2, A3, A4, A5, A6, A7, A8, A9, A10> boolean apply(Relation10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10> r,  
+	    A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6, A7 arg7, A8 arg8, A9 arg9, A10 arg10) {
+		return r.apply(makeTuple(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10));
+	}
+
+	/** a simple way to call accept for a consumer with 11 arguments 
+	 */
+	public static <A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11> void accept(Consumer<Tuple11<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11>> c, 
+		A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6, A7 arg7, A8 arg8, A9 arg9, A10 arg10, A11 arg11) {
+		c.accept(makeTuple(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11));
+	}
+	
+	/** a simple way to call apply for a function with 11 arguments 
+	 */
+	public static <A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, R> R apply(Function<Tuple11<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11>,R> c, 
+		A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6, A7 arg7, A8 arg8, A9 arg9, A10 arg10, A11 arg11) {
+		return c.apply(makeTuple(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11));
+	}
+	
+	public static <A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11> void forEach(
+			Stream<Tuple11<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11>> s, 
+			Consumer11<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11> c) {
+		s.forEach(t -> c.accept(t));
+	}
+	
+	/** a simple way to call apply for a relation with 11 arguments
+	 */
+	public static <A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11> boolean apply(Relation11<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11> r,  
+	    A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6, A7 arg7, A8 arg8, A9 arg9, A10 arg10, A11 arg11) {
+		return r.apply(makeTuple(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11));
+	}
+
+	/** a simple way to call accept for a consumer with 12 arguments 
+	 */
+	public static <A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12> void accept(Consumer<Tuple12<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12>> c, 
+		A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6, A7 arg7, A8 arg8, A9 arg9, A10 arg10, A11 arg11, A12 arg12) {
+		c.accept(makeTuple(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12));
+	}
+	
+	/** a simple way to call apply for a function with 12 arguments 
+	 */
+	public static <A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12, R> R apply(Function<Tuple12<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12>,R> c, 
+		A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6, A7 arg7, A8 arg8, A9 arg9, A10 arg10, A11 arg11, A12 arg12) {
+		return c.apply(makeTuple(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12));
+	}
+	
+	public static <A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12> void forEach(
+			Stream<Tuple12<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12>> s, 
+			Consumer12<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12> c) {
+		s.forEach(t -> c.accept(t));
+	}
+	
+	/** a simple way to call apply for a relation with 12 arguments
+	 */
+	public static <A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12> boolean apply(Relation12<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12> r,  
+	    A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6, A7 arg7, A8 arg8, A9 arg9, A10 arg10, A11 arg11, A12 arg12) {
+		return r.apply(makeTuple(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12));
 	}
 
 

@@ -1,5 +1,5 @@
 #!/bin/bash
-MAX_TUPLE=5;
+MAX_TUPLE=12;
 
 # generate tuple files
 php ./tuple_interface_template.php $MAX_TUPLE > ../src/net/sourcedestination/funcles/tuple/Tuple.java

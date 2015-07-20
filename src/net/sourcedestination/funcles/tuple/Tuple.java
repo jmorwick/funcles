@@ -64,4 +64,32 @@ public class Tuple implements Serializable {
         return new Tuple5<A1, A2, A3, A4, A5>(_1, _2, _3, _4, _5);
     }
     
+    public static <A1, A2, A3, A4, A5, A6> Tuple6<A1, A2, A3, A4, A5, A6> makeTuple(A1 _1, A2 _2, A3 _3, A4 _4, A5 _5, A6 _6) {
+        return new Tuple6<A1, A2, A3, A4, A5, A6>(_1, _2, _3, _4, _5, _6);
+    }
+    
+    public static <A1, A2, A3, A4, A5, A6, A7> Tuple7<A1, A2, A3, A4, A5, A6, A7> makeTuple(A1 _1, A2 _2, A3 _3, A4 _4, A5 _5, A6 _6, A7 _7) {
+        return new Tuple7<A1, A2, A3, A4, A5, A6, A7>(_1, _2, _3, _4, _5, _6, _7);
+    }
+    
+    public static <A1, A2, A3, A4, A5, A6, A7, A8> Tuple8<A1, A2, A3, A4, A5, A6, A7, A8> makeTuple(A1 _1, A2 _2, A3 _3, A4 _4, A5 _5, A6 _6, A7 _7, A8 _8) {
+        return new Tuple8<A1, A2, A3, A4, A5, A6, A7, A8>(_1, _2, _3, _4, _5, _6, _7, _8);
+    }
+    
+    public static <A1, A2, A3, A4, A5, A6, A7, A8, A9> Tuple9<A1, A2, A3, A4, A5, A6, A7, A8, A9> makeTuple(A1 _1, A2 _2, A3 _3, A4 _4, A5 _5, A6 _6, A7 _7, A8 _8, A9 _9) {
+        return new Tuple9<A1, A2, A3, A4, A5, A6, A7, A8, A9>(_1, _2, _3, _4, _5, _6, _7, _8, _9);
+    }
+    
+    public static <A1, A2, A3, A4, A5, A6, A7, A8, A9, A10> Tuple10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10> makeTuple(A1 _1, A2 _2, A3 _3, A4 _4, A5 _5, A6 _6, A7 _7, A8 _8, A9 _9, A10 _10) {
+        return new Tuple10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10>(_1, _2, _3, _4, _5, _6, _7, _8, _9, _10);
+    }
+    
+    public static <A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11> Tuple11<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11> makeTuple(A1 _1, A2 _2, A3 _3, A4 _4, A5 _5, A6 _6, A7 _7, A8 _8, A9 _9, A10 _10, A11 _11) {
+        return new Tuple11<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11>(_1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11);
+    }
+    
+    public static <A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12> Tuple12<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12> makeTuple(A1 _1, A2 _2, A3 _3, A4 _4, A5 _5, A6 _6, A7 _7, A8 _8, A9 _9, A10 _10, A11 _11, A12 _12) {
+        return new Tuple12<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12>(_1, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11, _12);
+    }
+    
 }

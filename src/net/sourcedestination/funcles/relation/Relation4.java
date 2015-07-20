@@ -30,7 +30,7 @@ import net.sourcedestination.funcles.tuple.Tuple4;
  * @version 2.0
  */
 @FunctionalInterface
-public abstract interface Relation2<A1, A2, A3, A4> extends Relation<Tuple4<A1, A2, A3, A4>>, 
+public abstract interface Relation4<A1, A2, A3, A4> extends Relation<Tuple4<A1, A2, A3, A4>>, 
 											   Function4<A1, A2, A3, A4,Boolean> {
 	
 	public default Boolean apply(A1 arg1, A2 arg2, A3 arg3, A4 arg4) {

@@ -45,7 +45,7 @@ public abstract interface Function5<A1, A2, A3, A4, A5, R> extends Function<Tupl
 	}
 
 	
-	public static <A1, A2, A3, A4, A5, R> Function3<A1, A2, A3, A4, A5,R>
+	public static <A1, A2, A3, A4, A5, R> Function5<A1, A2, A3, A4, A5,R>
 		 applyHigherOrder(Function< ? super Function5<A1, A2, A3, A4, A5,R>, 
 				                   ? extends Function<Tuple5<A1, A2, A3, A4, A5>,R>> hof,
 				          Function5<A1, A2, A3, A4, A5,R> f) {

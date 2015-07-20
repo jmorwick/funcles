@@ -49,7 +49,7 @@ public abstract interface Function<?=$n?><<?=$type_params?>, R> extends Function
 	}
 
 	
-	public static <<?=$type_params?>, R> Function3<<?=$type_params?>,R>
+	public static <<?=$type_params?>, R> Function<?=$n?><<?=$type_params?>,R>
 		 applyHigherOrder(Function< ? super Function<?=$n?><<?=$type_params?>,R>, 
 				                   ? extends Function<Tuple<?=$n?><<?=$type_params?>>,R>> hof,
 				          Function<?=$n?><<?=$type_params?>,R> f) {

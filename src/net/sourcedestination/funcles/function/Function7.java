@@ -31,25 +31,25 @@ import net.sourcedestination.funcles.tuple.*;
  * @version 2.0
  */
 @FunctionalInterface
-public abstract interface Function4<A1, A2, A3, A4, R> extends Function<Tuple4<A1, A2, A3, A4>, R> {
-	public default R apply(Tuple4<A1, A2, A3, A4> args) {
-		return apply(args._1, args._2, args._3, args._4);
+public abstract interface Function7<A1, A2, A3, A4, A5, A6, A7, R> extends Function<Tuple7<A1, A2, A3, A4, A5, A6, A7>, R> {
+	public default R apply(Tuple7<A1, A2, A3, A4, A5, A6, A7> args) {
+		return apply(args._1, args._2, args._3, args._4, args._5, args._6, args._7);
 	}
 
-	public R apply(A1 arg1, A2 arg2, A3 arg3, A4 arg4);
+	public R apply(A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6, A7 arg7);
 	
-	public static <A1, A2, A3, A4,R> Function4<A1, A2, A3, A4,R> 
-		toFunction4(Function<Tuple4<A1, A2, A3, A4>, R> f) {
-		return (arg1, arg2, arg3, arg4) -> 
-		  Funcles.apply(f, arg1, arg2, arg3, arg4);
+	public static <A1, A2, A3, A4, A5, A6, A7,R> Function7<A1, A2, A3, A4, A5, A6, A7,R> 
+		toFunction7(Function<Tuple7<A1, A2, A3, A4, A5, A6, A7>, R> f) {
+		return (arg1, arg2, arg3, arg4, arg5, arg6, arg7) -> 
+		  Funcles.apply(f, arg1, arg2, arg3, arg4, arg5, arg6, arg7);
 	}
 
 	
-	public static <A1, A2, A3, A4, R> Function4<A1, A2, A3, A4,R>
-		 applyHigherOrder(Function< ? super Function4<A1, A2, A3, A4,R>, 
-				                   ? extends Function<Tuple4<A1, A2, A3, A4>,R>> hof,
-				          Function4<A1, A2, A3, A4,R> f) {
-		return toFunction4(hof.apply(f));
+	public static <A1, A2, A3, A4, A5, A6, A7, R> Function7<A1, A2, A3, A4, A5, A6, A7,R>
+		 applyHigherOrder(Function< ? super Function7<A1, A2, A3, A4, A5, A6, A7,R>, 
+				                   ? extends Function<Tuple7<A1, A2, A3, A4, A5, A6, A7>,R>> hof,
+				          Function7<A1, A2, A3, A4, A5, A6, A7,R> f) {
+		return toFunction7(hof.apply(f));
 	}
 			
 }

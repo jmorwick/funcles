@@ -37,7 +37,7 @@ import net.sourcedestination.funcles.tuple.Tuple<?=$n?>;
  * @version 2.0
  */
 @FunctionalInterface
-public abstract interface Relation2<<?=$type_params?>> extends Relation<Tuple<?=$n?><<?=$type_params?>>>, 
+public abstract interface Relation<?=$n?><<?=$type_params?>> extends Relation<Tuple<?=$n?><<?=$type_params?>>>, 
 											   Function<?=$n?><<?=$type_params?>,Boolean> {
 	
 	public default Boolean apply(<?=$params?>) {
