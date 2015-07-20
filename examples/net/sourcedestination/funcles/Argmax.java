@@ -38,7 +38,7 @@ public class Argmax {
    public static <F,T extends Comparable<T>> F argmax(Function<F,T> f, 
    		Stream<F> inputs) {
    	return inputs.map(x -> makeTuple(x, f.apply(x))) 
-   			.max((x,y) -> x.a2().compareTo(y.a2())).get().a1();
+   			.max((x,y) -> x._2().compareTo(y._2())).get()._1();
    }
 
 }

@@ -44,7 +44,7 @@ public class FunclesTests {
 			@Override
 			public Integer apply(Tuple2<Integer, Integer> args) {
 				// TODO Auto-generated method stub
-				return args.a1() + args.a2();
+				return args._1() + args._2();
 			}
 		}, 1, 2);
 		int res3 = Funcles.apply(new Function<
@@ -53,7 +53,7 @@ public class FunclesTests {
 			@Override
 			public Integer apply(Tuple3<Integer,Integer,Integer> args) {
 				// TODO Auto-generated method stub
-				return args.a1() + args.a2() + args.a3();
+				return args._1() + args._2() + args._3();
 			}
 		}, 1, 2, 3);
 		int res4 = Funcles.apply(new Function<
@@ -62,7 +62,7 @@ public class FunclesTests {
 			@Override
 			public Integer apply(Tuple4<Integer,Integer,Integer,Integer> args) {
 				// TODO Auto-generated method stub
-				return args.a1() + args.a2() + args.a3() + args.a4();
+				return args._1() + args._2() + args._3() + args._4();
 			}
 		}, 1, 2, 3, 4);
 		int res5 = Funcles.apply(new Function<
@@ -71,7 +71,7 @@ public class FunclesTests {
 			@Override
 			public Integer apply(Tuple5<Integer,Integer,Integer,Integer,Integer> args) {
 				// TODO Auto-generated method stub
-				return args.a1() + args.a2() + args.a3() + args.a4() + args.a5();
+				return args._1() + args._2() + args._3() + args._4() + args._5();
 			}
 		}, 1, 2, 3, 4, 5);
 		assertEquals(3, res2);
@@ -82,21 +82,21 @@ public class FunclesTests {
 
 	@Test
 	public void testApplyRelations() {
-		assertTrue(Funcles.apply(new Relation2<Integer>() {
+		assertTrue(Funcles.apply(new Relation2<Integer,Integer>() {
 			@Override
-			public boolean test(Integer a1, Integer a2) {
-				if(a2 == 0) return false;
-				return (a1/a2)*a2 == a1;
+			public boolean test(Integer _1, Integer _2) {
+				if(_2 == 0) return false;
+				return (_1/_2)*_2 == _1;
 			}
 			
 		}, 8, 2));
 		
-		assertTrue(Funcles.apply(new Relation3<Integer>() {
+		assertTrue(Funcles.apply(new Relation3<Integer,Integer,Integer>() {
 			@Override
-			public boolean test(Integer a1, Integer a2, Integer a3) {
-				return a1 != a2 &&
-						a1 != a3 &&
-						a2 != a3;
+			public boolean test(Integer _1, Integer _2, Integer _3) {
+				return _1 != _2 &&
+						_1 != _3 &&
+						_2 != _3;
 			}
 			
 		}, 8, 2, 1));
@@ -109,7 +109,7 @@ public class FunclesTests {
 
 			@Override
 			public Integer apply(Pair<Integer> args) {
-				return args.a1() * 10 + args.a2();
+				return args._1() * 10 + args._2();
 			}
 			
 		};
