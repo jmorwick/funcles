@@ -22,7 +22,8 @@ package net.sourcedestination.funcles.function;
 import java.util.function.Function;
 
 import net.sourcedestination.funcles.Funcles;
-import net.sourcedestination.funcles.tuple.Tuple2;
+import net.sourcedestination.funcles.tuple.*;
+
 
 /** 
  *
@@ -30,27 +31,24 @@ import net.sourcedestination.funcles.tuple.Tuple2;
  * @version 2.0
  */
 @FunctionalInterface
-public abstract interface Function2<P1,P2,R> extends Function<Tuple2<P1,P2>,R> {
-	public default R apply(Tuple2<P1,P2> args) {
-		return apply(args.a1(), args.a2());
+public abstract interface Function2<A1, A2, R> extends Function<Tuple2<A1, A2>, R> {
+	public default R apply(Tuple2<A1, A2> args) {
+		return apply(args._1, args._2);
 	}
 
-	public R apply(P1 a1,P2 a2);
+	public R apply(A1 arg1, A2 arg2);
 	
-	public default Function2<P1,P2,R> applyHigherOrderTo(Function<? super Function2<P1,P2,R>, 
-				                                                ? extends Function<Tuple2<P1,P2>,R>> hof) {
-		return toFunction2(hof.apply(this));
+	public static <A1, A2,R> Function2<A1, A2,R> 
+		toFunction2(Function<Tuple2<A1, A2>, R> f) {
+		return (arg1, arg2) -> 
+		  Funcles.apply(f, arg1, arg2);
 	}
+
 	
-	public static <P1, P2, R> Function2<P1,P2,R> 
-		toFunction2(Function<Tuple2<P1, P2>, R> f) {
-		return (arg1, arg2) -> Funcles.apply(f, arg1, arg2);
-	}
-	
-	public static <P1, P2, R> Function2<P1,P2,R>
-		 applyHigherOrder(Function<? super Function2<P1,P2,R>, 
-				                   ? extends Function<Tuple2<P1,P2>,R>> hof,
-				          Function2<P1,P2,R> f) {
+	public static <A1, A2, R> Function3<A1, A2,R>
+		 applyHigherOrder(Function< ? super Function2<A1, A2,R>, 
+				                   ? extends Function<Tuple2<A1, A2>,R>> hof,
+				          Function2<A1, A2,R> f) {
 		return toFunction2(hof.apply(f));
 	}
 			

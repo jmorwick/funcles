@@ -1,4 +1,6 @@
-/* Copyright 2011-2014 Joseph Kendall-Morwick
+<?php 
+	$max = $argv[1];
+?>/* Copyright 2011-2014 Joseph Kendall-Morwick
 
      This file is part of the Funcles library.
 
@@ -48,20 +50,14 @@ public class Tuple implements Serializable {
 
     
     
-    public static <A1, A2> Tuple2<A1, A2> makeTuple(A1 _1, A2 _2) {
-        return new Tuple2<A1, A2>(_1, _2);
+<?php foreach(range(2, $max) as $i) { 
+	    $type_params = implode(", ", array_map(function ($x) { return "A$x"; }, range(1, $i)));
+	    $parameters = implode(", ", array_map(function ($x) { return "A$x _$x"; }, range(1, $i)));
+	    $arguments = implode(", ", array_map(function ($x) { return "_$x"; }, range(1, $i)));
+?>
+    public static <<?=$type_params?>> Tuple<?=$i?><<?=$type_params?>> makeTuple(<?=$parameters?>) {
+        return new Tuple<?=$i?><<?=$type_params?>>(<?=$arguments?>);
     }
     
-    public static <A1, A2, A3> Tuple3<A1, A2, A3> makeTuple(A1 _1, A2 _2, A3 _3) {
-        return new Tuple3<A1, A2, A3>(_1, _2, _3);
-    }
-    
-    public static <A1, A2, A3, A4> Tuple4<A1, A2, A3, A4> makeTuple(A1 _1, A2 _2, A3 _3, A4 _4) {
-        return new Tuple4<A1, A2, A3, A4>(_1, _2, _3, _4);
-    }
-    
-    public static <A1, A2, A3, A4, A5> Tuple5<A1, A2, A3, A4, A5> makeTuple(A1 _1, A2 _2, A3 _3, A4 _4, A5 _5) {
-        return new Tuple5<A1, A2, A3, A4, A5>(_1, _2, _3, _4, _5);
-    }
-    
+<?php } ?>
 }

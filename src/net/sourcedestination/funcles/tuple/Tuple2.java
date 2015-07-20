@@ -1,4 +1,4 @@
-/* Copyright 2011-2014 Joseph Kendall-Morwick
+/* Copyright 2011-2015 Joseph Kendall-Morwick
 
      This file is part of the Funcles library.
 
@@ -14,65 +14,59 @@
 
     You should have received a copy of the Lesser GNU General Public License
     along with Funcles.  If not, see <http://www.gnu.org/licenses/>.
-
  */
 
 package net.sourcedestination.funcles.tuple;
 
 
 
-/** A class representing a 2-tuple
+/**  A class representing a 2-tuple
  *
 
 
   @author Joseph Kendall-Morwick <jmorwick@indiana.edu>
-  @version 2.1
+  @version 2.0
 
   */
-public class Tuple2 <A1, A2> extends Tuple {
-    private final A1 a1;
-    private final A2 a2;
+public class Tuple2<A1, A2> extends Tuple {
+    public final A1 _1;
+    public final A2 _2;
 
-    public Tuple2(A1 a1, A2 a2) {
+    public Tuple2(A1 _1, A2 _2) {
         super(2);
-        this.a1 = a1;
-        this.a2 = a2;
+        this._1 = _1;
+        this._2 = _2;
     }
-
-    public A1 a1() { return a1; }
-    public A2 a2() { return a2; }
-
-    public void setA1(A1 a1) { 
-    	throw new RuntimeException("attempted modification of immutable tuple");
-    }
-    public void setA2(A2 a2) { 
-    	throw new RuntimeException("attempted modification of immutable tuple");
-    }
+    
+    public A1 _1() { return _1; }
+    public A2 _2() { return _2; }
 
 
     @Override
     @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
     public boolean equals(Object obj) {
         try {
-            Tuple2<A1,A2> t = (Tuple2<A1,A2>)obj;
-            if(a1() == null && t.a1() != null) return false;
-            else if(a1() != null && t.a1() == null) return false;
-            else if(a1() != null && t.a1() != null && !a1().equals(t.a1())) return false;
-            if(a2() == null && t.a2() != null) return false;
-            else if(a2() != null && t.a2() == null) return false;
-            else if(a2() != null && t.a2() != null && !a2().equals(t.a2())) return false;
+            Tuple2<A1, A2> t = (Tuple2<A1, A2>)obj;
+            if(_1 == null && t._1 != null) return false;
+            if(_1 != null && t._1 == null) return false;
+            if(_1 != null && t._1 != null && !_1.equals(t._1)) return false;
+            if(_2 == null && t._2 != null) return false;
+            if(_2 != null && t._2 == null) return false;
+            if(_2 != null && t._2 != null && !_2.equals(t._2)) return false;          
+
             return true;
         }catch(ClassCastException e) { return false; }
     }
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 79 * hash + (this.a1() != null ? this.a1().hashCode() : 0);
-        hash = 79 * hash + (this.a2() != null ? this.a2().hashCode() : 0);
+        int hash = 7;
+       hash = 17 * hash + (this._1 != null ? this._1.hashCode() : 0);
+       hash = 17 * hash + (this._2 != null ? this._2.hashCode() : 0);   
         return hash;
     }
 
+
     @Override
-    public String toString() { return "["+a1+","+a2+"]"; }
+    public String toString() { return "["+_1+","+_2+"]"; }
 }

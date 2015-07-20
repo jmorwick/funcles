@@ -25,16 +25,9 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Stream;
 
-import net.sourcedestination.funcles.consumer.Consumer2;
-import net.sourcedestination.funcles.consumer.Consumer3;
-import net.sourcedestination.funcles.consumer.Consumer4;
-import net.sourcedestination.funcles.relation.Relation2;
-import net.sourcedestination.funcles.relation.Relation3;
-import net.sourcedestination.funcles.tuple.Tuple2;
-import net.sourcedestination.funcles.tuple.Tuple3;
-import net.sourcedestination.funcles.tuple.Tuple4;
-import net.sourcedestination.funcles.tuple.Tuple5;
-
+import net.sourcedestination.funcles.consumer.*;
+import net.sourcedestination.funcles.relation.*;
+import net.sourcedestination.funcles.tuple.*;
 import static net.sourcedestination.funcles.tuple.Pair.makePair;
 import static net.sourcedestination.funcles.tuple.Triple.makeTriple;
 import static net.sourcedestination.funcles.tuple.Tuple.makeTuple;
@@ -53,201 +46,114 @@ import static net.sourcedestination.funcles.tuple.Tuple.makeTuple;
 public class Funcles {
 
 	/** a simple way to call accept for a consumer with 2 arguments 
-	 * 
-	 * @param f
-	 * @param arg1
-	 * @param arg2
-	 * @return
 	 */
-	public static <F1,F2> void accept(Consumer<Tuple2<F1,F2>> c, F1 arg1, 
-			F2 arg2) {
+	public static <A1, A2> void accept(Consumer<Tuple2<A1, A2>> c, 
+		A1 arg1, A2 arg2) {
 		c.accept(makeTuple(arg1, arg2));
-	}
-
-
-	/** a simple way to call accept for a consumer with 3 arguments 
-	 * 
-	 * @param f
-	 * @param arg1
-	 * @param arg2
-	 * @return
-	 */
-	public static <F1,F2,F3> void accept(Consumer<Tuple3<F1,F2,F3>> c, F1 arg1, 
-			F2 arg2, F3 arg3) {
-		c.accept(makeTuple(arg1, arg2, arg3));
-	}
-
-	/** a simple way to call accept for a consumer with 3 arguments 
-	 * 
-	 * @param f
-	 * @param arg1
-	 * @param arg2
-	 * @return
-	 */
-	public static <F1,F2,F3,F4> void accept(Consumer<Tuple4<F1,F2,F3,F4>> c, 
-			F1 arg1, F2 arg2, F3 arg3, F4 arg4) {
-		c.accept(makeTuple(arg1, arg2, arg3, arg4));
-	}
-
-
-	/** a simple way to call accept for a consumer with 3 arguments 
-	 * 
-	 * @param f
-	 * @param arg1
-	 * @param arg2
-	 * @return
-	 */
-	public static <F1,F2,F3,F4,F5> void accept(Consumer<Tuple5<F1,F2,F3,F4,F5>> c, 
-			F1 arg1, F2 arg2, F3 arg3, F4 arg4, F5 arg5) {
-		c.accept(makeTuple(arg1, arg2, arg3, arg4, arg5));
-	}
-	
-
-	/** 
-	 * 
-	 * @param s
-	 * @param f
-	 * @return
-	 */
-	public static <F1,F2> void forEach(
-			Stream<Tuple2<F1,F2>> s, 
-			Consumer2<F1,F2> c) {
-		s.forEach(t -> c.accept(t));
-	}
-	/** 
-	 * 
-	 * @param s
-	 * @param f
-	 * @return
-	 */
-	public static <F1,F2> void forEach(
-			Collection<Tuple2<F1,F2>> s, 
-			Consumer2<F1,F2> c) {
-		forEach(s.stream(), c);
-	}
-
-	/** 
-	 * 
-	 * @param s
-	 * @param f
-	 * @return
-	 */
-	public static <F1,F2,F3> void forEach(
-			Stream<Tuple3<F1,F2,F3>> s, 
-			Consumer3<F1,F2,F3> c) {
-		s.forEach(t -> c.accept(t));
-	}
-	/** 
-	 * 
-	 * @param s
-	 * @param f
-	 * @return
-	 */
-	public static <F1,F2,F3> void forEach(
-			Collection<Tuple3<F1,F2,F3>> s, 
-			Consumer3<F1,F2,F3> c) {
-		forEach(s.stream(), c);
-	}
-	
-
-	/** 
-	 * 
-	 * @param s
-	 * @param f
-	 * @return
-	 */
-	public static <F1,F2,F3,F4> void forEach(
-			Stream<Tuple4<F1,F2,F3,F4>> s, 
-			Consumer4<F1,F2,F3,F4> c) {
-		s.forEach(t -> c.accept(t));
-	}
-	
-	/** 
-	 * 
-	 * @param s
-	 * @param f
-	 * @return
-	 */
-	public static <F1,F2,F3,F4> void forEach(
-			Collection<Tuple4<F1,F2,F3,F4>> s, 
-			Consumer4<F1,F2,F3,F4> c) {
-		forEach(s.stream(), c);
 	}
 	
 	/** a simple way to call apply for a function with 2 arguments 
-	 * 
-	 * @param f
-	 * @param arg1
-	 * @param arg2
-	 * @return
 	 */
-	public static <F1,F2,T> T apply(Function<Tuple2<F1,F2>,T> f, F1 arg1, 
-			F2 arg2) {
-		return f.apply(makeTuple(arg1, arg2));
+	public static <A1, A2, R> R apply(Function<Tuple2<A1, A2>,R> c, 
+		A1 arg1, A2 arg2) {
+		return c.apply(makeTuple(arg1, arg2));
 	}
 	
-	/** a simple way to call apply for a function with 3 arguments 
-	 * 
-	 * @param f
-	 * @param arg1
-	 * @param arg2
-	 * @param arg3
-	 * @return
-	 */
-	public static <F1,F2,F3,T> T apply(Function<Tuple3<F1,F2,F3>,T> f, F1 arg1, 
-			F2 arg2, F3 arg3) {
-		return f.apply(makeTuple(arg1, arg2, arg3));
-	}
-
-	/** a simple way to call apply for a function with 4 arguments 
-	 * 
-	 * @param f
-	 * @param arg1
-	 * @param arg2
-	 * @param arg3
-	 * @param arg4
-	 * @return
-	 */
-	public static <F1,F2,F3,F4,T> T apply(Function<Tuple4<F1,F2,F3,F4>,T> f, 
-			F1 arg1, F2 arg2, F3 arg3, F4 arg4) {
-		return f.apply(makeTuple(arg1, arg2, arg3, arg4));
-	}
-
-	/** a simple way to call apply for a function with 5 arguments
-	 * 
-	 * @param f
-	 * @param arg1
-	 * @param arg2
-	 * @param arg3
-	 * @param arg4
-	 * @return
-	 */
-	public static <F1,F2,F3,F4,F5,T> T apply(Function<Tuple5<F1,F2,F3,F4,F5>,T> f, 
-			F1 arg1, F2 arg2, F3 arg3, F4 arg4, F5 arg5) {
-		return f.apply(makeTuple(arg1, arg2, arg3, arg4, arg5));
+	public static <A1, A2> void forEach(
+			Stream<Tuple2<A1, A2>> s, 
+			Consumer2<A1, A2> c) {
+		s.forEach(t -> c.accept(t));
 	}
 	
 	/** a simple way to call apply for a relation with 2 arguments
-	 * 
-	 * @param f
-	 * @param arg1
-	 * @param arg2
-	 * @return
 	 */
-	public static <F,T> boolean apply(Relation2<F> r, F arg1, F arg2) {
-		return r.test(makePair(arg1, arg2));
+	public static <A1, A2> boolean apply(Relation2<A1, A2> r,  
+	    A1 arg1, A2 arg2) {
+		return r.apply(makeTuple(arg1, arg2));
+	}
+
+	/** a simple way to call accept for a consumer with 3 arguments 
+	 */
+	public static <A1, A2, A3> void accept(Consumer<Tuple3<A1, A2, A3>> c, 
+		A1 arg1, A2 arg2, A3 arg3) {
+		c.accept(makeTuple(arg1, arg2, arg3));
+	}
+	
+	/** a simple way to call apply for a function with 3 arguments 
+	 */
+	public static <A1, A2, A3, R> R apply(Function<Tuple3<A1, A2, A3>,R> c, 
+		A1 arg1, A2 arg2, A3 arg3) {
+		return c.apply(makeTuple(arg1, arg2, arg3));
+	}
+	
+	public static <A1, A2, A3> void forEach(
+			Stream<Tuple3<A1, A2, A3>> s, 
+			Consumer3<A1, A2, A3> c) {
+		s.forEach(t -> c.accept(t));
 	}
 	
 	/** a simple way to call apply for a relation with 3 arguments
-	 * 
-	 * @param f
-	 * @param arg1
-	 * @param arg2
-	 * @return
 	 */
-	public static <F,T> boolean apply(Relation3<F> r, F arg1, F arg2, 
-			F arg3) {
-		return r.apply(makeTriple(arg1, arg2, arg3));
+	public static <A1, A2, A3> boolean apply(Relation3<A1, A2, A3> r,  
+	    A1 arg1, A2 arg2, A3 arg3) {
+		return r.apply(makeTuple(arg1, arg2, arg3));
 	}
+
+	/** a simple way to call accept for a consumer with 4 arguments 
+	 */
+	public static <A1, A2, A3, A4> void accept(Consumer<Tuple4<A1, A2, A3, A4>> c, 
+		A1 arg1, A2 arg2, A3 arg3, A4 arg4) {
+		c.accept(makeTuple(arg1, arg2, arg3, arg4));
+	}
+	
+	/** a simple way to call apply for a function with 4 arguments 
+	 */
+	public static <A1, A2, A3, A4, R> R apply(Function<Tuple4<A1, A2, A3, A4>,R> c, 
+		A1 arg1, A2 arg2, A3 arg3, A4 arg4) {
+		return c.apply(makeTuple(arg1, arg2, arg3, arg4));
+	}
+	
+	public static <A1, A2, A3, A4> void forEach(
+			Stream<Tuple4<A1, A2, A3, A4>> s, 
+			Consumer4<A1, A2, A3, A4> c) {
+		s.forEach(t -> c.accept(t));
+	}
+	
+	/** a simple way to call apply for a relation with 4 arguments
+	 */
+	public static <A1, A2, A3, A4> boolean apply(Relation4<A1, A2, A3, A4> r,  
+	    A1 arg1, A2 arg2, A3 arg3, A4 arg4) {
+		return r.apply(makeTuple(arg1, arg2, arg3, arg4));
+	}
+
+	/** a simple way to call accept for a consumer with 5 arguments 
+	 */
+	public static <A1, A2, A3, A4, A5> void accept(Consumer<Tuple5<A1, A2, A3, A4, A5>> c, 
+		A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5) {
+		c.accept(makeTuple(arg1, arg2, arg3, arg4, arg5));
+	}
+	
+	/** a simple way to call apply for a function with 5 arguments 
+	 */
+	public static <A1, A2, A3, A4, A5, R> R apply(Function<Tuple5<A1, A2, A3, A4, A5>,R> c, 
+		A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5) {
+		return c.apply(makeTuple(arg1, arg2, arg3, arg4, arg5));
+	}
+	
+	public static <A1, A2, A3, A4, A5> void forEach(
+			Stream<Tuple5<A1, A2, A3, A4, A5>> s, 
+			Consumer5<A1, A2, A3, A4, A5> c) {
+		s.forEach(t -> c.accept(t));
+	}
+	
+	/** a simple way to call apply for a relation with 5 arguments
+	 */
+	public static <A1, A2, A3, A4, A5> boolean apply(Relation5<A1, A2, A3, A4, A5> r,  
+	    A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5) {
+		return r.apply(makeTuple(arg1, arg2, arg3, arg4, arg5));
+	}
+
+
+	
    
 }

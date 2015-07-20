@@ -31,28 +31,28 @@ import net.sourcedestination.funcles.tuple.Tuple4;
  * @version 2.0
  */
 @FunctionalInterface
-public abstract interface Consumer4<P1,P2,P3,P4> extends Consumer<Tuple4<P1,P2,P3,P4>> {
+public abstract interface Consumer4<A1, A2, A3, A4> extends Consumer<Tuple4<A1, A2, A3, A4>> {
 	
-	public default void accept(Tuple4<P1,P2,P3,P4> args) {
-		accept(args.a1(), args.a2(), args.a3(), args.a4());
+	public default void accept(Tuple4<A1, A2, A3, A4> args) {
+		accept(args._1, args._2, args._3, args._4);
 	}
 	
-	public void accept(P1 a1,P2 a2, P3 a3, P4 a4);
+	public void accept(A1 arg1, A2 arg2, A3 arg3, A4 arg4);
 	
-	public default Consumer4<P1,P2,P3,P4> applyHigherOrderTo(Function<? super Consumer4<P1,P2,P3,P4>, 
-				                                                ? extends Consumer<Tuple4<P1,P2,P3,P4>>> hof) {
+	public default Consumer4<A1, A2, A3, A4> applyHigherOrderTo(Function< ? super Consumer4<A1, A2, A3, A4>, 
+				                                                ? extends Consumer<Tuple4<A1, A2, A3, A4>>> hof) {
 		return toConsumer4(hof.apply(this));
 	}
 	
-	public static <P1, P2, P3, P4> Consumer4<P1,P2,P3,P4> 
-		toConsumer4(Consumer<Tuple4<P1, P2, P3, P4>> f) {
+	public static <A1, A2, A3, A4> Consumer4<A1, A2, A3, A4> 
+		toConsumer4(Consumer<Tuple4<A1, A2, A3, A4>> f) {
 		return (arg1, arg2, arg3, arg4) -> Funcles.accept(f, arg1, arg2, arg3, arg4);
 	}
 	
-	public static <P1, P2, P3, P4> Consumer4<P1,P2,P3,P4>
-		 applyHigherOrder(Function<? super Consumer4<P1,P2,P3,P4>, 
-				                   ? extends Consumer<Tuple4<P1,P2,P3,P4>>> hof,
-				                Consumer4<P1,P2,P3,P4> f) {
+	public static <A1, A2, A3, A4> Consumer4<A1, A2, A3, A4>
+		 applyHigherOrder(Function< ? super Consumer4<A1, A2, A3, A4>, 
+				                   ? extends Consumer<Tuple4<A1, A2, A3, A4>>> hof,
+				                Consumer4<A1, A2, A3, A4> f) {
 		return toConsumer4(hof.apply(f));
 	}
 			

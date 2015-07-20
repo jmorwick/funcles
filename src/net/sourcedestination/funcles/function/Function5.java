@@ -22,9 +22,8 @@ package net.sourcedestination.funcles.function;
 import java.util.function.Function;
 
 import net.sourcedestination.funcles.Funcles;
-import net.sourcedestination.funcles.tuple.Tuple3;
-import net.sourcedestination.funcles.tuple.Tuple4;
-import net.sourcedestination.funcles.tuple.Tuple5;
+import net.sourcedestination.funcles.tuple.*;
+
 
 /** 
  *
@@ -32,22 +31,25 @@ import net.sourcedestination.funcles.tuple.Tuple5;
  * @version 2.0
  */
 @FunctionalInterface
-public abstract interface Function5<P1,P2,P3,P4,P5,R> extends Function<Tuple5<P1,P2,P3,P4,P5>,R> {
-	public default R apply(Tuple5<P1,P2,P3,P4,P5> args) {
-		return apply(args.a1(), args.a2(), args.a3(), args.a4(), args.a5());
+public abstract interface Function5<A1, A2, A3, A4, A5, R> extends Function<Tuple5<A1, A2, A3, A4, A5>, R> {
+	public default R apply(Tuple5<A1, A2, A3, A4, A5> args) {
+		return apply(args._1, args._2, args._3, args._4, args._5);
 	}
 
-	public R apply(P1 a1, P2 a2, P3 a3, P4 a4, P5 a5);
+	public R apply(A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5);
 	
-	public static <P1,P2,P3,P4,P5,R> Function5<P1,P2,P3,P4,P5,R> 
-		toFunction5(Function<Tuple5<P1,P2,P3,P4,P5>, R> f) {
-		return (arg1, arg2, arg3, arg4, arg5) -> Funcles.apply(f, arg1, arg2, arg3, arg4, arg5);
+	public static <A1, A2, A3, A4, A5,R> Function5<A1, A2, A3, A4, A5,R> 
+		toFunction5(Function<Tuple5<A1, A2, A3, A4, A5>, R> f) {
+		return (arg1, arg2, arg3, arg4, arg5) -> 
+		  Funcles.apply(f, arg1, arg2, arg3, arg4, arg5);
 	}
+
 	
-	public static <P1, P2, P3, P4, P5, R> Function5<P1,P2,P3,P4,P5,R>
-		 applyHigherOrder(Function<? super Function5<P1,P2,P3,P4,P5,R>, 
-				                   ? extends Function<Tuple5<P1,P2,P3,P4,P5>,R>> hof,
-				          Function5<P1,P2,P3,P4,P5,R> f) {
+	public static <A1, A2, A3, A4, A5, R> Function3<A1, A2, A3, A4, A5,R>
+		 applyHigherOrder(Function< ? super Function5<A1, A2, A3, A4, A5,R>, 
+				                   ? extends Function<Tuple5<A1, A2, A3, A4, A5>,R>> hof,
+				          Function5<A1, A2, A3, A4, A5,R> f) {
 		return toFunction5(hof.apply(f));
 	}
+			
 }

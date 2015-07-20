@@ -1,3 +1,10 @@
+<?php 
+	$n = $argv[1];
+	$type_params = implode(", ", array_map(function ($x) { return "A$x"; }, range(1, $n)));
+	$params = implode(", ", array_map(function ($x) { return "A$x arg$x"; }, range(1, $n)));
+	$args = implode(", ", array_map(function ($x) { return "arg$x"; }, range(1, $n)));
+	$tuple_contents = implode(", ", array_map(function ($x) { return "args._$x"; }, range(1, $n)));
+?>
 /* Copyright 2011-2014 Joseph Kendall-Morwick
 
      This file is part of the Funcles library.
@@ -21,8 +28,8 @@ package net.sourcedestination.funcles.relation;
 
 import java.util.function.BiPredicate;
 
-import net.sourcedestination.funcles.function.Function2;
-import net.sourcedestination.funcles.tuple.Tuple2;
+import net.sourcedestination.funcles.function.Function<?=$n?>;
+import net.sourcedestination.funcles.tuple.Tuple<?=$n?>;
 
 /** This class provides a clean abstraction for implementing binary relations
  *
@@ -30,21 +37,22 @@ import net.sourcedestination.funcles.tuple.Tuple2;
  * @version 2.0
  */
 @FunctionalInterface
-public abstract interface Relation2<A1, A2> extends Relation<Tuple2<A1, A2>>, 
-											   Function2<A1, A2,Boolean> {
+public abstract interface Relation2<<?=$type_params?>> extends Relation<Tuple<?=$n?><<?=$type_params?>>>, 
+											   Function<?=$n?><<?=$type_params?>,Boolean> {
 	
-	public default Boolean apply(A1 arg1, A2 arg2) {
-		return test(arg1, arg2);
+	public default Boolean apply(<?=$params?>) {
+		return test(<?=$args?>);
 	}
 
-	public default boolean test(Tuple2<A1, A2> args) {
-		return test(args._1, args._2);
+	public default boolean test(Tuple<?=$n?><<?=$type_params?>> args) {
+		return test(<?=$tuple_contents?>);
 	}
 
-	public default Boolean apply(Tuple2<A1, A2> args) {
-		return test(args._1, args._2);
+	public default Boolean apply(Tuple<?=$n?><<?=$type_params?>> args) {
+		return test(<?=$tuple_contents?>);
 	}
 
+<?php if($n == 2) { ?>
 	/** Converts this relation in to a java.util.function.BiPredicate.
 	 * 
 	 * This method is necessary due to a conflict with the negate method: 
@@ -53,9 +61,10 @@ public abstract interface Relation2<A1, A2> extends Relation<Tuple2<A1, A2>>,
 	 * 
 	 * @return this predicate represented as a BiPredicate
 	 */
-	public default BiPredicate<A1, A2> toBiPredicate() {
+	public default BiPredicate<<?=$type_params?>> toBiPredicate() {
 		return this::test;
 	}
-	public boolean test(A1 arg1, A2 arg2);
+<?php } ?>
+	public boolean test(<?=$params?>);
 	
 }
