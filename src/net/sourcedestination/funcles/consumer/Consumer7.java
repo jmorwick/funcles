@@ -55,5 +55,5 @@ public abstract interface Consumer7<A1, A2, A3, A4, A5, A6, A7> extends Consumer
 				                Consumer7<A1, A2, A3, A4, A5, A6, A7> f) {
 		return toConsumer7(hof.apply(f));
 	}
-			
+
 }

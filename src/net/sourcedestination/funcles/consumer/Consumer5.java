@@ -55,5 +55,5 @@ public abstract interface Consumer5<A1, A2, A3, A4, A5> extends Consumer<Tuple5<
 				                Consumer5<A1, A2, A3, A4, A5> f) {
 		return toConsumer5(hof.apply(f));
 	}
-			
+
 }

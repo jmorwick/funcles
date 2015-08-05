@@ -55,5 +55,5 @@ public abstract interface Consumer11<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A1
 				                Consumer11<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11> f) {
 		return toConsumer11(hof.apply(f));
 	}
-			
+
 }

@@ -26,7 +26,8 @@
 package net.sourcedestination.funcles.consumer;
 
 import java.util.function.Consumer;
-import java.util.function.Function;
+<?php if($n == 2) { ?>import java.util.function.BiConsumer;
+<?php } ?>import java.util.function.Function;
 
 import net.sourcedestination.funcles.Funcles;
 import net.sourcedestination.funcles.tuple.Tuple<?=$n?>;
@@ -37,7 +38,8 @@ import net.sourcedestination.funcles.tuple.Tuple<?=$n?>;
  * @version 2.0
  */
 @FunctionalInterface
-public abstract interface Consumer<?=$n?><<?=$type_params?>> extends Consumer<Tuple<?=$n?><<?=$type_params?>>> {
+public abstract interface Consumer<?=$n?><<?=$type_params?>> extends Consumer<Tuple<?=$n?><<?=$type_params?>>><?php if($n == 2) { ?>,
+														BiConsumer<A1,A2> <?php } ?> {
 	
 	public default void accept(Tuple<?=$n?><<?=$type_params?>> args) {
 		accept(<?=$tuple_contents?>);
@@ -61,5 +63,14 @@ public abstract interface Consumer<?=$n?><<?=$type_params?>> extends Consumer<Tu
 				                Consumer<?=$n?><<?=$type_params?>> f) {
 		return toConsumer<?=$n?>(hof.apply(f));
 	}
-			
+<?php if($n == 2) { ?>	
+	public default <V> Consumer2<A1, A2> andThen(Consumer2< ? super A1, ? super A2> after) {
+		return (x, y) -> {
+		    accept(x, y);
+			after.accept(x, y);
+		};
+		
+	}
+<?php } ?>
+
 }

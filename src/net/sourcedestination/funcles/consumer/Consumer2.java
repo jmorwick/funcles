@@ -20,6 +20,7 @@
 package net.sourcedestination.funcles.consumer;
 
 import java.util.function.Consumer;
+import java.util.function.BiConsumer;
 import java.util.function.Function;
 
 import net.sourcedestination.funcles.Funcles;
@@ -31,7 +32,8 @@ import net.sourcedestination.funcles.tuple.Tuple2;
  * @version 2.0
  */
 @FunctionalInterface
-public abstract interface Consumer2<A1, A2> extends Consumer<Tuple2<A1, A2>> {
+public abstract interface Consumer2<A1, A2> extends Consumer<Tuple2<A1, A2>>,
+														BiConsumer<A1,A2>  {
 	
 	public default void accept(Tuple2<A1, A2> args) {
 		accept(args._1, args._2);
@@ -55,5 +57,13 @@ public abstract interface Consumer2<A1, A2> extends Consumer<Tuple2<A1, A2>> {
 				                Consumer2<A1, A2> f) {
 		return toConsumer2(hof.apply(f));
 	}
-			
+	
+	public default <V> Consumer2<A1, A2> andThen(Consumer2< ? super A1, ? super A2> after) {
+		return (x, y) -> {
+		    accept(x, y);
+			after.accept(x, y);
+		};
+		
+	}
+
 }
