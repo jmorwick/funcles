@@ -20,6 +20,7 @@
 package net.sourcedestination.funcles.function;
 
 import java.util.function.Function;
+import java.util.function.BiFunction;
 
 import net.sourcedestination.funcles.Funcles;
 import net.sourcedestination.funcles.tuple.*;
@@ -31,7 +32,8 @@ import net.sourcedestination.funcles.tuple.*;
  * @version 2.0
  */
 @FunctionalInterface
-public abstract interface Function2<A1, A2, R> extends Function<Tuple2<A1, A2>, R> {
+public abstract interface Function2<A1, A2, R> extends Function<Tuple2<A1, A2>, R>,
+														BiFunction<A1,A2,R>  {
 	public default R apply(Tuple2<A1, A2> args) {
 		return apply(args._1, args._2);
 	}
@@ -50,6 +52,11 @@ public abstract interface Function2<A1, A2, R> extends Function<Tuple2<A1, A2>, 
 				                   ? extends Function<Tuple2<A1, A2>,R>> hof,
 				          Function2<A1, A2,R> f) {
 		return toFunction2(hof.apply(f));
+	}
+	
+	public default <V> Function2<A1, A2, V> andThen(Function< ? super R, ? extends V> after) {
+		return (x, y) -> after.apply(apply(x, y));
+		
 	}
 			
 }

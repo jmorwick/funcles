@@ -24,6 +24,8 @@
 package net.sourcedestination.funcles.function;
 
 import java.util.function.Function;
+<?php if($n == 2) { ?>import java.util.function.BiFunction;
+<?php } ?>
 
 import net.sourcedestination.funcles.Funcles;
 import net.sourcedestination.funcles.tuple.*;
@@ -35,7 +37,8 @@ import net.sourcedestination.funcles.tuple.*;
  * @version 2.0
  */
 @FunctionalInterface
-public abstract interface Function<?=$n?><<?=$type_params?>, R> extends Function<Tuple<?=$n?><<?=$type_params?>>, R> {
+public abstract interface Function<?=$n?><<?=$type_params?>, R> extends Function<Tuple<?=$n?><<?=$type_params?>>, R><?php if($n == 2) { ?>,
+														BiFunction<A1,A2,R> <?php } ?> {
 	public default R apply(Tuple<?=$n?><<?=$type_params?>> args) {
 		return apply(<?=implode(", ", array_map(function ($x) { return "args._$x"; }, range(1, $n)))?>);
 	}
@@ -55,7 +58,11 @@ public abstract interface Function<?=$n?><<?=$type_params?>, R> extends Function
 				          Function<?=$n?><<?=$type_params?>,R> f) {
 		return toFunction<?=$n?>(hof.apply(f));
 	}
-<?php if($n == 2) { //include bifunction method...?>
+<?php if($n == 2) { ?>	
+	public default <V> Function2<A1, A2, V> andThen(Function< ? super R, ? extends V> after) {
+		return (x, y) -> after.apply(apply(x, y));
+		
+	}
 <?php } ?>
 			
 }
