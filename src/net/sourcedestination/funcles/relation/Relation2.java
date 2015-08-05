@@ -19,7 +19,7 @@
 
 package net.sourcedestination.funcles.relation;
 
-import java.util.function.BiPredicate;
+import java.util.function.BiPredicate;	
 
 import net.sourcedestination.funcles.function.Function2;
 import net.sourcedestination.funcles.tuple.Tuple2;
@@ -31,6 +31,7 @@ import net.sourcedestination.funcles.tuple.Tuple2;
  */
 @FunctionalInterface
 public abstract interface Relation2<A1, A2> extends Relation<Tuple2<A1, A2>>, 
+											   BiPredicate<A1, A2>,
 											   Function2<A1, A2,Boolean> {
 	
 	public default Boolean apply(A1 arg1, A2 arg2) {
@@ -45,16 +46,12 @@ public abstract interface Relation2<A1, A2> extends Relation<Tuple2<A1, A2>>,
 		return test(args._1, args._2);
 	}
 
-	/** Converts this relation in to a java.util.function.BiPredicate.
-	 * 
-	 * This method is necessary due to a conflict with the negate method: 
-	 * Relation2 cannot extend both java.util.Function.Predicate and 
-	 * java.util.function.BiPredicate due to this conflict. 
-	 * 
-	 * @return this predicate represented as a BiPredicate
-	 */
-	public default BiPredicate<A1, A2> toBiPredicate() {
-		return this::test;
+	
+	/** returns the negation of this Relation2 as a Relation2 
+	* @return returns the negation of this Relation2 as a Relation2 
+	*/
+	public default Relation2<A1, A2> negate() {
+		return (x,y) -> !test(x,y);
 	}
 	public boolean test(A1 arg1, A2 arg2);
 	

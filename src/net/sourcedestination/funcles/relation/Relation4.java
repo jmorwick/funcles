@@ -19,7 +19,7 @@
 
 package net.sourcedestination.funcles.relation;
 
-import java.util.function.BiPredicate;
+	
 
 import net.sourcedestination.funcles.function.Function4;
 import net.sourcedestination.funcles.tuple.Tuple4;

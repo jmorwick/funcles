@@ -26,7 +26,7 @@
 
 package net.sourcedestination.funcles.relation;
 
-import java.util.function.BiPredicate;
+<?php if($n == 2) { ?>import java.util.function.BiPredicate;<?php } ?>	
 
 import net.sourcedestination.funcles.function.Function<?=$n?>;
 import net.sourcedestination.funcles.tuple.Tuple<?=$n?>;
@@ -38,7 +38,8 @@ import net.sourcedestination.funcles.tuple.Tuple<?=$n?>;
  */
 @FunctionalInterface
 public abstract interface Relation<?=$n?><<?=$type_params?>> extends Relation<Tuple<?=$n?><<?=$type_params?>>>, 
-											   Function<?=$n?><<?=$type_params?>,Boolean> {
+<?php if($n == 2) { ?>											   BiPredicate<<?=$type_params?>>,
+<?php } ?>											   Function<?=$n?><<?=$type_params?>,Boolean> {
 	
 	public default Boolean apply(<?=$params?>) {
 		return test(<?=$args?>);
@@ -53,16 +54,12 @@ public abstract interface Relation<?=$n?><<?=$type_params?>> extends Relation<Tu
 	}
 
 <?php if($n == 2) { ?>
-	/** Converts this relation in to a java.util.function.BiPredicate.
-	 * 
-	 * This method is necessary due to a conflict with the negate method: 
-	 * Relation2 cannot extend both java.util.Function.Predicate and 
-	 * java.util.function.BiPredicate due to this conflict. 
-	 * 
-	 * @return this predicate represented as a BiPredicate
-	 */
-	public default BiPredicate<<?=$type_params?>> toBiPredicate() {
-		return this::test;
+	
+	/** returns the negation of this Relation2 as a Relation2 
+	* @return returns the negation of this Relation2 as a Relation2 
+	*/
+	public default Relation2<A1, A2> negate() {
+		return (x,y) -> !test(x,y);
 	}
 <?php } ?>
 	public boolean test(<?=$params?>);
