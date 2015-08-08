@@ -22,6 +22,11 @@ package net.sourcedestination.funcles;
 import static net.sourcedestination.funcles.tuple.Tuple.*;
 import static org.junit.Assert.*;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -74,6 +79,62 @@ public class TupleTest {
 
 
 
+	@Test
+	public void testComparable3() throws IOException, ClassNotFoundException {
+		Tuple3<Integer,String,Double> t1 = makeTuple(5, "blah", 1.2);
+		Tuple3<Integer,String,Double> t2 = makeTuple(6, "blah", 1.2);
+		Tuple3<Integer,String,Double> t3 = makeTuple(5, "alah", 1.2);
+		Tuple3<Integer,String,Double> t4 = makeTuple(5, "blah", 1.1);
+		Tuple3<Integer,String,Double> t5 = makeTuple(5, "blah", 1.2);
+
+		assertEquals(0, t1.compareTo(t1));
+		assertEquals(-1, t1.compareTo(t2));
+		assertEquals(1, t2.compareTo(t1));
+		assertEquals(1, t1.compareTo(t3));
+		assertEquals(1, t2.compareTo(t3));
+		assertEquals(-1, t3.compareTo(t4));
+		assertEquals(1, t1.compareTo(t4));
+		assertEquals(0, t1.compareTo(t5));
+	}
+	
+
+	@Test(expected=ClassCastException.class)
+	public void testComparable3bad() throws IOException, ClassNotFoundException {
+		class NotComparable {}
+		Tuple3<Integer,String,NotComparable> t1 = makeTuple(5, "blah", new NotComparable());
+		Tuple3<Integer,String,NotComparable> t2 = makeTuple(5, "blah", new NotComparable());
+
+		assertEquals(0, t1.compareTo(t2));
+	}
+	
+	@Test
+	public void testSerialize3() throws IOException, ClassNotFoundException {
+		Tuple3<Integer,String,Double> t1 = makeTuple(5, "blah", 1.2);
+		ByteArrayOutputStream bout = new ByteArrayOutputStream();
+		ObjectOutputStream oout = new ObjectOutputStream(bout);
+		oout.writeObject(t1);
+		oout.close();
+		ByteArrayInputStream bin = new ByteArrayInputStream(bout.toByteArray());
+		ObjectInputStream oin = new ObjectInputStream(bin);
+		Tuple3<Integer,String,Double> t2 = (Tuple3<Integer,String,Double>)oin.readObject();
+		assertEquals(t1, t2);
+	}
+
+	@Test(expected=java.io.NotSerializableException.class)
+	public void testSerialize3bad() throws IOException, ClassNotFoundException {
+		class CantSerialize {}
+		Tuple3<Integer,String,CantSerialize> t1 = makeTuple(5, "blah", new CantSerialize());
+		ByteArrayOutputStream bout = new ByteArrayOutputStream();
+		ObjectOutputStream oout = new ObjectOutputStream(bout);
+		oout.writeObject(t1);
+		oout.close();
+		ByteArrayInputStream bin = new ByteArrayInputStream(bout.toByteArray());
+		ObjectInputStream oin = new ObjectInputStream(bin);
+		Tuple3<Integer,String,CantSerialize> t2 = 
+				(Tuple3<Integer,String,CantSerialize>)oin.readObject();
+		assertEquals(t1, t2);
+	}
+	
 	@Test
 	public void testHashCode() {
 		Set<Tuple> tuples = new HashSet<Tuple>();

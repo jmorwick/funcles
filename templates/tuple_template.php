@@ -27,11 +27,12 @@ package net.sourcedestination.funcles.tuple;
  *
 
 
-  @author Joseph Kendall-Morwick <jmorwick@indiana.edu>
+  @author Joseph Kendall-Morwick <jbmorwick@gmail.com>
   @version 2.0
 
   */
-public class Tuple<?=$n?><<?= $type_params ?>> extends Tuple {
+public class Tuple<?=$n?><<?= $type_params ?>> extends Tuple<Tuple<?=$n?><<?= $type_params ?>>> {
+	private static final long serialVersionUID = 1L;
 <?= 
 implode("\n", array_map(function ($x) { return "    public final A$x _$x;"; }, range(1, $n)))
 ?>
@@ -52,7 +53,7 @@ implode("\n", array_map(function ($x) { return "    public A$x _$x() { return _$
 
 
     @Override
-    @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
+    @SuppressWarnings({ "unchecked" })
     public boolean equals(Object obj) {
         try {
             Tuple<?=$n?><<?=$type_params?>> t = (Tuple<?=$n?><<?=$type_params?>>)obj;
@@ -77,6 +78,19 @@ implode("\n", array_map(function ($x) { return
         return hash;
     }
 
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
+	/** attempts to compare this tuple to another tuple using the common Comparable semantics.  
+	 * @throws ClassCastException if any type within the tuple doesn't implement Comparable
+	 */
+	public int compareTo(Tuple<?=$n?><<?= $type_params ?>> t) {
+		int r;
+<?php foreach(range(1, $n) as $i) { ?>
+		r = ((Comparable)_<?=$i?>).compareTo(t._<?=$i?>);
+		if(r != 0) return r;
+<?php } ?>
+		return r;
+	}
 
     @Override
     public String toString() { return "[<?=implode(",", array_map(function ($x) { return "\"+_$x+\""; }, range(1, $n)))?>]"; }

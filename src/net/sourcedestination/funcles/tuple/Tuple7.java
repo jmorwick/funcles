@@ -24,11 +24,12 @@ package net.sourcedestination.funcles.tuple;
  *
 
 
-  @author Joseph Kendall-Morwick <jmorwick@indiana.edu>
+  @author Joseph Kendall-Morwick <jbmorwick@gmail.com>
   @version 2.0
 
   */
-public class Tuple7<A1, A2, A3, A4, A5, A6, A7> extends Tuple {
+public class Tuple7<A1, A2, A3, A4, A5, A6, A7> extends Tuple<Tuple7<A1, A2, A3, A4, A5, A6, A7>> {
+	private static final long serialVersionUID = 1L;
     public final A1 _1;
     public final A2 _2;
     public final A3 _3;
@@ -58,7 +59,7 @@ public class Tuple7<A1, A2, A3, A4, A5, A6, A7> extends Tuple {
 
 
     @Override
-    @SuppressWarnings("EqualsWhichDoesntCheckParameterClass")
+    @SuppressWarnings({ "unchecked" })
     public boolean equals(Object obj) {
         try {
             Tuple7<A1, A2, A3, A4, A5, A6, A7> t = (Tuple7<A1, A2, A3, A4, A5, A6, A7>)obj;
@@ -101,6 +102,29 @@ public class Tuple7<A1, A2, A3, A4, A5, A6, A7> extends Tuple {
         return hash;
     }
 
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
+	/** attempts to compare this tuple to another tuple using the common Comparable semantics.  
+	 * @throws ClassCastException if any type within the tuple doesn't implement Comparable
+	 */
+	public int compareTo(Tuple7<A1, A2, A3, A4, A5, A6, A7> t) {
+		int r;
+		r = ((Comparable)_1).compareTo(t._1);
+		if(r != 0) return r;
+		r = ((Comparable)_2).compareTo(t._2);
+		if(r != 0) return r;
+		r = ((Comparable)_3).compareTo(t._3);
+		if(r != 0) return r;
+		r = ((Comparable)_4).compareTo(t._4);
+		if(r != 0) return r;
+		r = ((Comparable)_5).compareTo(t._5);
+		if(r != 0) return r;
+		r = ((Comparable)_6).compareTo(t._6);
+		if(r != 0) return r;
+		r = ((Comparable)_7).compareTo(t._7);
+		if(r != 0) return r;
+		return r;
+	}
 
     @Override
     public String toString() { return "["+_1+","+_2+","+_3+","+_4+","+_5+","+_6+","+_7+"]"; }

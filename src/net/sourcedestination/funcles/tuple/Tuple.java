@@ -25,10 +25,11 @@ import java.io.Serializable;
 
 /** Abstract class for all tuples
 
-  @author Joseph Kendall-Morwick <jmorwick@indiana.edu>
+  @author Joseph Kendall-Morwick <jbmorwick@gmail.com>
   @version 2.0
  */
-public class Tuple implements Serializable {
+public abstract class Tuple<T> implements Serializable, Comparable<T> {
+	private static final long serialVersionUID = 1L;
     private int size;
 
     /** constructor for abstract tuple class which tracks tuple properties
