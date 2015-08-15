@@ -45,12 +45,28 @@ public abstract interface Function<?=$n?><<?=$type_params?>, R> extends Function
 
 	public R apply(<?=implode(", ", array_map(function ($x) { return "A$x arg$x"; }, range(1, $n)))?>);
 	
+<?php foreach(range(1, $n) as $i) { 
+	$limited_type_params = '';
+	$limited_args = '';
+	$full_args = '';
+	for($x=1; $x<=$n; $x++) {
+		$full_args .= ($x > 1 ? ', ' : '') . ($x == $i ? "arg" : "a$x");
+		if($x == $i) continue;
+		$limited_type_params .= ($limited_args ? ', ' : '') ."A$x";
+		$limited_args .= ($limited_args ? ', ' : '') . "a$x";
+	}
+	?>
+	
+	public default Function<?=$n==2?'':($n-1)?><<?=$limited_type_params?>, R> bind<?=$i?>(A<?=$i?> arg) {
+	    return (<?=$limited_args?>) -> apply(<?=$full_args?>);
+	}
+<?php } ?>
+	
 	public static <<?=$type_params?>,R> Function<?=$n?><<?=$type_params?>,R> 
 		toFunction<?=$n?>(Function<Tuple<?=$n?><<?=$type_params?>>, R> f) {
 		return (<?=implode(", ", array_map(function ($x) { return "arg$x"; }, range(1, $n)))?>) -> 
 		  Funcles.apply(f, <?=implode(", ", array_map(function ($x) { return "arg$x"; }, range(1, $n)))?>);
 	}
-
 	
 	public static <<?=$type_params?>, R> Function<?=$n?><<?=$type_params?>,R>
 		 applyHigherOrder(Function< ? super Function<?=$n?><<?=$type_params?>,R>, 

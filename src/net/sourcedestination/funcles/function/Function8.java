@@ -38,12 +38,44 @@ public abstract interface Function8<A1, A2, A3, A4, A5, A6, A7, A8, R> extends F
 
 	public R apply(A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6, A7 arg7, A8 arg8);
 	
+	
+	public default Function7<A2, A3, A4, A5, A6, A7, A8, R> bind1(A1 arg) {
+	    return (a2, a3, a4, a5, a6, a7, a8) -> apply(arg, a2, a3, a4, a5, a6, a7, a8);
+	}
+	
+	public default Function7<A1, A3, A4, A5, A6, A7, A8, R> bind2(A2 arg) {
+	    return (a1, a3, a4, a5, a6, a7, a8) -> apply(a1, arg, a3, a4, a5, a6, a7, a8);
+	}
+	
+	public default Function7<A1, A2, A4, A5, A6, A7, A8, R> bind3(A3 arg) {
+	    return (a1, a2, a4, a5, a6, a7, a8) -> apply(a1, a2, arg, a4, a5, a6, a7, a8);
+	}
+	
+	public default Function7<A1, A2, A3, A5, A6, A7, A8, R> bind4(A4 arg) {
+	    return (a1, a2, a3, a5, a6, a7, a8) -> apply(a1, a2, a3, arg, a5, a6, a7, a8);
+	}
+	
+	public default Function7<A1, A2, A3, A4, A6, A7, A8, R> bind5(A5 arg) {
+	    return (a1, a2, a3, a4, a6, a7, a8) -> apply(a1, a2, a3, a4, arg, a6, a7, a8);
+	}
+	
+	public default Function7<A1, A2, A3, A4, A5, A7, A8, R> bind6(A6 arg) {
+	    return (a1, a2, a3, a4, a5, a7, a8) -> apply(a1, a2, a3, a4, a5, arg, a7, a8);
+	}
+	
+	public default Function7<A1, A2, A3, A4, A5, A6, A8, R> bind7(A7 arg) {
+	    return (a1, a2, a3, a4, a5, a6, a8) -> apply(a1, a2, a3, a4, a5, a6, arg, a8);
+	}
+	
+	public default Function7<A1, A2, A3, A4, A5, A6, A7, R> bind8(A8 arg) {
+	    return (a1, a2, a3, a4, a5, a6, a7) -> apply(a1, a2, a3, a4, a5, a6, a7, arg);
+	}
+	
 	public static <A1, A2, A3, A4, A5, A6, A7, A8,R> Function8<A1, A2, A3, A4, A5, A6, A7, A8,R> 
 		toFunction8(Function<Tuple8<A1, A2, A3, A4, A5, A6, A7, A8>, R> f) {
 		return (arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8) -> 
 		  Funcles.apply(f, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8);
 	}
-
 	
 	public static <A1, A2, A3, A4, A5, A6, A7, A8, R> Function8<A1, A2, A3, A4, A5, A6, A7, A8,R>
 		 applyHigherOrder(Function< ? super Function8<A1, A2, A3, A4, A5, A6, A7, A8,R>, 

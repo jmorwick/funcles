@@ -38,12 +38,24 @@ public abstract interface Function3<A1, A2, A3, R> extends Function<Tuple3<A1, A
 
 	public R apply(A1 arg1, A2 arg2, A3 arg3);
 	
+	
+	public default Function2<A2, A3, R> bind1(A1 arg) {
+	    return (a2, a3) -> apply(arg, a2, a3);
+	}
+	
+	public default Function2<A1, A3, R> bind2(A2 arg) {
+	    return (a1, a3) -> apply(a1, arg, a3);
+	}
+	
+	public default Function2<A1, A2, R> bind3(A3 arg) {
+	    return (a1, a2) -> apply(a1, a2, arg);
+	}
+	
 	public static <A1, A2, A3,R> Function3<A1, A2, A3,R> 
 		toFunction3(Function<Tuple3<A1, A2, A3>, R> f) {
 		return (arg1, arg2, arg3) -> 
 		  Funcles.apply(f, arg1, arg2, arg3);
 	}
-
 	
 	public static <A1, A2, A3, R> Function3<A1, A2, A3,R>
 		 applyHigherOrder(Function< ? super Function3<A1, A2, A3,R>, 

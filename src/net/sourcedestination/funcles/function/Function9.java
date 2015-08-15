@@ -38,12 +38,48 @@ public abstract interface Function9<A1, A2, A3, A4, A5, A6, A7, A8, A9, R> exten
 
 	public R apply(A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6, A7 arg7, A8 arg8, A9 arg9);
 	
+	
+	public default Function8<A2, A3, A4, A5, A6, A7, A8, A9, R> bind1(A1 arg) {
+	    return (a2, a3, a4, a5, a6, a7, a8, a9) -> apply(arg, a2, a3, a4, a5, a6, a7, a8, a9);
+	}
+	
+	public default Function8<A1, A3, A4, A5, A6, A7, A8, A9, R> bind2(A2 arg) {
+	    return (a1, a3, a4, a5, a6, a7, a8, a9) -> apply(a1, arg, a3, a4, a5, a6, a7, a8, a9);
+	}
+	
+	public default Function8<A1, A2, A4, A5, A6, A7, A8, A9, R> bind3(A3 arg) {
+	    return (a1, a2, a4, a5, a6, a7, a8, a9) -> apply(a1, a2, arg, a4, a5, a6, a7, a8, a9);
+	}
+	
+	public default Function8<A1, A2, A3, A5, A6, A7, A8, A9, R> bind4(A4 arg) {
+	    return (a1, a2, a3, a5, a6, a7, a8, a9) -> apply(a1, a2, a3, arg, a5, a6, a7, a8, a9);
+	}
+	
+	public default Function8<A1, A2, A3, A4, A6, A7, A8, A9, R> bind5(A5 arg) {
+	    return (a1, a2, a3, a4, a6, a7, a8, a9) -> apply(a1, a2, a3, a4, arg, a6, a7, a8, a9);
+	}
+	
+	public default Function8<A1, A2, A3, A4, A5, A7, A8, A9, R> bind6(A6 arg) {
+	    return (a1, a2, a3, a4, a5, a7, a8, a9) -> apply(a1, a2, a3, a4, a5, arg, a7, a8, a9);
+	}
+	
+	public default Function8<A1, A2, A3, A4, A5, A6, A8, A9, R> bind7(A7 arg) {
+	    return (a1, a2, a3, a4, a5, a6, a8, a9) -> apply(a1, a2, a3, a4, a5, a6, arg, a8, a9);
+	}
+	
+	public default Function8<A1, A2, A3, A4, A5, A6, A7, A9, R> bind8(A8 arg) {
+	    return (a1, a2, a3, a4, a5, a6, a7, a9) -> apply(a1, a2, a3, a4, a5, a6, a7, arg, a9);
+	}
+	
+	public default Function8<A1, A2, A3, A4, A5, A6, A7, A8, R> bind9(A9 arg) {
+	    return (a1, a2, a3, a4, a5, a6, a7, a8) -> apply(a1, a2, a3, a4, a5, a6, a7, a8, arg);
+	}
+	
 	public static <A1, A2, A3, A4, A5, A6, A7, A8, A9,R> Function9<A1, A2, A3, A4, A5, A6, A7, A8, A9,R> 
 		toFunction9(Function<Tuple9<A1, A2, A3, A4, A5, A6, A7, A8, A9>, R> f) {
 		return (arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9) -> 
 		  Funcles.apply(f, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);
 	}
-
 	
 	public static <A1, A2, A3, A4, A5, A6, A7, A8, A9, R> Function9<A1, A2, A3, A4, A5, A6, A7, A8, A9,R>
 		 applyHigherOrder(Function< ? super Function9<A1, A2, A3, A4, A5, A6, A7, A8, A9,R>, 
