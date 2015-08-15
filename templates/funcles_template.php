@@ -29,7 +29,7 @@ import java.util.function.Function;
 import java.util.stream.Stream;
 
 import net.sourcedestination.funcles.consumer.*;
-import net.sourcedestination.funcles.relation.*;
+import net.sourcedestination.funcles.predicate.*;
 import net.sourcedestination.funcles.tuple.*;
 
 import static net.sourcedestination.funcles.tuple.Pair.makePair;
@@ -78,7 +78,7 @@ foreach(range(2,$n) as $i) {
 	
 	/** a simple way to call apply for a relation with <?=$i?> arguments
 	 */
-	public static <<?=$type_params?>> boolean apply(Relation<?=$i?><<?=$type_params?>> r,  
+	public static <<?=$type_params?>> boolean apply(Predicate<?=$i?><<?=$type_params?>> r,  
 	    <?=$params?>) {
 		return r.apply(makeTuple(<?=$args?>));
 	}

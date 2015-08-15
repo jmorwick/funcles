@@ -26,8 +26,8 @@ import static org.junit.Assert.*;
 import java.util.function.Function;
 
 import net.sourcedestination.funcles.Funcles;
-import net.sourcedestination.funcles.relation.Relation2;
-import net.sourcedestination.funcles.relation.Relation3;
+import net.sourcedestination.funcles.predicate.Predicate2;
+import net.sourcedestination.funcles.predicate.Predicate3;
 import net.sourcedestination.funcles.tuple.Pair;
 import net.sourcedestination.funcles.tuple.Tuple2;
 import net.sourcedestination.funcles.tuple.Tuple3;
@@ -81,8 +81,8 @@ public class FunclesTests {
 	}
 
 	@Test
-	public void testApplyRelations() {
-		assertTrue(Funcles.apply(new Relation2<Integer,Integer>() {
+	public void testApplyPredicates() {
+		assertTrue(Funcles.apply(new Predicate2<Integer,Integer>() {
 			@Override
 			public boolean test(Integer _1, Integer _2) {
 				if(_2 == 0) return false;
@@ -91,7 +91,7 @@ public class FunclesTests {
 			
 		}, 8, 2));
 		
-		assertTrue(Funcles.apply(new Relation3<Integer,Integer,Integer>() {
+		assertTrue(Funcles.apply(new Predicate3<Integer,Integer,Integer>() {
 			@Override
 			public boolean test(Integer _1, Integer _2, Integer _3) {
 				return _1 != _2 &&

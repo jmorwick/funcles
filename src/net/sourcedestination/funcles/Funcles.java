@@ -26,7 +26,7 @@ import java.util.function.Function;
 import java.util.stream.Stream;
 
 import net.sourcedestination.funcles.consumer.*;
-import net.sourcedestination.funcles.relation.*;
+import net.sourcedestination.funcles.predicate.*;
 import net.sourcedestination.funcles.tuple.*;
 
 import static net.sourcedestination.funcles.tuple.Pair.makePair;
@@ -68,7 +68,7 @@ public class Funcles {
 	
 	/** a simple way to call apply for a relation with 2 arguments
 	 */
-	public static <A1, A2> boolean apply(Relation2<A1, A2> r,  
+	public static <A1, A2> boolean apply(Predicate2<A1, A2> r,  
 	    A1 arg1, A2 arg2) {
 		return r.apply(makeTuple(arg1, arg2));
 	}
@@ -95,7 +95,7 @@ public class Funcles {
 	
 	/** a simple way to call apply for a relation with 3 arguments
 	 */
-	public static <A1, A2, A3> boolean apply(Relation3<A1, A2, A3> r,  
+	public static <A1, A2, A3> boolean apply(Predicate3<A1, A2, A3> r,  
 	    A1 arg1, A2 arg2, A3 arg3) {
 		return r.apply(makeTuple(arg1, arg2, arg3));
 	}
@@ -122,7 +122,7 @@ public class Funcles {
 	
 	/** a simple way to call apply for a relation with 4 arguments
 	 */
-	public static <A1, A2, A3, A4> boolean apply(Relation4<A1, A2, A3, A4> r,  
+	public static <A1, A2, A3, A4> boolean apply(Predicate4<A1, A2, A3, A4> r,  
 	    A1 arg1, A2 arg2, A3 arg3, A4 arg4) {
 		return r.apply(makeTuple(arg1, arg2, arg3, arg4));
 	}
@@ -149,7 +149,7 @@ public class Funcles {
 	
 	/** a simple way to call apply for a relation with 5 arguments
 	 */
-	public static <A1, A2, A3, A4, A5> boolean apply(Relation5<A1, A2, A3, A4, A5> r,  
+	public static <A1, A2, A3, A4, A5> boolean apply(Predicate5<A1, A2, A3, A4, A5> r,  
 	    A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5) {
 		return r.apply(makeTuple(arg1, arg2, arg3, arg4, arg5));
 	}
@@ -176,7 +176,7 @@ public class Funcles {
 	
 	/** a simple way to call apply for a relation with 6 arguments
 	 */
-	public static <A1, A2, A3, A4, A5, A6> boolean apply(Relation6<A1, A2, A3, A4, A5, A6> r,  
+	public static <A1, A2, A3, A4, A5, A6> boolean apply(Predicate6<A1, A2, A3, A4, A5, A6> r,  
 	    A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6) {
 		return r.apply(makeTuple(arg1, arg2, arg3, arg4, arg5, arg6));
 	}
@@ -203,7 +203,7 @@ public class Funcles {
 	
 	/** a simple way to call apply for a relation with 7 arguments
 	 */
-	public static <A1, A2, A3, A4, A5, A6, A7> boolean apply(Relation7<A1, A2, A3, A4, A5, A6, A7> r,  
+	public static <A1, A2, A3, A4, A5, A6, A7> boolean apply(Predicate7<A1, A2, A3, A4, A5, A6, A7> r,  
 	    A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6, A7 arg7) {
 		return r.apply(makeTuple(arg1, arg2, arg3, arg4, arg5, arg6, arg7));
 	}
@@ -230,7 +230,7 @@ public class Funcles {
 	
 	/** a simple way to call apply for a relation with 8 arguments
 	 */
-	public static <A1, A2, A3, A4, A5, A6, A7, A8> boolean apply(Relation8<A1, A2, A3, A4, A5, A6, A7, A8> r,  
+	public static <A1, A2, A3, A4, A5, A6, A7, A8> boolean apply(Predicate8<A1, A2, A3, A4, A5, A6, A7, A8> r,  
 	    A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6, A7 arg7, A8 arg8) {
 		return r.apply(makeTuple(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8));
 	}
@@ -257,7 +257,7 @@ public class Funcles {
 	
 	/** a simple way to call apply for a relation with 9 arguments
 	 */
-	public static <A1, A2, A3, A4, A5, A6, A7, A8, A9> boolean apply(Relation9<A1, A2, A3, A4, A5, A6, A7, A8, A9> r,  
+	public static <A1, A2, A3, A4, A5, A6, A7, A8, A9> boolean apply(Predicate9<A1, A2, A3, A4, A5, A6, A7, A8, A9> r,  
 	    A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6, A7 arg7, A8 arg8, A9 arg9) {
 		return r.apply(makeTuple(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9));
 	}
@@ -284,7 +284,7 @@ public class Funcles {
 	
 	/** a simple way to call apply for a relation with 10 arguments
 	 */
-	public static <A1, A2, A3, A4, A5, A6, A7, A8, A9, A10> boolean apply(Relation10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10> r,  
+	public static <A1, A2, A3, A4, A5, A6, A7, A8, A9, A10> boolean apply(Predicate10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10> r,  
 	    A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6, A7 arg7, A8 arg8, A9 arg9, A10 arg10) {
 		return r.apply(makeTuple(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10));
 	}
@@ -311,7 +311,7 @@ public class Funcles {
 	
 	/** a simple way to call apply for a relation with 11 arguments
 	 */
-	public static <A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11> boolean apply(Relation11<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11> r,  
+	public static <A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11> boolean apply(Predicate11<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11> r,  
 	    A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6, A7 arg7, A8 arg8, A9 arg9, A10 arg10, A11 arg11) {
 		return r.apply(makeTuple(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11));
 	}
@@ -338,7 +338,7 @@ public class Funcles {
 	
 	/** a simple way to call apply for a relation with 12 arguments
 	 */
-	public static <A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12> boolean apply(Relation12<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12> r,  
+	public static <A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12> boolean apply(Predicate12<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12> r,  
 	    A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6, A7 arg7, A8 arg8, A9 arg9, A10 arg10, A11 arg11, A12 arg12) {
 		return r.apply(makeTuple(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12));
 	}
