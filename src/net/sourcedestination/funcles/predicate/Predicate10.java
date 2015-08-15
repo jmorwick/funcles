@@ -17,10 +17,11 @@
 
  */
 
-package net.sourcedestination.funcles.relation;
+package net.sourcedestination.funcles.predicate;
 
 	
 
+import java.util.function.Predicate;
 import net.sourcedestination.funcles.function.Function10;
 import net.sourcedestination.funcles.tuple.Tuple10;
 
@@ -30,7 +31,7 @@ import net.sourcedestination.funcles.tuple.Tuple10;
  * @version 2.0
  */
 @FunctionalInterface
-public abstract interface Relation10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10> extends Relation<Tuple10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10>>, 
+public abstract interface Predicate10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10> extends Predicate<Tuple10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10>>, 
 											   Function10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10,Boolean> {
 	
 	public default Boolean apply(A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6, A7 arg7, A8 arg8, A9 arg9, A10 arg10) {

@@ -17,10 +17,11 @@
 
  */
 
-package net.sourcedestination.funcles.relation;
+package net.sourcedestination.funcles.predicate;
 
 import java.util.function.BiPredicate;	
 
+import java.util.function.Predicate;
 import net.sourcedestination.funcles.function.Function2;
 import net.sourcedestination.funcles.tuple.Tuple2;
 
@@ -30,7 +31,7 @@ import net.sourcedestination.funcles.tuple.Tuple2;
  * @version 2.0
  */
 @FunctionalInterface
-public abstract interface Relation2<A1, A2> extends Relation<Tuple2<A1, A2>>, 
+public abstract interface Predicate2<A1, A2> extends Predicate<Tuple2<A1, A2>>, 
 											   BiPredicate<A1, A2>,
 											   Function2<A1, A2,Boolean> {
 	
@@ -50,7 +51,7 @@ public abstract interface Relation2<A1, A2> extends Relation<Tuple2<A1, A2>>,
 	/** returns the negation of this Relation2 as a Relation2 
 	* @return returns the negation of this Relation2 as a Relation2 
 	*/
-	public default Relation2<A1, A2> negate() {
+	public default Predicate2<A1, A2> negate() {
 		return (x,y) -> !test(x,y);
 	}
 	public boolean test(A1 arg1, A2 arg2);

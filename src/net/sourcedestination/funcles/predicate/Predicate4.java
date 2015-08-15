@@ -17,12 +17,13 @@
 
  */
 
-package net.sourcedestination.funcles.relation;
+package net.sourcedestination.funcles.predicate;
 
 	
 
-import net.sourcedestination.funcles.function.Function5;
-import net.sourcedestination.funcles.tuple.Tuple5;
+import java.util.function.Predicate;
+import net.sourcedestination.funcles.function.Function4;
+import net.sourcedestination.funcles.tuple.Tuple4;
 
 /** This class provides a clean abstraction for implementing binary relations
  *
@@ -30,21 +31,21 @@ import net.sourcedestination.funcles.tuple.Tuple5;
  * @version 2.0
  */
 @FunctionalInterface
-public abstract interface Relation5<A1, A2, A3, A4, A5> extends Relation<Tuple5<A1, A2, A3, A4, A5>>, 
-											   Function5<A1, A2, A3, A4, A5,Boolean> {
+public abstract interface Predicate4<A1, A2, A3, A4> extends Predicate<Tuple4<A1, A2, A3, A4>>, 
+											   Function4<A1, A2, A3, A4,Boolean> {
 	
-	public default Boolean apply(A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5) {
-		return test(arg1, arg2, arg3, arg4, arg5);
+	public default Boolean apply(A1 arg1, A2 arg2, A3 arg3, A4 arg4) {
+		return test(arg1, arg2, arg3, arg4);
 	}
 
-	public default boolean test(Tuple5<A1, A2, A3, A4, A5> args) {
-		return test(args._1, args._2, args._3, args._4, args._5);
+	public default boolean test(Tuple4<A1, A2, A3, A4> args) {
+		return test(args._1, args._2, args._3, args._4);
 	}
 
-	public default Boolean apply(Tuple5<A1, A2, A3, A4, A5> args) {
-		return test(args._1, args._2, args._3, args._4, args._5);
+	public default Boolean apply(Tuple4<A1, A2, A3, A4> args) {
+		return test(args._1, args._2, args._3, args._4);
 	}
 
-	public boolean test(A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5);
+	public boolean test(A1 arg1, A2 arg2, A3 arg3, A4 arg4);
 	
 }

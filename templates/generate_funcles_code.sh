@@ -12,9 +12,9 @@ done
 # generate same-type tuples
 # TODO
 
-# generate relations
+# generate predicates
 for i in `seq 2 $MAX_TUPLE`; do
-	php ./relation_template.php $i > ../src/net/sourcedestination/funcles/relation/Relation$i.java
+	php ./predicate_template.php $i > ../src/net/sourcedestination/funcles/predicate/Predicate$i.java
 done 
 
 # generate functions
