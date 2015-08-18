@@ -18,6 +18,8 @@
 
 package net.sourcedestination.funcles.tuple;
 
+import net.sourcedestination.funcles.consumer.Consumer5;
+
 
 
 /**  A class representing a 5-tuple
@@ -51,7 +53,47 @@ public class Tuple5<A1, A2, A3, A4, A5> extends Tuple<Tuple5<A1, A2, A3, A4, A5>
     public A4 _4() { return _4; }
     public A5 _5() { return _5; }
 
+	/** a simple way to unpack a tuple with  arguments to an anonymous consumer
+	 */
+	public void unpack(Consumer5<A1, A2, A3, A4, A5> c) {
+	    c.accept(this);
+	}
 
+	/** copies this tuple and returns a new tuple with value #1 replaced by newValue
+	 */
+	public Tuple5<A1, A2, A3, A4, A5> set1(A1 newValue) {
+	    return makeTuple(newValue, _2, _3, _4, _5);
+	}
+	
+
+	/** copies this tuple and returns a new tuple with value #2 replaced by newValue
+	 */
+	public Tuple5<A1, A2, A3, A4, A5> set2(A2 newValue) {
+	    return makeTuple(_1, newValue, _3, _4, _5);
+	}
+	
+
+	/** copies this tuple and returns a new tuple with value #3 replaced by newValue
+	 */
+	public Tuple5<A1, A2, A3, A4, A5> set3(A3 newValue) {
+	    return makeTuple(_1, _2, newValue, _4, _5);
+	}
+	
+
+	/** copies this tuple and returns a new tuple with value #4 replaced by newValue
+	 */
+	public Tuple5<A1, A2, A3, A4, A5> set4(A4 newValue) {
+	    return makeTuple(_1, _2, _3, newValue, _5);
+	}
+	
+
+	/** copies this tuple and returns a new tuple with value #5 replaced by newValue
+	 */
+	public Tuple5<A1, A2, A3, A4, A5> set5(A5 newValue) {
+	    return makeTuple(_1, _2, _3, _4, newValue);
+	}
+	
+	
     @Override
     @SuppressWarnings({ "unchecked" })
     public boolean equals(Object obj) {

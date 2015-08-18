@@ -26,6 +26,8 @@ import java.util.function.Function;
 import net.sourcedestination.funcles.Funcles;
 import net.sourcedestination.funcles.tuple.Tuple2;
 
+import static net.sourcedestination.funcles.tuple.Tuple.makeTuple;
+
 /** 
  *
  * @author Joseph Kendall-Morwick <jmorwick@indiana.edu>
@@ -48,7 +50,7 @@ public abstract interface Consumer2<A1, A2> extends Consumer<Tuple2<A1, A2>>,
 	
 	public static <A1, A2> Consumer2<A1, A2> 
 		toConsumer2(Consumer<Tuple2<A1, A2>> f) {
-		return (arg1, arg2) -> Funcles.accept(f, arg1, arg2);
+		return (arg1, arg2) -> f.accept(makeTuple(arg1, arg2));
 	}
 	
 	public static <A1, A2> Consumer2<A1, A2>

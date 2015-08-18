@@ -56,31 +56,11 @@ foreach(range(2,$n) as $i) {
 	$args = implode(", ", array_map(function ($x) { return "arg$x"; }, range(1, $i)));
 	$tuple_contents = implode(", ", array_map(function ($x) { return "args._$x"; }, range(1, $i)));
 ?>
-	/** a simple way to call accept for a consumer with <?=$i?> arguments 
-	 */
-	public static <<?=$type_params?>> void accept(Consumer<Tuple<?=$i?><<?=$type_params?>>> c, 
-		<?=$params?>) {
-		c.accept(makeTuple(<?=$args?>));
-	}
-	
-	/** a simple way to call apply for a function with <?=$i?> arguments 
-	 */
-	public static <<?=$type_params?>, R> R apply(Function<Tuple<?=$i?><<?=$type_params?>>,R> c, 
-		<?=$params?>) {
-		return c.apply(makeTuple(<?=$args?>));
-	}
 	
 	public static <<?=$type_params?>> void forEach(
 			Stream<Tuple<?=$i?><<?=$type_params?>>> s, 
 			Consumer<?=$i?><<?=$type_params?>> c) {
 		s.forEach(t -> c.accept(t));
-	}
-	
-	/** a simple way to call apply for a relation with <?=$i?> arguments
-	 */
-	public static <<?=$type_params?>> boolean apply(Predicate<?=$i?><<?=$type_params?>> r,  
-	    <?=$params?>) {
-		return r.apply(makeTuple(<?=$args?>));
 	}
 
 <?php } ?>

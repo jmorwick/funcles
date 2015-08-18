@@ -18,6 +18,8 @@
 
 package net.sourcedestination.funcles.tuple;
 
+import net.sourcedestination.funcles.consumer.Consumer8;
+
 
 
 /**  A class representing a 8-tuple
@@ -60,7 +62,68 @@ public class Tuple8<A1, A2, A3, A4, A5, A6, A7, A8> extends Tuple<Tuple8<A1, A2,
     public A7 _7() { return _7; }
     public A8 _8() { return _8; }
 
+	/** a simple way to unpack a tuple with  arguments to an anonymous consumer
+	 */
+	public void unpack(Consumer8<A1, A2, A3, A4, A5, A6, A7, A8> c) {
+	    c.accept(this);
+	}
 
+	/** copies this tuple and returns a new tuple with value #1 replaced by newValue
+	 */
+	public Tuple8<A1, A2, A3, A4, A5, A6, A7, A8> set1(A1 newValue) {
+	    return makeTuple(newValue, _2, _3, _4, _5, _6, _7, _8);
+	}
+	
+
+	/** copies this tuple and returns a new tuple with value #2 replaced by newValue
+	 */
+	public Tuple8<A1, A2, A3, A4, A5, A6, A7, A8> set2(A2 newValue) {
+	    return makeTuple(_1, newValue, _3, _4, _5, _6, _7, _8);
+	}
+	
+
+	/** copies this tuple and returns a new tuple with value #3 replaced by newValue
+	 */
+	public Tuple8<A1, A2, A3, A4, A5, A6, A7, A8> set3(A3 newValue) {
+	    return makeTuple(_1, _2, newValue, _4, _5, _6, _7, _8);
+	}
+	
+
+	/** copies this tuple and returns a new tuple with value #4 replaced by newValue
+	 */
+	public Tuple8<A1, A2, A3, A4, A5, A6, A7, A8> set4(A4 newValue) {
+	    return makeTuple(_1, _2, _3, newValue, _5, _6, _7, _8);
+	}
+	
+
+	/** copies this tuple and returns a new tuple with value #5 replaced by newValue
+	 */
+	public Tuple8<A1, A2, A3, A4, A5, A6, A7, A8> set5(A5 newValue) {
+	    return makeTuple(_1, _2, _3, _4, newValue, _6, _7, _8);
+	}
+	
+
+	/** copies this tuple and returns a new tuple with value #6 replaced by newValue
+	 */
+	public Tuple8<A1, A2, A3, A4, A5, A6, A7, A8> set6(A6 newValue) {
+	    return makeTuple(_1, _2, _3, _4, _5, newValue, _7, _8);
+	}
+	
+
+	/** copies this tuple and returns a new tuple with value #7 replaced by newValue
+	 */
+	public Tuple8<A1, A2, A3, A4, A5, A6, A7, A8> set7(A7 newValue) {
+	    return makeTuple(_1, _2, _3, _4, _5, _6, newValue, _8);
+	}
+	
+
+	/** copies this tuple and returns a new tuple with value #8 replaced by newValue
+	 */
+	public Tuple8<A1, A2, A3, A4, A5, A6, A7, A8> set8(A8 newValue) {
+	    return makeTuple(_1, _2, _3, _4, _5, _6, _7, newValue);
+	}
+	
+	
     @Override
     @SuppressWarnings({ "unchecked" })
     public boolean equals(Object obj) {

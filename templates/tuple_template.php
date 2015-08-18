@@ -21,6 +21,8 @@
 
 package net.sourcedestination.funcles.tuple;
 
+import net.sourcedestination.funcles.consumer.Consumer<?=$n?>;
+
 
 
 /**  A class representing a <?=$n?>-tuple
@@ -51,7 +53,26 @@ implode("\n", array_map(function ($x) { return "    public A$x _$x() { return _$
 ?>
 
 
+	/** a simple way to unpack a tuple with <?=$i?> arguments to an anonymous consumer
+	 */
+	public void unpack(Consumer<?=$n?><<?=$type_params?>> c) {
+	    c.accept(this);
+	}
+<?php for($i=1; $i<=$n; $i++) { ?>
 
+	/** copies this tuple and returns a new tuple with value #<?=$i?> replaced by newValue
+	 */
+	public Tuple<?=$n?><<?=$type_params?>> set<?=$i?>(A<?=$i?> newValue) {
+	    return makeTuple(<?php 
+	    	for($j=1; $j<=$n; $j++) {
+	    		if($j > 1) echo ', ';
+	    		echo $j == $i ? 'newValue' : "_$j";
+	    	}
+	    ?>);
+	}
+	
+<?php } ?>
+	
     @Override
     @SuppressWarnings({ "unchecked" })
     public boolean equals(Object obj) {

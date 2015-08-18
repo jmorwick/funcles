@@ -25,6 +25,8 @@ import java.util.function.BiFunction;
 import net.sourcedestination.funcles.Funcles;
 import net.sourcedestination.funcles.tuple.*;
 
+import static net.sourcedestination.funcles.tuple.Tuple.makeTuple;
+
 
 /** 
  *
@@ -52,7 +54,7 @@ public abstract interface Function2<A1, A2, R> extends Function<Tuple2<A1, A2>, 
 	public static <A1, A2,R> Function2<A1, A2,R> 
 		toFunction2(Function<Tuple2<A1, A2>, R> f) {
 		return (arg1, arg2) -> 
-		  Funcles.apply(f, arg1, arg2);
+		  f.apply(makeTuple(arg1, arg2));
 	}
 	
 	public static <A1, A2, R> Function2<A1, A2,R>

@@ -26,6 +26,7 @@ import static org.junit.Assert.*;
 import java.util.function.Function;
 
 import net.sourcedestination.funcles.Funcles;
+import net.sourcedestination.funcles.function.Function5;
 import net.sourcedestination.funcles.predicate.Predicate2;
 import net.sourcedestination.funcles.predicate.Predicate3;
 import net.sourcedestination.funcles.tuple.Pair;
@@ -40,32 +41,7 @@ public class FunclesTests {
 
 	@Test
 	public void testApplyFunctions() {
-		int res2 = Funcles.apply(new Function<Tuple2<Integer,Integer>, Integer>() {
-			@Override
-			public Integer apply(Tuple2<Integer, Integer> args) {
-				// TODO Auto-generated method stub
-				return args._1() + args._2();
-			}
-		}, 1, 2);
-		int res3 = Funcles.apply(new Function<
-				Tuple3<Integer,Integer,Integer>, 
-				Integer>() {
-			@Override
-			public Integer apply(Tuple3<Integer,Integer,Integer> args) {
-				// TODO Auto-generated method stub
-				return args._1() + args._2() + args._3();
-			}
-		}, 1, 2, 3);
-		int res4 = Funcles.apply(new Function<
-				Tuple4<Integer,Integer,Integer,Integer>, 
-				Integer>() {
-			@Override
-			public Integer apply(Tuple4<Integer,Integer,Integer,Integer> args) {
-				// TODO Auto-generated method stub
-				return args._1() + args._2() + args._3() + args._4();
-			}
-		}, 1, 2, 3, 4);
-		int res5 = Funcles.apply(new Function<
+		int res5 = Function5.toFunction5(new Function<
 				Tuple5<Integer,Integer,Integer,Integer,Integer>, 
 				Integer>() {
 			@Override
@@ -73,25 +49,22 @@ public class FunclesTests {
 				// TODO Auto-generated method stub
 				return args._1() + args._2() + args._3() + args._4() + args._5();
 			}
-		}, 1, 2, 3, 4, 5);
-		assertEquals(3, res2);
-		assertEquals(6, res3);
-		assertEquals(10, res4);
+		}).apply(1, 2, 3, 4, 5);
 		assertEquals(15, res5);
 	}
 
 	@Test
 	public void testApplyPredicates() {
-		assertTrue(Funcles.apply(new Predicate2<Integer,Integer>() {
+		assertTrue((new Predicate2<Integer,Integer>() {
 			@Override
 			public boolean test(Integer _1, Integer _2) {
 				if(_2 == 0) return false;
 				return (_1/_2)*_2 == _1;
 			}
 			
-		}, 8, 2));
+		}).apply(8, 2));
 		
-		assertTrue(Funcles.apply(new Predicate3<Integer,Integer,Integer>() {
+		assertTrue((new Predicate3<Integer,Integer,Integer>() {
 			@Override
 			public boolean test(Integer _1, Integer _2, Integer _3) {
 				return _1 != _2 &&
@@ -99,7 +72,7 @@ public class FunclesTests {
 						_2 != _3;
 			}
 			
-		}, 8, 2, 1));
+		}).apply(8, 2, 1));
 	}
 
 

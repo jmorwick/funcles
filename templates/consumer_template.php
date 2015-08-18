@@ -32,6 +32,8 @@ import java.util.function.Consumer;
 import net.sourcedestination.funcles.Funcles;
 import net.sourcedestination.funcles.tuple.Tuple<?=$n?>;
 
+import static net.sourcedestination.funcles.tuple.Tuple.makeTuple;
+
 /** 
  *
  * @author Joseph Kendall-Morwick <jmorwick@indiana.edu>
@@ -54,7 +56,7 @@ public abstract interface Consumer<?=$n?><<?=$type_params?>> extends Consumer<Tu
 	
 	public static <<?=$type_params?>> Consumer<?=$n?><<?=$type_params?>> 
 		toConsumer<?=$n?>(Consumer<Tuple<?=$n?><<?=$type_params?>>> f) {
-		return (<?=$args?>) -> Funcles.accept(f, <?=$args?>);
+		return (<?=$args?>) -> f.accept(makeTuple(<?=$args?>));
 	}
 	
 	public static <<?=$type_params?>> Consumer<?=$n?><<?=$type_params?>>

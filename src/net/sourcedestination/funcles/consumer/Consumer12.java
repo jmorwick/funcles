@@ -25,6 +25,8 @@ import java.util.function.Function;
 import net.sourcedestination.funcles.Funcles;
 import net.sourcedestination.funcles.tuple.Tuple12;
 
+import static net.sourcedestination.funcles.tuple.Tuple.makeTuple;
+
 /** 
  *
  * @author Joseph Kendall-Morwick <jmorwick@indiana.edu>
@@ -46,7 +48,7 @@ public abstract interface Consumer12<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A1
 	
 	public static <A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12> Consumer12<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12> 
 		toConsumer12(Consumer<Tuple12<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12>> f) {
-		return (arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12) -> Funcles.accept(f, arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12);
+		return (arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12) -> f.accept(makeTuple(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11, arg12));
 	}
 	
 	public static <A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12> Consumer12<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11, A12>

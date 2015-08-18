@@ -24,6 +24,8 @@ import java.util.function.Function;
 import net.sourcedestination.funcles.Funcles;
 import net.sourcedestination.funcles.tuple.*;
 
+import static net.sourcedestination.funcles.tuple.Tuple.makeTuple;
+
 
 /** 
  *
@@ -54,7 +56,7 @@ public abstract interface Function3<A1, A2, A3, R> extends Function<Tuple3<A1, A
 	public static <A1, A2, A3,R> Function3<A1, A2, A3,R> 
 		toFunction3(Function<Tuple3<A1, A2, A3>, R> f) {
 		return (arg1, arg2, arg3) -> 
-		  Funcles.apply(f, arg1, arg2, arg3);
+		  f.apply(makeTuple(arg1, arg2, arg3));
 	}
 	
 	public static <A1, A2, A3, R> Function3<A1, A2, A3,R>

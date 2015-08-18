@@ -18,6 +18,8 @@
 
 package net.sourcedestination.funcles.tuple;
 
+import net.sourcedestination.funcles.consumer.Consumer3;
+
 
 
 /**  A class representing a 3-tuple
@@ -45,7 +47,33 @@ public class Tuple3<A1, A2, A3> extends Tuple<Tuple3<A1, A2, A3>> {
     public A2 _2() { return _2; }
     public A3 _3() { return _3; }
 
+	/** a simple way to unpack a tuple with  arguments to an anonymous consumer
+	 */
+	public void unpack(Consumer3<A1, A2, A3> c) {
+	    c.accept(this);
+	}
 
+	/** copies this tuple and returns a new tuple with value #1 replaced by newValue
+	 */
+	public Tuple3<A1, A2, A3> set1(A1 newValue) {
+	    return makeTuple(newValue, _2, _3);
+	}
+	
+
+	/** copies this tuple and returns a new tuple with value #2 replaced by newValue
+	 */
+	public Tuple3<A1, A2, A3> set2(A2 newValue) {
+	    return makeTuple(_1, newValue, _3);
+	}
+	
+
+	/** copies this tuple and returns a new tuple with value #3 replaced by newValue
+	 */
+	public Tuple3<A1, A2, A3> set3(A3 newValue) {
+	    return makeTuple(_1, _2, newValue);
+	}
+	
+	
     @Override
     @SuppressWarnings({ "unchecked" })
     public boolean equals(Object obj) {

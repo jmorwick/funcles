@@ -30,6 +30,8 @@ import java.util.function.Function;
 import net.sourcedestination.funcles.Funcles;
 import net.sourcedestination.funcles.tuple.*;
 
+import static net.sourcedestination.funcles.tuple.Tuple.makeTuple;
+
 
 /** 
  *
@@ -65,7 +67,7 @@ public abstract interface Function<?=$n?><<?=$type_params?>, R> extends Function
 	public static <<?=$type_params?>,R> Function<?=$n?><<?=$type_params?>,R> 
 		toFunction<?=$n?>(Function<Tuple<?=$n?><<?=$type_params?>>, R> f) {
 		return (<?=implode(", ", array_map(function ($x) { return "arg$x"; }, range(1, $n)))?>) -> 
-		  Funcles.apply(f, <?=implode(", ", array_map(function ($x) { return "arg$x"; }, range(1, $n)))?>);
+		  f.apply(makeTuple(<?=implode(", ", array_map(function ($x) { return "arg$x"; }, range(1, $n)))?>));
 	}
 	
 	public static <<?=$type_params?>, R> Function<?=$n?><<?=$type_params?>,R>
