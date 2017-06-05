@@ -1,4 +1,4 @@
-/* Copyright 2011-2014 Joseph Kendall-Morwick
+/* Copyright 2011-2017 Joseph Kendall-Morwick
 
      This file is part of the Funcles library.
 
@@ -83,7 +83,7 @@ public class TupleTest {
 	public void testComparable3() throws IOException, ClassNotFoundException {
 		Tuple3<Integer,String,Double> t1 = makeTuple(5, "blah", 1.2);
 		Tuple3<Integer,String,Double> t2 = makeTuple(6, "blah", 1.2);
-		Tuple3<Integer,String,Double> t3 = makeTuple(5, "alah", 1.2);
+		Tuple3<Integer,String,Double> t3 = makeTuple(5, "apple", 1.2);
 		Tuple3<Integer,String,Double> t4 = makeTuple(5, "blah", 1.1);
 		Tuple3<Integer,String,Double> t5 = makeTuple(5, "blah", 1.2);
 
@@ -137,7 +137,7 @@ public class TupleTest {
 	
 	@Test
 	public void testHashCode() {
-		Set<Tuple> tuples = new HashSet<Tuple>();
+		Set<Tuple> tuples = new HashSet<>();
 		for(int i=0; i<(int)(Math.random()*1000); i++) 
 			tuples.add(makeTuple(1, 2, 3));
 		for(int i=0; i<(int)(Math.random()*1000); i++) 
@@ -150,7 +150,7 @@ public class TupleTest {
 			tuples.add(makeTuple(1, "2"));
 		assertEquals(5, tuples.size());
 		
-		Set<Integer> codes = new HashSet<Integer>();
+		Set<Integer> codes = new HashSet<>();
 		for(Tuple t : tuples)
 			codes.add(t.hashCode());
 		

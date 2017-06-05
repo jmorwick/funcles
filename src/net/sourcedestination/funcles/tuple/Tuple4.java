@@ -1,4 +1,4 @@
-/* Copyright 2011-2015 Joseph Kendall-Morwick
+/* Copyright 2011-2017 Joseph Kendall-Morwick
 
      This file is part of the Funcles library.
 
@@ -116,11 +116,11 @@ public class Tuple4<A1, A2, A3, A4> extends Tuple<Tuple4<A1, A2, A3, A4>> {
         return hash;
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-	@Override
-	/** attempts to compare this tuple to another tuple using the common Comparable semantics.  
+	/** attempts to compare this tuple to another tuple using the common Comparable semantics.
 	 * @throws ClassCastException if any type within the tuple doesn't implement Comparable
 	 */
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
 	public int compareTo(Tuple4<A1, A2, A3, A4> t) {
 		int r;
 		r = ((Comparable)_1).compareTo(t._1);

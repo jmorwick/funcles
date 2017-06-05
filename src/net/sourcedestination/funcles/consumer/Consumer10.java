@@ -1,4 +1,4 @@
-/* Copyright 2011-2014 Joseph Kendall-Morwick
+/* Copyright 2011-2017 Joseph Kendall-Morwick
 
      This file is part of the Funcles library.
 
@@ -22,7 +22,6 @@ package net.sourcedestination.funcles.consumer;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-import net.sourcedestination.funcles.Funcles;
 import net.sourcedestination.funcles.tuple.Tuple10;
 
 import static net.sourcedestination.funcles.tuple.Tuple.makeTuple;
@@ -33,25 +32,25 @@ import static net.sourcedestination.funcles.tuple.Tuple.makeTuple;
  * @version 2.0
  */
 @FunctionalInterface
-public abstract interface Consumer10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10> extends Consumer<Tuple10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10>> {
+public interface Consumer10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10> extends Consumer<Tuple10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10>> {
 	
-	public default void accept(Tuple10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10> args) {
+	default void accept(Tuple10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10> args) {
 		accept(args._1, args._2, args._3, args._4, args._5, args._6, args._7, args._8, args._9, args._10);
 	}
 	
-	public void accept(A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6, A7 arg7, A8 arg8, A9 arg9, A10 arg10);
+	void accept(A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6, A7 arg7, A8 arg8, A9 arg9, A10 arg10);
 	
-	public default Consumer10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10> applyHigherOrderTo(Function< ? super Consumer10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10>, 
+	default Consumer10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10> applyHigherOrderTo(Function< ? super Consumer10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10>,
 				                                                ? extends Consumer<Tuple10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10>>> hof) {
 		return toConsumer10(hof.apply(this));
 	}
 	
-	public static <A1, A2, A3, A4, A5, A6, A7, A8, A9, A10> Consumer10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10> 
+	static <A1, A2, A3, A4, A5, A6, A7, A8, A9, A10> Consumer10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10>
 		toConsumer10(Consumer<Tuple10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10>> f) {
 		return (arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10) -> f.accept(makeTuple(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10));
 	}
 	
-	public static <A1, A2, A3, A4, A5, A6, A7, A8, A9, A10> Consumer10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10>
+	static <A1, A2, A3, A4, A5, A6, A7, A8, A9, A10> Consumer10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10>
 		 applyHigherOrder(Function< ? super Consumer10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10>, 
 				                   ? extends Consumer<Tuple10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10>>> hof,
 				                Consumer10<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10> f) {

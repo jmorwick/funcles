@@ -39,7 +39,7 @@ public class Pair<T> extends Tuple2<T,T> {
 	/** creates a new immutable pair with the given arguments
 	 */
 	public static <T> Pair<T> makePair(T a1, T a2) {
-		return new Pair<T>(a1, a2);
+		return new Pair<>(a1, a2);
 	}
 	
 

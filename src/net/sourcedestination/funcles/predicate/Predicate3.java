@@ -1,4 +1,4 @@
-/* Copyright 2011-2014 Joseph Kendall-Morwick
+/* Copyright 2011-2017 Joseph Kendall-Morwick
 
      This file is part of the Funcles library.
 
@@ -31,21 +31,21 @@ import net.sourcedestination.funcles.tuple.Tuple3;
  * @version 2.0
  */
 @FunctionalInterface
-public abstract interface Predicate3<A1, A2, A3> extends Predicate<Tuple3<A1, A2, A3>>, 
+public interface Predicate3<A1, A2, A3> extends Predicate<Tuple3<A1, A2, A3>>,
 											   Function3<A1, A2, A3,Boolean> {
 	
-	public default Boolean apply(A1 arg1, A2 arg2, A3 arg3) {
+	default Boolean apply(A1 arg1, A2 arg2, A3 arg3) {
 		return test(arg1, arg2, arg3);
 	}
 
-	public default boolean test(Tuple3<A1, A2, A3> args) {
+	default boolean test(Tuple3<A1, A2, A3> args) {
 		return test(args._1, args._2, args._3);
 	}
 
-	public default Boolean apply(Tuple3<A1, A2, A3> args) {
+	default Boolean apply(Tuple3<A1, A2, A3> args) {
 		return test(args._1, args._2, args._3);
 	}
 
-	public boolean test(A1 arg1, A2 arg2, A3 arg3);
+	boolean test(A1 arg1, A2 arg2, A3 arg3);
 	
 }

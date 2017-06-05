@@ -1,4 +1,4 @@
-/* Copyright 2011-2014 Joseph Kendall-Morwick
+/* Copyright 2011-2017 Joseph Kendall-Morwick
 
      This file is part of the Funcles library.
 
@@ -31,21 +31,21 @@ import net.sourcedestination.funcles.tuple.Tuple11;
  * @version 2.0
  */
 @FunctionalInterface
-public abstract interface Predicate11<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11> extends Predicate<Tuple11<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11>>, 
+public interface Predicate11<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11> extends Predicate<Tuple11<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11>>,
 											   Function11<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11,Boolean> {
 	
-	public default Boolean apply(A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6, A7 arg7, A8 arg8, A9 arg9, A10 arg10, A11 arg11) {
+	default Boolean apply(A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6, A7 arg7, A8 arg8, A9 arg9, A10 arg10, A11 arg11) {
 		return test(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9, arg10, arg11);
 	}
 
-	public default boolean test(Tuple11<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11> args) {
+	default boolean test(Tuple11<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11> args) {
 		return test(args._1, args._2, args._3, args._4, args._5, args._6, args._7, args._8, args._9, args._10, args._11);
 	}
 
-	public default Boolean apply(Tuple11<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11> args) {
+	default Boolean apply(Tuple11<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11> args) {
 		return test(args._1, args._2, args._3, args._4, args._5, args._6, args._7, args._8, args._9, args._10, args._11);
 	}
 
-	public boolean test(A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6, A7 arg7, A8 arg8, A9 arg9, A10 arg10, A11 arg11);
+	boolean test(A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6, A7 arg7, A8 arg8, A9 arg9, A10 arg10, A11 arg11);
 	
 }

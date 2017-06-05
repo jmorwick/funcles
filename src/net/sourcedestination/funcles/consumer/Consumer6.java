@@ -1,4 +1,4 @@
-/* Copyright 2011-2014 Joseph Kendall-Morwick
+/* Copyright 2011-2017 Joseph Kendall-Morwick
 
      This file is part of the Funcles library.
 
@@ -22,7 +22,6 @@ package net.sourcedestination.funcles.consumer;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-import net.sourcedestination.funcles.Funcles;
 import net.sourcedestination.funcles.tuple.Tuple6;
 
 import static net.sourcedestination.funcles.tuple.Tuple.makeTuple;
@@ -33,25 +32,25 @@ import static net.sourcedestination.funcles.tuple.Tuple.makeTuple;
  * @version 2.0
  */
 @FunctionalInterface
-public abstract interface Consumer6<A1, A2, A3, A4, A5, A6> extends Consumer<Tuple6<A1, A2, A3, A4, A5, A6>> {
+public interface Consumer6<A1, A2, A3, A4, A5, A6> extends Consumer<Tuple6<A1, A2, A3, A4, A5, A6>> {
 	
-	public default void accept(Tuple6<A1, A2, A3, A4, A5, A6> args) {
+	default void accept(Tuple6<A1, A2, A3, A4, A5, A6> args) {
 		accept(args._1, args._2, args._3, args._4, args._5, args._6);
 	}
 	
-	public void accept(A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6);
+	void accept(A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6);
 	
-	public default Consumer6<A1, A2, A3, A4, A5, A6> applyHigherOrderTo(Function< ? super Consumer6<A1, A2, A3, A4, A5, A6>, 
+	default Consumer6<A1, A2, A3, A4, A5, A6> applyHigherOrderTo(Function< ? super Consumer6<A1, A2, A3, A4, A5, A6>,
 				                                                ? extends Consumer<Tuple6<A1, A2, A3, A4, A5, A6>>> hof) {
 		return toConsumer6(hof.apply(this));
 	}
 	
-	public static <A1, A2, A3, A4, A5, A6> Consumer6<A1, A2, A3, A4, A5, A6> 
+	static <A1, A2, A3, A4, A5, A6> Consumer6<A1, A2, A3, A4, A5, A6>
 		toConsumer6(Consumer<Tuple6<A1, A2, A3, A4, A5, A6>> f) {
 		return (arg1, arg2, arg3, arg4, arg5, arg6) -> f.accept(makeTuple(arg1, arg2, arg3, arg4, arg5, arg6));
 	}
 	
-	public static <A1, A2, A3, A4, A5, A6> Consumer6<A1, A2, A3, A4, A5, A6>
+	static <A1, A2, A3, A4, A5, A6> Consumer6<A1, A2, A3, A4, A5, A6>
 		 applyHigherOrder(Function< ? super Consumer6<A1, A2, A3, A4, A5, A6>, 
 				                   ? extends Consumer<Tuple6<A1, A2, A3, A4, A5, A6>>> hof,
 				                Consumer6<A1, A2, A3, A4, A5, A6> f) {

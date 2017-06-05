@@ -1,4 +1,4 @@
-/* Copyright 2011-2014 Joseph Kendall-Morwick
+/* Copyright 2011-2017 Joseph Kendall-Morwick
 
      This file is part of the Funcles library.
 
@@ -21,7 +21,6 @@ package net.sourcedestination.funcles.function;
 
 import java.util.function.Function;
 
-import net.sourcedestination.funcles.Funcles;
 import net.sourcedestination.funcles.tuple.*;
 
 import static net.sourcedestination.funcles.tuple.Tuple.makeTuple;
@@ -33,33 +32,33 @@ import static net.sourcedestination.funcles.tuple.Tuple.makeTuple;
  * @version 2.0
  */
 @FunctionalInterface
-public abstract interface Function3<A1, A2, A3, R> extends Function<Tuple3<A1, A2, A3>, R> {
-	public default R apply(Tuple3<A1, A2, A3> args) {
+public interface Function3<A1, A2, A3, R> extends Function<Tuple3<A1, A2, A3>, R> {
+	default R apply(Tuple3<A1, A2, A3> args) {
 		return apply(args._1, args._2, args._3);
 	}
 
-	public R apply(A1 arg1, A2 arg2, A3 arg3);
+	R apply(A1 arg1, A2 arg2, A3 arg3);
 	
 	
-	public default Function2<A2, A3, R> bind1(A1 arg) {
+	default Function2<A2, A3, R> bind1(A1 arg) {
 	    return (a2, a3) -> apply(arg, a2, a3);
 	}
 	
-	public default Function2<A1, A3, R> bind2(A2 arg) {
+	default Function2<A1, A3, R> bind2(A2 arg) {
 	    return (a1, a3) -> apply(a1, arg, a3);
 	}
 	
-	public default Function2<A1, A2, R> bind3(A3 arg) {
+	default Function2<A1, A2, R> bind3(A3 arg) {
 	    return (a1, a2) -> apply(a1, a2, arg);
 	}
 	
-	public static <A1, A2, A3,R> Function3<A1, A2, A3,R> 
+	static <A1, A2, A3,R> Function3<A1, A2, A3,R>
 		toFunction3(Function<Tuple3<A1, A2, A3>, R> f) {
 		return (arg1, arg2, arg3) -> 
 		  f.apply(makeTuple(arg1, arg2, arg3));
 	}
 	
-	public static <A1, A2, A3, R> Function3<A1, A2, A3,R>
+	static <A1, A2, A3, R> Function3<A1, A2, A3,R>
 		 applyHigherOrder(Function< ? super Function3<A1, A2, A3,R>, 
 				                   ? extends Function<Tuple3<A1, A2, A3>,R>> hof,
 				          Function3<A1, A2, A3,R> f) {

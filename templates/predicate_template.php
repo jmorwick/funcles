@@ -5,7 +5,7 @@
 	$args = implode(", ", array_map(function ($x) { return "arg$x"; }, range(1, $n)));
 	$tuple_contents = implode(", ", array_map(function ($x) { return "args._$x"; }, range(1, $n)));
 ?>
-/* Copyright 2011-2014 Joseph Kendall-Morwick
+/* Copyright 2011-2017 Joseph Kendall-Morwick
 
      This file is part of the Funcles library.
 
@@ -38,19 +38,19 @@ import net.sourcedestination.funcles.tuple.Tuple<?=$n?>;
  * @version 2.0
  */
 @FunctionalInterface
-public abstract interface Predicate<?=$n?><<?=$type_params?>> extends Predicate<Tuple<?=$n?><<?=$type_params?>>>, 
+public interface Predicate<?=$n?><<?=$type_params?>> extends Predicate<Tuple<?=$n?><<?=$type_params?>>>,
 <?php if($n == 2) { ?>											   BiPredicate<<?=$type_params?>>,
 <?php } ?>											   Function<?=$n?><<?=$type_params?>,Boolean> {
 	
-	public default Boolean apply(<?=$params?>) {
+	default Boolean apply(<?=$params?>) {
 		return test(<?=$args?>);
 	}
 
-	public default boolean test(Tuple<?=$n?><<?=$type_params?>> args) {
+	default boolean test(Tuple<?=$n?><<?=$type_params?>> args) {
 		return test(<?=$tuple_contents?>);
 	}
 
-	public default Boolean apply(Tuple<?=$n?><<?=$type_params?>> args) {
+	default Boolean apply(Tuple<?=$n?><<?=$type_params?>> args) {
 		return test(<?=$tuple_contents?>);
 	}
 
@@ -59,10 +59,10 @@ public abstract interface Predicate<?=$n?><<?=$type_params?>> extends Predicate<
 	/** returns the negation of this Relation2 as a Relation2 
 	* @return returns the negation of this Relation2 as a Relation2 
 	*/
-	public default Predicate2<A1, A2> negate() {
+	default Predicate2<A1, A2> negate() {
 		return (x,y) -> !test(x,y);
 	}
 <?php } ?>
-	public boolean test(<?=$params?>);
+	boolean test(<?=$params?>);
 	
 }

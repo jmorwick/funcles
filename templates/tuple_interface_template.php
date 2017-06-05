@@ -1,6 +1,6 @@
 <?php 
 	$max = $argv[1];
-?>/* Copyright 2011-2014 Joseph Kendall-Morwick
+?>/* Copyright 2011-2017 Joseph Kendall-Morwick
 
      This file is part of the Funcles library.
 
@@ -21,8 +21,6 @@
 
 package net.sourcedestination.funcles.tuple;
 
-//TODO: add a copy-on-modify method to modify tuples. 
-
 import java.io.Serializable;
 
 /** Abstract class for all tuples
@@ -36,7 +34,6 @@ public abstract class Tuple<T> implements Serializable, Comparable<T> {
 
     /** constructor for abstract tuple class which tracks tuple properties
      *
-     * @param mutable whether or not this tuple can be altered
      * @param size number of elements in this tuple
      */
     public Tuple(int size) {
@@ -57,7 +54,7 @@ public abstract class Tuple<T> implements Serializable, Comparable<T> {
 	    $arguments = implode(", ", array_map(function ($x) { return "_$x"; }, range(1, $i)));
 ?>
     public static <<?=$type_params?>> Tuple<?=$i?><<?=$type_params?>> makeTuple(<?=$parameters?>) {
-        return new Tuple<?=$i?><<?=$type_params?>>(<?=$arguments?>);
+        return new Tuple<?=$i?><>(<?=$arguments?>);
     }
     
 <?php } ?>

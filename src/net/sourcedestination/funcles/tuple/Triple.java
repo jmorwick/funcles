@@ -38,7 +38,7 @@ public class Triple<T> extends Tuple3<T,T,T> {
 	/** creates a new immutable pair with the given arguments
 	 */
 	public static <T> Triple<T> makeTriple(T a1, T a2, T a3) {
-		return new Triple<T>(a1, a2, a3);
+		return new Triple<>(a1, a2, a3);
 	}
 	
 

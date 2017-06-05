@@ -1,4 +1,4 @@
-/* Copyright 2011-2014 Joseph Kendall-Morwick
+/* Copyright 2011-2017 Joseph Kendall-Morwick
 
      This file is part of the Funcles library.
 
@@ -31,19 +31,19 @@ import net.sourcedestination.funcles.tuple.Tuple2;
  * @version 2.0
  */
 @FunctionalInterface
-public abstract interface Predicate2<A1, A2> extends Predicate<Tuple2<A1, A2>>, 
+public interface Predicate2<A1, A2> extends Predicate<Tuple2<A1, A2>>,
 											   BiPredicate<A1, A2>,
 											   Function2<A1, A2,Boolean> {
 	
-	public default Boolean apply(A1 arg1, A2 arg2) {
+	default Boolean apply(A1 arg1, A2 arg2) {
 		return test(arg1, arg2);
 	}
 
-	public default boolean test(Tuple2<A1, A2> args) {
+	default boolean test(Tuple2<A1, A2> args) {
 		return test(args._1, args._2);
 	}
 
-	public default Boolean apply(Tuple2<A1, A2> args) {
+	default Boolean apply(Tuple2<A1, A2> args) {
 		return test(args._1, args._2);
 	}
 
@@ -51,9 +51,9 @@ public abstract interface Predicate2<A1, A2> extends Predicate<Tuple2<A1, A2>>,
 	/** returns the negation of this Relation2 as a Relation2 
 	* @return returns the negation of this Relation2 as a Relation2 
 	*/
-	public default Predicate2<A1, A2> negate() {
+	default Predicate2<A1, A2> negate() {
 		return (x,y) -> !test(x,y);
 	}
-	public boolean test(A1 arg1, A2 arg2);
+	boolean test(A1 arg1, A2 arg2);
 	
 }

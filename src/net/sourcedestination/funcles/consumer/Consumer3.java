@@ -1,4 +1,4 @@
-/* Copyright 2011-2014 Joseph Kendall-Morwick
+/* Copyright 2011-2017 Joseph Kendall-Morwick
 
      This file is part of the Funcles library.
 
@@ -22,7 +22,6 @@ package net.sourcedestination.funcles.consumer;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-import net.sourcedestination.funcles.Funcles;
 import net.sourcedestination.funcles.tuple.Tuple3;
 
 import static net.sourcedestination.funcles.tuple.Tuple.makeTuple;
@@ -33,25 +32,25 @@ import static net.sourcedestination.funcles.tuple.Tuple.makeTuple;
  * @version 2.0
  */
 @FunctionalInterface
-public abstract interface Consumer3<A1, A2, A3> extends Consumer<Tuple3<A1, A2, A3>> {
+public interface Consumer3<A1, A2, A3> extends Consumer<Tuple3<A1, A2, A3>> {
 	
-	public default void accept(Tuple3<A1, A2, A3> args) {
+	default void accept(Tuple3<A1, A2, A3> args) {
 		accept(args._1, args._2, args._3);
 	}
 	
-	public void accept(A1 arg1, A2 arg2, A3 arg3);
+	void accept(A1 arg1, A2 arg2, A3 arg3);
 	
-	public default Consumer3<A1, A2, A3> applyHigherOrderTo(Function< ? super Consumer3<A1, A2, A3>, 
+	default Consumer3<A1, A2, A3> applyHigherOrderTo(Function< ? super Consumer3<A1, A2, A3>,
 				                                                ? extends Consumer<Tuple3<A1, A2, A3>>> hof) {
 		return toConsumer3(hof.apply(this));
 	}
 	
-	public static <A1, A2, A3> Consumer3<A1, A2, A3> 
+	static <A1, A2, A3> Consumer3<A1, A2, A3>
 		toConsumer3(Consumer<Tuple3<A1, A2, A3>> f) {
 		return (arg1, arg2, arg3) -> f.accept(makeTuple(arg1, arg2, arg3));
 	}
 	
-	public static <A1, A2, A3> Consumer3<A1, A2, A3>
+	static <A1, A2, A3> Consumer3<A1, A2, A3>
 		 applyHigherOrder(Function< ? super Consumer3<A1, A2, A3>, 
 				                   ? extends Consumer<Tuple3<A1, A2, A3>>> hof,
 				                Consumer3<A1, A2, A3> f) {

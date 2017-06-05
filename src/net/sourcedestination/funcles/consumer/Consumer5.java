@@ -1,4 +1,4 @@
-/* Copyright 2011-2014 Joseph Kendall-Morwick
+/* Copyright 2011-2017 Joseph Kendall-Morwick
 
      This file is part of the Funcles library.
 
@@ -22,7 +22,6 @@ package net.sourcedestination.funcles.consumer;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-import net.sourcedestination.funcles.Funcles;
 import net.sourcedestination.funcles.tuple.Tuple5;
 
 import static net.sourcedestination.funcles.tuple.Tuple.makeTuple;
@@ -33,25 +32,25 @@ import static net.sourcedestination.funcles.tuple.Tuple.makeTuple;
  * @version 2.0
  */
 @FunctionalInterface
-public abstract interface Consumer5<A1, A2, A3, A4, A5> extends Consumer<Tuple5<A1, A2, A3, A4, A5>> {
+public interface Consumer5<A1, A2, A3, A4, A5> extends Consumer<Tuple5<A1, A2, A3, A4, A5>> {
 	
-	public default void accept(Tuple5<A1, A2, A3, A4, A5> args) {
+	default void accept(Tuple5<A1, A2, A3, A4, A5> args) {
 		accept(args._1, args._2, args._3, args._4, args._5);
 	}
 	
-	public void accept(A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5);
+	void accept(A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5);
 	
-	public default Consumer5<A1, A2, A3, A4, A5> applyHigherOrderTo(Function< ? super Consumer5<A1, A2, A3, A4, A5>, 
+	default Consumer5<A1, A2, A3, A4, A5> applyHigherOrderTo(Function< ? super Consumer5<A1, A2, A3, A4, A5>,
 				                                                ? extends Consumer<Tuple5<A1, A2, A3, A4, A5>>> hof) {
 		return toConsumer5(hof.apply(this));
 	}
 	
-	public static <A1, A2, A3, A4, A5> Consumer5<A1, A2, A3, A4, A5> 
+	static <A1, A2, A3, A4, A5> Consumer5<A1, A2, A3, A4, A5>
 		toConsumer5(Consumer<Tuple5<A1, A2, A3, A4, A5>> f) {
 		return (arg1, arg2, arg3, arg4, arg5) -> f.accept(makeTuple(arg1, arg2, arg3, arg4, arg5));
 	}
 	
-	public static <A1, A2, A3, A4, A5> Consumer5<A1, A2, A3, A4, A5>
+	static <A1, A2, A3, A4, A5> Consumer5<A1, A2, A3, A4, A5>
 		 applyHigherOrder(Function< ? super Consumer5<A1, A2, A3, A4, A5>, 
 				                   ? extends Consumer<Tuple5<A1, A2, A3, A4, A5>>> hof,
 				                Consumer5<A1, A2, A3, A4, A5> f) {

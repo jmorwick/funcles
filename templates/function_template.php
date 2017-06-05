@@ -2,7 +2,7 @@
 	$n = $argv[1];
 	$type_params = implode(", ", array_map(function ($x) { return "A$x"; }, range(1, $n)));
 ?>
-/* Copyright 2011-2014 Joseph Kendall-Morwick
+/* Copyright 2011-2017 Joseph Kendall-Morwick
 
      This file is part of the Funcles library.
 
@@ -27,7 +27,6 @@ import java.util.function.Function;
 <?php if($n == 2) { ?>import java.util.function.BiFunction;
 <?php } ?>
 
-import net.sourcedestination.funcles.Funcles;
 import net.sourcedestination.funcles.tuple.*;
 
 import static net.sourcedestination.funcles.tuple.Tuple.makeTuple;
@@ -39,13 +38,13 @@ import static net.sourcedestination.funcles.tuple.Tuple.makeTuple;
  * @version 2.0
  */
 @FunctionalInterface
-public abstract interface Function<?=$n?><<?=$type_params?>, R> extends Function<Tuple<?=$n?><<?=$type_params?>>, R><?php if($n == 2) { ?>,
+public interface Function<?=$n?><<?=$type_params?>, R> extends Function<Tuple<?=$n?><<?=$type_params?>>, R><?php if($n == 2) { ?>,
 														BiFunction<A1,A2,R> <?php } ?> {
-	public default R apply(Tuple<?=$n?><<?=$type_params?>> args) {
+	default R apply(Tuple<?=$n?><<?=$type_params?>> args) {
 		return apply(<?=implode(", ", array_map(function ($x) { return "args._$x"; }, range(1, $n)))?>);
 	}
 
-	public R apply(<?=implode(", ", array_map(function ($x) { return "A$x arg$x"; }, range(1, $n)))?>);
+	R apply(<?=implode(", ", array_map(function ($x) { return "A$x arg$x"; }, range(1, $n)))?>);
 	
 <?php foreach(range(1, $n) as $i) { 
 	$limited_type_params = '';
@@ -59,25 +58,25 @@ public abstract interface Function<?=$n?><<?=$type_params?>, R> extends Function
 	}
 	?>
 	
-	public default Function<?=$n==2?'':($n-1)?><<?=$limited_type_params?>, R> bind<?=$i?>(A<?=$i?> arg) {
+	default Function<?=$n==2?'':($n-1)?><<?=$limited_type_params?>, R> bind<?=$i?>(A<?=$i?> arg) {
 	    return (<?=$limited_args?>) -> apply(<?=$full_args?>);
 	}
 <?php } ?>
 	
-	public static <<?=$type_params?>,R> Function<?=$n?><<?=$type_params?>,R> 
+	static <<?=$type_params?>,R> Function<?=$n?><<?=$type_params?>,R>
 		toFunction<?=$n?>(Function<Tuple<?=$n?><<?=$type_params?>>, R> f) {
 		return (<?=implode(", ", array_map(function ($x) { return "arg$x"; }, range(1, $n)))?>) -> 
 		  f.apply(makeTuple(<?=implode(", ", array_map(function ($x) { return "arg$x"; }, range(1, $n)))?>));
 	}
 	
-	public static <<?=$type_params?>, R> Function<?=$n?><<?=$type_params?>,R>
+	static <<?=$type_params?>, R> Function<?=$n?><<?=$type_params?>,R>
 		 applyHigherOrder(Function< ? super Function<?=$n?><<?=$type_params?>,R>, 
 				                   ? extends Function<Tuple<?=$n?><<?=$type_params?>>,R>> hof,
 				          Function<?=$n?><<?=$type_params?>,R> f) {
 		return toFunction<?=$n?>(hof.apply(f));
 	}
 <?php if($n == 2) { ?>	
-	public default <V> Function2<A1, A2, V> andThen(Function< ? super R, ? extends V> after) {
+	default <V> Function2<A1, A2, V> andThen(Function< ? super R, ? extends V> after) {
 		return (x, y) -> after.apply(apply(x, y));
 		
 	}

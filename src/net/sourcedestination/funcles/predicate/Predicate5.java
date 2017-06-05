@@ -1,4 +1,4 @@
-/* Copyright 2011-2014 Joseph Kendall-Morwick
+/* Copyright 2011-2017 Joseph Kendall-Morwick
 
      This file is part of the Funcles library.
 
@@ -31,21 +31,21 @@ import net.sourcedestination.funcles.tuple.Tuple5;
  * @version 2.0
  */
 @FunctionalInterface
-public abstract interface Predicate5<A1, A2, A3, A4, A5> extends Predicate<Tuple5<A1, A2, A3, A4, A5>>, 
+public interface Predicate5<A1, A2, A3, A4, A5> extends Predicate<Tuple5<A1, A2, A3, A4, A5>>,
 											   Function5<A1, A2, A3, A4, A5,Boolean> {
 	
-	public default Boolean apply(A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5) {
+	default Boolean apply(A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5) {
 		return test(arg1, arg2, arg3, arg4, arg5);
 	}
 
-	public default boolean test(Tuple5<A1, A2, A3, A4, A5> args) {
+	default boolean test(Tuple5<A1, A2, A3, A4, A5> args) {
 		return test(args._1, args._2, args._3, args._4, args._5);
 	}
 
-	public default Boolean apply(Tuple5<A1, A2, A3, A4, A5> args) {
+	default Boolean apply(Tuple5<A1, A2, A3, A4, A5> args) {
 		return test(args._1, args._2, args._3, args._4, args._5);
 	}
 
-	public boolean test(A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5);
+	boolean test(A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5);
 	
 }

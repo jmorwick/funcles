@@ -1,4 +1,4 @@
-/* Copyright 2011-2014 Joseph Kendall-Morwick
+/* Copyright 2011-2017 Joseph Kendall-Morwick
 
      This file is part of the Funcles library.
 
@@ -31,21 +31,21 @@ import net.sourcedestination.funcles.tuple.Tuple4;
  * @version 2.0
  */
 @FunctionalInterface
-public abstract interface Predicate4<A1, A2, A3, A4> extends Predicate<Tuple4<A1, A2, A3, A4>>, 
+public interface Predicate4<A1, A2, A3, A4> extends Predicate<Tuple4<A1, A2, A3, A4>>,
 											   Function4<A1, A2, A3, A4,Boolean> {
 	
-	public default Boolean apply(A1 arg1, A2 arg2, A3 arg3, A4 arg4) {
+	default Boolean apply(A1 arg1, A2 arg2, A3 arg3, A4 arg4) {
 		return test(arg1, arg2, arg3, arg4);
 	}
 
-	public default boolean test(Tuple4<A1, A2, A3, A4> args) {
+	default boolean test(Tuple4<A1, A2, A3, A4> args) {
 		return test(args._1, args._2, args._3, args._4);
 	}
 
-	public default Boolean apply(Tuple4<A1, A2, A3, A4> args) {
+	default Boolean apply(Tuple4<A1, A2, A3, A4> args) {
 		return test(args._1, args._2, args._3, args._4);
 	}
 
-	public boolean test(A1 arg1, A2 arg2, A3 arg3, A4 arg4);
+	boolean test(A1 arg1, A2 arg2, A3 arg3, A4 arg4);
 	
 }

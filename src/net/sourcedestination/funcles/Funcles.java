@@ -1,4 +1,4 @@
-/* Copyright 2011-2014 Joseph Kendall-Morwick
+/* Copyright 2011-2017 Joseph Kendall-Morwick
 
      This file is part of the Funcles library.
 
@@ -19,19 +19,10 @@
 
 package net.sourcedestination.funcles;
 
-
-import java.util.Collection;
-import java.util.function.Consumer;
-import java.util.function.Function;
 import java.util.stream.Stream;
 
 import net.sourcedestination.funcles.consumer.*;
-import net.sourcedestination.funcles.predicate.*;
 import net.sourcedestination.funcles.tuple.*;
-
-import static net.sourcedestination.funcles.tuple.Pair.makePair;
-import static net.sourcedestination.funcles.tuple.Triple.makeTriple;
-import static net.sourcedestination.funcles.tuple.Tuple.makeTuple;
 
 
 /** A utility class which provides static methods for shrinking common

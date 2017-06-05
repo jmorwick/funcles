@@ -1,7 +1,7 @@
 <?php 
 	$n = $argv[1];
 	$type_params = implode(", ", array_map(function ($x) { return "A$x"; }, range(1, $n)));
-?>/* Copyright 2011-2015 Joseph Kendall-Morwick
+?>/* Copyright 2011-2017 Joseph Kendall-Morwick
 
      This file is part of the Funcles library.
 
@@ -99,11 +99,11 @@ implode("\n", array_map(function ($x) { return
         return hash;
     }
 
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-	@Override
-	/** attempts to compare this tuple to another tuple using the common Comparable semantics.  
+	/** attempts to compare this tuple to another tuple using the common Comparable semantics.
 	 * @throws ClassCastException if any type within the tuple doesn't implement Comparable
 	 */
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
 	public int compareTo(Tuple<?=$n?><<?= $type_params ?>> t) {
 		int r;
 <?php foreach(range(1, $n) as $i) { ?>

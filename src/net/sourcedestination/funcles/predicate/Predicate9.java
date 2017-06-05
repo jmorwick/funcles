@@ -1,4 +1,4 @@
-/* Copyright 2011-2014 Joseph Kendall-Morwick
+/* Copyright 2011-2017 Joseph Kendall-Morwick
 
      This file is part of the Funcles library.
 
@@ -31,21 +31,21 @@ import net.sourcedestination.funcles.tuple.Tuple9;
  * @version 2.0
  */
 @FunctionalInterface
-public abstract interface Predicate9<A1, A2, A3, A4, A5, A6, A7, A8, A9> extends Predicate<Tuple9<A1, A2, A3, A4, A5, A6, A7, A8, A9>>, 
+public interface Predicate9<A1, A2, A3, A4, A5, A6, A7, A8, A9> extends Predicate<Tuple9<A1, A2, A3, A4, A5, A6, A7, A8, A9>>,
 											   Function9<A1, A2, A3, A4, A5, A6, A7, A8, A9,Boolean> {
 	
-	public default Boolean apply(A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6, A7 arg7, A8 arg8, A9 arg9) {
+	default Boolean apply(A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6, A7 arg7, A8 arg8, A9 arg9) {
 		return test(arg1, arg2, arg3, arg4, arg5, arg6, arg7, arg8, arg9);
 	}
 
-	public default boolean test(Tuple9<A1, A2, A3, A4, A5, A6, A7, A8, A9> args) {
+	default boolean test(Tuple9<A1, A2, A3, A4, A5, A6, A7, A8, A9> args) {
 		return test(args._1, args._2, args._3, args._4, args._5, args._6, args._7, args._8, args._9);
 	}
 
-	public default Boolean apply(Tuple9<A1, A2, A3, A4, A5, A6, A7, A8, A9> args) {
+	default Boolean apply(Tuple9<A1, A2, A3, A4, A5, A6, A7, A8, A9> args) {
 		return test(args._1, args._2, args._3, args._4, args._5, args._6, args._7, args._8, args._9);
 	}
 
-	public boolean test(A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6, A7 arg7, A8 arg8, A9 arg9);
+	boolean test(A1 arg1, A2 arg2, A3 arg3, A4 arg4, A5 arg5, A6 arg6, A7 arg7, A8 arg8, A9 arg9);
 	
 }

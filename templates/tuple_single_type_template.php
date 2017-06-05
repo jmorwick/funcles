@@ -3,7 +3,7 @@
 ?>
 /********************************* up to here *********************************/
 
-/* Copyright 2011-2014 Joseph Kendall-Morwick
+/* Copyright 2011-2017 Joseph Kendall-Morwick
 
      This file is part of the Funcles library.
 
