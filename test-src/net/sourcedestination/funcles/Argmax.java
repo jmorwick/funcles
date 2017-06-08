@@ -20,6 +20,7 @@ package net.sourcedestination.funcles;
 
 import net.sourcedestination.funcles.tuple.Tuple2;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Comparator;
@@ -50,7 +51,7 @@ public class Argmax {
   @SafeVarargs
 	public static <F, T extends Comparable<T>> F argmax(Function<F,T> f, 
   		F ... inputs) {
-      return argmax(f, Arrays.stream(inputs).parallel());
+      return argmax(f, Arrays.stream(inputs));
    }
    
 
@@ -64,6 +65,21 @@ public class Argmax {
    	return inputs.map(x -> makeTuple(x, f.apply(x)))  // map to pairs of input/output for function
    			.max(comparing(Tuple2::_2))  // find the tuple with maximum output
             .get()._1();                 // retrieve the input for that maximum output
+   }
+   
+   public static void main(String[] args) {
+	   ArrayList<Integer> ls = new ArrayList<Integer>();
+	   ls.add(1);
+	   ls.add(2);
+	   ls.add(3);
+	   int max = argmax(x -> -x, 1, 2, 3);
+	   Object m = argmax(x -> -x, 1, 2, 3);
+	   System.out.println(max);
+	   Function<Integer,Integer> f = x -> x;
+	   System.out.println(argmax(f, 1, 2, 3));
+	   System.out.println(argmax(f, ls.stream()));
+	   //System.out.println(argmax(x->x, ls.stream())); // error!
+	   //System.out.println(argmax(x->x, 1, 2, 3));   // error!
    }
 
 }
