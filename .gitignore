@@ -1,2 +1,7 @@
 /bin
 /target/
+.project
+.classpath
+.settings
+funcles.iml
+.idea
