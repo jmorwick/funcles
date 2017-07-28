@@ -18,6 +18,8 @@
  */
 package net.sourcedestination.funcles;
 
+import net.sourcedestination.funcles.function.Function2;
+import net.sourcedestination.funcles.tuple.Tuple;
 import net.sourcedestination.funcles.tuple.Tuple2;
 
 import java.util.ArrayList;
@@ -78,6 +80,13 @@ public class Argmax {
 	   Function<Integer,Integer> f = x -> x;
 	   System.out.println(argmax(f, 1, 2, 3));
 	   System.out.println(argmax(f, ls.stream()));
+
+	   Function2<Integer,Integer,Boolean> greater = (x, y) -> x > y;
+	   ArrayList<Tuple2<Integer,Integer>> ls2 = new ArrayList<>();
+	   ls2.add(Tuple.makeTuple(1, 2));
+	   ls2.add(Tuple.makeTuple(5, 1));
+	   ls2.add(Tuple.makeTuple(3, 4));
+	   System.out.println(argmax(greater, ls2));
 	   //System.out.println(argmax(x->x, ls.stream())); // error!
 	   //System.out.println(argmax(x->x, 1, 2, 3));   // error!
    }
