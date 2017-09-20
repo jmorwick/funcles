@@ -9,7 +9,7 @@ Funcles is a tuple and higher arity functional interface library for Java 8+. Fu
 
 ## How to include funcles in your project
 
-Download the jar or use maven (more soon). 
+Download the jar or simply [add the maven dependency](https://search.maven.org/#artifactdetails%7Cnet.sourcedestination%7Cfuncles%7C2.0%7Cjar). 
 
 ## Why a Java tuples library? 
 
@@ -17,9 +17,9 @@ Some argue that, in Java, there is never a need for tuple classes at all, in fac
 
 ## Why *another* Java tuples library?
 
-There are many great tuple implementations out there and one may question why I felt the need to develop another. In [issue #3](https://github.com/jmorwick/funcles/issues/3) I summarize the features of many of these. In fact, type-safe tuple classes are quite easy to simply toss an implementation in to a project. In fact, if all I cared to do was use tuples, I would probably be using one of these.
+There are many great tuple implementations out there and one may question why I felt the need to develop another. In [issue #3](https://github.com/jmorwick/funcles/issues/3) I summarize the features of many of these. If all I cared to do was use tuples, I would probably be using one of these. Even still, it's quite simple to toss a type-safe tuple implementation in to a project without using a third party library. 
 
-The main reason I developed this library was to extend the new functional interfaces in Java 8 to go beyond unary functions. Java 8 functional interfaces, such as `java.util.function.Function`, have one or zero type arguments for inputs and one or zero type arguments for outputs. This requires the programmer to develop a special class to encompass input to any particular function they want to use these interfaces for. However, at the risk of making a gross understatement, Java developers like to develop methods with more than one parameter. Creating a class for each parameter list would make a codebase bulky and brittle. 
+The main reason I developed this library was to extend the new functional interfaces in Java 8 to go beyond unary functions. Java 8 functional interfaces, such as `java.util.function.Function`, have one or zero type arguments for inputs and one or zero type arguments for outputs. This requires the programmer to develop a special class to encompass input to any particular function they want to use these interfaces for. There is an argument for using value classes in place of using multiple parameters, but suffice it to say: many developers still want to write functions with multiple parameters because it's simple and appropriate. Creating a class for each parameter list would make a codebase bulky and brittle. 
 
 This has been partially addressed with the `java.util.function.BiFunction` interface, but I didn't feel it went far enough (perhaps I would want three, four, etc.. parameters), and was not consistent enough with other interfaces in the library (you couldn't abstract over functions of multiple arities). To me, it made more sense to simply use a tuple as the parameter type. 
 
