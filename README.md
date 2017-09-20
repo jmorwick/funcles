@@ -13,7 +13,7 @@ Download the jar or simply [add the maven dependency](https://search.maven.org/#
 
 ## Why a Java tuples library? 
 
-Some argue that, in Java, there is never a need for tuple classes at all, in fact, since whatever a tuple may represent is simply an obsfucated "value class". Thus, a tuple abstraction is typically given very limited support or left out entirely of popular libraries like guava, apache commons, or the JDK. I developed this library for those who either disagree with this assessment of tuples entirely, or others (like me) who mostly agree but also feel there's a middle ground -- that sometimes using tuples obsfucates your code and that sometimes creating a value class for a very simple role may add more confusion and brittleness to your code than it's worth, and that good developers should be able to make a wise choice in these situations. 
+Some argue that, in Java, there is never a need for tuple classes at all, since whatever a tuple may represent is simply an obsfucated "value class". Thus, a tuple abstraction is typically given very limited support or left out entirely of popular libraries like guava, apache commons, or the JDK. I developed this library for those who either disagree with this assessment of tuples entirely, or others (like me) who mostly agree but also feel there's a middle ground -- that sometimes using tuples obsfucates your code and that sometimes creating a value class for a very simple role may add more confusion and brittleness to your code than it's worth, and that good developers should be able to make a wise choice in these situations. 
 
 ## Why *another* Java tuples library?
 
