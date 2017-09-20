@@ -26,8 +26,8 @@ package net.sourcedestination.funcles.tuple;
  *
 
 
-  @author Joseph Kendall-Morwick <jmorwick@indiana.edu>
-  @version 2.1
+  @author Joseph Kendall-Morwick &lt;jbmorwick@gmail.com&gt;
+  @version 2.0
 
   */
 public class Pair<T> extends Tuple2<T,T> {
@@ -37,6 +37,9 @@ public class Pair<T> extends Tuple2<T,T> {
 	}
 
 	/** creates a new immutable pair with the given arguments
+	 * @param a1 the first value in the tuple
+	 * @param a1 the first second in the tuple
+	 * @return a new 2-tuple with the specified contents
 	 */
 	public static <T> Pair<T> makePair(T a1, T a2) {
 		return new Pair<>(a1, a2);

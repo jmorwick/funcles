@@ -30,8 +30,8 @@ package net.sourcedestination.funcles.tuple;
  *
 
 
-  @author Joseph Kendall-Morwick <jmorwick@indiana.edu>
-  @version 2.1
+  @author Joseph Kendall-Morwick &lt;jbmorwick@gmail.com&gt;
+  @version 2.0
 
   */
 public class Triple<T> extends Tuple3<T,T,T> {

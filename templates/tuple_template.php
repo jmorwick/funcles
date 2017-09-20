@@ -29,7 +29,7 @@ import net.sourcedestination.funcles.consumer.Consumer<?=$n?>;
  *
 
 
-  @author Joseph Kendall-Morwick <jbmorwick@gmail.com>
+  @author Joseph Kendall-Morwick &lt;jbmorwick@gmail.com&gt;
   @version 2.0
 
   */
@@ -54,6 +54,7 @@ implode("\n", array_map(function ($x) { return "    public A$x _$x() { return _$
 
 
 	/** a simple way to unpack a tuple with <?=$i?> arguments to an anonymous consumer
+	 * @param c Consumer to accept the values in this tuple
 	 */
 	public void unpack(Consumer<?=$n?><<?=$type_params?>> c) {
 	    c.accept(this);
@@ -61,6 +62,8 @@ implode("\n", array_map(function ($x) { return "    public A$x _$x() { return _$
 <?php for($i=1; $i<=$n; $i++) { ?>
 
 	/** copies this tuple and returns a new tuple with value #<?=$i?> replaced by newValue
+	 * @param newValue value to include at location <?=$i?>
+	 * @return a new tuple with the new value at location <?=$i?>
 	 */
 	public Tuple<?=$n?><<?=$type_params?>> set<?=$i?>(A<?=$i?> newValue) {
 	    return makeTuple(<?php 
@@ -101,6 +104,8 @@ implode("\n", array_map(function ($x) { return
 
 	/** attempts to compare this tuple to another tuple using the common Comparable semantics.
 	 * @throws ClassCastException if any type within the tuple doesn't implement Comparable
+	 * @param t tuple to compare this tuple to
+	 * @return 0 if the same, other values indicate a difference
 	 */
     @SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override

@@ -29,7 +29,7 @@ import static net.sourcedestination.funcles.tuple.Tuple.makeTuple;
 
 /** 
  *
- * @author Joseph Kendall-Morwick <jmorwick@indiana.edu>
+ * @author Joseph Kendall-Morwick &lt;jbmorwick@gmail.com&gt;
  * @version 2.0
  */
 @FunctionalInterface

@@ -31,7 +31,7 @@ import net.sourcedestination.funcles.tuple.*;
  * Java 1.8 Function and Consumer interfaces are used with this library,
  * this utility class was necessary to add. 
  * 
- * @author Joseph Kendall-Morwick <jbmorwick@gmail.com>
+ * @author Joseph Kendall-Morwick &lt;jbmorwick@gmail.com&gt;
  * @version 2.0
  *
  */

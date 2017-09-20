@@ -26,7 +26,7 @@ import net.sourcedestination.funcles.consumer.Consumer2;
  *
 
 
-  @author Joseph Kendall-Morwick <jbmorwick@gmail.com>
+  @author Joseph Kendall-Morwick &lt;jbmorwick@gmail.com&gt;
   @version 2.0
 
   */
@@ -45,20 +45,21 @@ public class Tuple2<A1, A2> extends Tuple<Tuple2<A1, A2>> {
     public A2 _2() { return _2; }
 
 	/** a simple way to unpack a tuple with  arguments to an anonymous consumer
+	 * @param c Consumer to accept the values in this tuple
 	 */
 	public void unpack(Consumer2<A1, A2> c) {
 	    c.accept(this);
 	}
 
 	/** copies this tuple and returns a new tuple with value #1 replaced by newValue
-	 */
+	 * @param newValue value to include at location 1	 * @return a new tuple with the new value at location 1	 */
 	public Tuple2<A1, A2> set1(A1 newValue) {
 	    return makeTuple(newValue, _2);
 	}
 	
 
 	/** copies this tuple and returns a new tuple with value #2 replaced by newValue
-	 */
+	 * @param newValue value to include at location 2	 * @return a new tuple with the new value at location 2	 */
 	public Tuple2<A1, A2> set2(A2 newValue) {
 	    return makeTuple(_1, newValue);
 	}
@@ -90,6 +91,8 @@ public class Tuple2<A1, A2> extends Tuple<Tuple2<A1, A2>> {
 
 	/** attempts to compare this tuple to another tuple using the common Comparable semantics.
 	 * @throws ClassCastException if any type within the tuple doesn't implement Comparable
+	 * @param t tuple to compare this tuple to
+	 * @return 0 if the same, other values indicate a difference
 	 */
     @SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override

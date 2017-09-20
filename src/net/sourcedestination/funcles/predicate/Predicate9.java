@@ -27,7 +27,7 @@ import net.sourcedestination.funcles.tuple.Tuple9;
 
 /** This class provides a clean abstraction for implementing binary relations
  *
- * @author Joseph Kendall-Morwick <jmorwick@indiana.edu>
+ * @author Joseph Kendall-Morwick &lt;jbmorwick@gmail.com&gt;
  * @version 2.0
  */
 @FunctionalInterface

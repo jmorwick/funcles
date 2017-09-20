@@ -23,7 +23,7 @@ import java.io.Serializable;
 
 /** Abstract class for all tuples
 
-  @author Joseph Kendall-Morwick <jbmorwick@gmail.com>
+  @author Joseph Kendall-Morwick &lt;jbmorwick@gmail.com&gt;
   @version 2.0
  */
 public abstract class Tuple<T> implements Serializable, Comparable<T> {

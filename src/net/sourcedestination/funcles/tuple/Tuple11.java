@@ -26,7 +26,7 @@ import net.sourcedestination.funcles.consumer.Consumer11;
  *
 
 
-  @author Joseph Kendall-Morwick <jbmorwick@gmail.com>
+  @author Joseph Kendall-Morwick &lt;jbmorwick@gmail.com&gt;
   @version 2.0
 
   */
@@ -72,83 +72,84 @@ public class Tuple11<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11> extends Tuple
     public A11 _11() { return _11; }
 
 	/** a simple way to unpack a tuple with  arguments to an anonymous consumer
+	 * @param c Consumer to accept the values in this tuple
 	 */
 	public void unpack(Consumer11<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11> c) {
 	    c.accept(this);
 	}
 
 	/** copies this tuple and returns a new tuple with value #1 replaced by newValue
-	 */
+	 * @param newValue value to include at location 1	 * @return a new tuple with the new value at location 1	 */
 	public Tuple11<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11> set1(A1 newValue) {
 	    return makeTuple(newValue, _2, _3, _4, _5, _6, _7, _8, _9, _10, _11);
 	}
 	
 
 	/** copies this tuple and returns a new tuple with value #2 replaced by newValue
-	 */
+	 * @param newValue value to include at location 2	 * @return a new tuple with the new value at location 2	 */
 	public Tuple11<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11> set2(A2 newValue) {
 	    return makeTuple(_1, newValue, _3, _4, _5, _6, _7, _8, _9, _10, _11);
 	}
 	
 
 	/** copies this tuple and returns a new tuple with value #3 replaced by newValue
-	 */
+	 * @param newValue value to include at location 3	 * @return a new tuple with the new value at location 3	 */
 	public Tuple11<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11> set3(A3 newValue) {
 	    return makeTuple(_1, _2, newValue, _4, _5, _6, _7, _8, _9, _10, _11);
 	}
 	
 
 	/** copies this tuple and returns a new tuple with value #4 replaced by newValue
-	 */
+	 * @param newValue value to include at location 4	 * @return a new tuple with the new value at location 4	 */
 	public Tuple11<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11> set4(A4 newValue) {
 	    return makeTuple(_1, _2, _3, newValue, _5, _6, _7, _8, _9, _10, _11);
 	}
 	
 
 	/** copies this tuple and returns a new tuple with value #5 replaced by newValue
-	 */
+	 * @param newValue value to include at location 5	 * @return a new tuple with the new value at location 5	 */
 	public Tuple11<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11> set5(A5 newValue) {
 	    return makeTuple(_1, _2, _3, _4, newValue, _6, _7, _8, _9, _10, _11);
 	}
 	
 
 	/** copies this tuple and returns a new tuple with value #6 replaced by newValue
-	 */
+	 * @param newValue value to include at location 6	 * @return a new tuple with the new value at location 6	 */
 	public Tuple11<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11> set6(A6 newValue) {
 	    return makeTuple(_1, _2, _3, _4, _5, newValue, _7, _8, _9, _10, _11);
 	}
 	
 
 	/** copies this tuple and returns a new tuple with value #7 replaced by newValue
-	 */
+	 * @param newValue value to include at location 7	 * @return a new tuple with the new value at location 7	 */
 	public Tuple11<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11> set7(A7 newValue) {
 	    return makeTuple(_1, _2, _3, _4, _5, _6, newValue, _8, _9, _10, _11);
 	}
 	
 
 	/** copies this tuple and returns a new tuple with value #8 replaced by newValue
-	 */
+	 * @param newValue value to include at location 8	 * @return a new tuple with the new value at location 8	 */
 	public Tuple11<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11> set8(A8 newValue) {
 	    return makeTuple(_1, _2, _3, _4, _5, _6, _7, newValue, _9, _10, _11);
 	}
 	
 
 	/** copies this tuple and returns a new tuple with value #9 replaced by newValue
-	 */
+	 * @param newValue value to include at location 9	 * @return a new tuple with the new value at location 9	 */
 	public Tuple11<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11> set9(A9 newValue) {
 	    return makeTuple(_1, _2, _3, _4, _5, _6, _7, _8, newValue, _10, _11);
 	}
 	
 
 	/** copies this tuple and returns a new tuple with value #10 replaced by newValue
-	 */
+	 * @param newValue value to include at location 10	 * @return a new tuple with the new value at location 10	 */
 	public Tuple11<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11> set10(A10 newValue) {
 	    return makeTuple(_1, _2, _3, _4, _5, _6, _7, _8, _9, newValue, _11);
 	}
 	
 
 	/** copies this tuple and returns a new tuple with value #11 replaced by newValue
-	 */
+	 * @param newValue value to include at location 11	 * @return a new tuple with the new value at location 11	 */
 	public Tuple11<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11> set11(A11 newValue) {
 	    return makeTuple(_1, _2, _3, _4, _5, _6, _7, _8, _9, _10, newValue);
 	}
@@ -216,6 +217,8 @@ public class Tuple11<A1, A2, A3, A4, A5, A6, A7, A8, A9, A10, A11> extends Tuple
 
 	/** attempts to compare this tuple to another tuple using the common Comparable semantics.
 	 * @throws ClassCastException if any type within the tuple doesn't implement Comparable
+	 * @param t tuple to compare this tuple to
+	 * @return 0 if the same, other values indicate a difference
 	 */
     @SuppressWarnings({ "unchecked", "rawtypes" })
 	@Override
