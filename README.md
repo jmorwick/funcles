@@ -1,5 +1,4 @@
 # Funcles
-[![Build Status](https://travis-ci.org/jmorwick/funcles.svg?branch=master)](https://travis-ci.org/jmorwick/funcles)
 
 Funcles is a tuple and higher arity functional interface library for Java 8+. Funcles tuples and functional interfaces are type-safe, minimally "wordy", and built on top of existing Java 8 collections and functional interfaces where appropriate. These functional interfaces can be used as types for referencing methods with more than one parameter. 
 
